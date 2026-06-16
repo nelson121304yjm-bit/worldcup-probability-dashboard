@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "worldcup-arb"
+version = "0.1.0"
+description = "World Cup arbitrage calculator for Sporttery fixed odds and Polymarket prediction shares."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Nelson" }]
+dependencies = []
+
+[project.scripts]
+worldcup-arb = "worldcup_arb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

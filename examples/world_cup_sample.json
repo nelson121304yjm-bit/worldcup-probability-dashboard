@@ -1,0 +1,97 @@
+{
+  "base_currency": "CNY",
+  "events": [
+    {
+      "id": "sample-world-cup-final-3way",
+      "title": "世界杯决赛 90 分钟赛果示例：A vs B",
+      "outcomes": [
+        {"id": "A_WIN", "label": "A 胜"},
+        {"id": "DRAW", "label": "平局"},
+        {"id": "B_WIN", "label": "B 胜"}
+      ],
+      "instruments": [
+        {
+          "id": "sporttery-a-win",
+          "type": "fixed_odds",
+          "source": "Sporttery",
+          "label": "体彩 A 胜",
+          "outcome": "A_WIN",
+          "decimal_odds": 2.95,
+          "stake_step": 2,
+          "tax_rate": 0.2,
+          "tax_threshold_base": 10000
+        },
+        {
+          "id": "sporttery-draw",
+          "type": "fixed_odds",
+          "source": "Sporttery",
+          "label": "体彩 平",
+          "outcome": "DRAW",
+          "decimal_odds": 3.05,
+          "stake_step": 2,
+          "tax_rate": 0.2,
+          "tax_threshold_base": 10000
+        },
+        {
+          "id": "sporttery-b-win",
+          "type": "fixed_odds",
+          "source": "Sporttery",
+          "label": "体彩 B 胜",
+          "outcome": "B_WIN",
+          "decimal_odds": 2.9,
+          "stake_step": 2,
+          "tax_rate": 0.2,
+          "tax_threshold_base": 10000
+        },
+        {
+          "id": "pm-a-win",
+          "type": "prediction_share",
+          "source": "Polymarket",
+          "label": "A 胜 YES",
+          "outcome": "A_WIN",
+          "ask_levels": [
+            {"price": 0.31, "size": 200},
+            {"price": 0.32, "size": 1000}
+          ],
+          "fee_rate": 0.03,
+          "cost_fx_to_base": 7.2,
+          "payout_fx_to_base": 7.2,
+          "slippage_bps": 20,
+          "extra_cost_rate": 0.002
+        },
+        {
+          "id": "pm-draw",
+          "type": "prediction_share",
+          "source": "Polymarket",
+          "label": "平局 YES",
+          "outcome": "DRAW",
+          "ask_levels": [
+            {"price": 0.3, "size": 200},
+            {"price": 0.31, "size": 1000}
+          ],
+          "fee_rate": 0.03,
+          "cost_fx_to_base": 7.2,
+          "payout_fx_to_base": 7.2,
+          "slippage_bps": 20,
+          "extra_cost_rate": 0.002
+        },
+        {
+          "id": "pm-b-win",
+          "type": "prediction_share",
+          "source": "Polymarket",
+          "label": "B 胜 YES",
+          "outcome": "B_WIN",
+          "ask_levels": [
+            {"price": 0.31, "size": 200},
+            {"price": 0.32, "size": 1000}
+          ],
+          "fee_rate": 0.03,
+          "cost_fx_to_base": 7.2,
+          "payout_fx_to_base": 7.2,
+          "slippage_bps": 20,
+          "extra_cost_rate": 0.002
+        }
+      ]
+    }
+  ]
+}

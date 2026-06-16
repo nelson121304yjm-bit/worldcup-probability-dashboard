@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>世界杯概率预测看板</title>
+    <link rel="stylesheet" href="./styles.css?v=20260616-blended-score" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="总览">
+        <div>
+          <p class="eyebrow">World Cup Probability Dashboard</p>
+          <h1>世界杯比分与概率预测</h1>
+        </div>
+        <div class="summary-grid" id="summaryGrid"></div>
+      </section>
+
+      <section class="source-bar" aria-label="数据源">
+        <div>
+          <span>数据源</span>
+          <strong id="sourceName">未载入真实数据</strong>
+        </div>
+        <div>
+          <span>更新时间</span>
+          <strong id="lastUpdated">-</strong>
+        </div>
+        <label class="file-button">
+          导入 JSON
+          <input id="dataFile" type="file" accept="application/json,.json" />
+        </label>
+        <button class="ghost-button" id="clearData" type="button">恢复默认数据</button>
+      </section>
+
+      <section class="disclaimer" aria-label="免责声明">
+        本项目仅用于公开数据分析和概率建模研究；模型输出不是投注建议，不保证收益，数据可能延迟或缺失。
+      </section>
+
+      <section class="workspace">
+        <aside class="match-list" aria-label="比赛列表">
+          <div class="panel-heading">
+            <h2>比赛进程</h2>
+            <select id="statusFilter" aria-label="按状态筛选">
+              <option value="all">全部</option>
+              <option value="live">进行中</option>
+              <option value="upcoming">未开始</option>
+              <option value="finished">已结束</option>
+            </select>
+          </div>
+          <div id="matchList" class="match-list-body"></div>
+        </aside>
+
+        <section class="detail" aria-live="polite">
+          <div id="matchDetail"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./data/matches.js?v=20260616-blended-score"></script>
+    <script src="./app.js?v=20260616-blended-score"></script>
+  </body>
+</html>
