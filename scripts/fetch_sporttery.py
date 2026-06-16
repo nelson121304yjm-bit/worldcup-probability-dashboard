@@ -41,7 +41,7 @@ SPORTTERY_RESULTS_URL = "https://webapi.sporttery.cn/gateway/uniform/football/ge
 SPORTTERY_SOURCE_URL = "https://www.sporttery.cn/jc/zqsgkj/"
 WC2026_ODDS_URL = "https://wc-2026.com/world-cup-odds/"
 HUPU_MOBILE_SOCCER_URL = "https://m.hupu.com/soccer"
-HUPU_MATCH_URL = "https://m.hupu.com/soccerleagues/fifaWC/live/{match_id}?matchId={match_id}"
+HUPU_MOBILE_SCHEDULE_URL = "https://m.hupu.com/soccer/schedule"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
 
 
@@ -197,7 +197,13 @@ def parse_hupu_schedules(html: str) -> list[dict[str, Any]]:
     except json.JSONDecodeError:
         return []
 
-    schedules = (((payload.get("props") or {}).get("pageProps") or {}).get("schedules") or [])
+    page_props = (payload.get("props") or {}).get("pageProps") or {}
+    schedules = list(page_props.get("schedules") or [])
+    schedule_data = page_props.get("data") or {}
+    if isinstance(schedule_data, dict):
+        for group in schedule_data.get("games") or []:
+            if isinstance(group, dict):
+                schedules.extend(group.get("data") or [])
     results: list[dict[str, Any]] = []
     for item in schedules:
         if not isinstance(item, dict) or not is_hupu_world_cup_item(item):
@@ -230,10 +236,18 @@ def hupu_item_to_result(item: dict[str, Any]) -> dict[str, Any] | None:
         "awayTeam": away,
         "leagueNameAbbr": "世界杯",
         "_source": "hupu",
-        "_sourceUrl": HUPU_MATCH_URL.format(match_id=match_id) if match_id else HUPU_MOBILE_SOCCER_URL,
+        "_sourceUrl": HUPU_MOBILE_SCHEDULE_URL,
         "_hupuStatus": status,
         "_hupuMatchId": match_id,
     }
+    rating_count = parse_hupu_metric_text(item.get("pv"))
+    if rating_count is not None:
+        result["_hupuRatingCount"] = rating_count
+        result["_hupuRatingText"] = str(item.get("pv") or "").strip()
+
+    match_count = to_int(item.get("matchCount"))
+    if match_count is not None:
+        result["_hupuHeat"] = match_count
 
     home_score = item.get("home_score")
     away_score = item.get("away_score")
@@ -281,6 +295,19 @@ def hupu_status_text(item: dict[str, Any]) -> str:
 
 def hupu_is_finished(status: str) -> bool:
     return any(token in status for token in ("已结束", "完场", "结束", "FT"))
+
+
+def parse_hupu_metric_text(value: Any) -> int | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    match = re.search(r"(\d+(?:\.\d+)?)\s*(万)?", text)
+    if not match:
+        return None
+    number = float(match.group(1))
+    if match.group(2):
+        number *= 10000
+    return int(round(number))
 
 
 def wc2026_date(text: str) -> str | None:
@@ -402,14 +429,14 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
 
     if changes:
         now = datetime.now(SHANGHAI).strftime("%Y-%m-%d %H:%M CST")
-        payload["lastUpdated"] = f"{now}（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程；未匹配数据保持原状）"
-        source = str(payload.get("sourceName") or "")
+        payload["lastUpdated"] = f"{now}（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）"
+        source = str(payload.get("sourceName") or "").replace("虎扑赛程校验", "虎扑赛程/热度校验")
         if "Sporttery 自动更新" not in source:
             payload["sourceName"] = f"{source}；Sporttery 自动更新" if source else "Sporttery 自动更新"
         else:
             payload["sourceName"] = source
-        if "虎扑赛程校验" not in payload["sourceName"]:
-            payload["sourceName"] = f"{payload['sourceName']}；虎扑赛程校验"
+        if "虎扑赛程/热度校验" not in payload["sourceName"]:
+            payload["sourceName"] = f"{payload['sourceName']}；虎扑赛程/热度校验"
 
     return changes
 
@@ -470,6 +497,7 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
             hupu["matchId"] = str(item.get("_hupuMatchId"))
         hupu["status"] = str(item.get("_hupuStatus") or "")
         hupu["sourceUrl"] = str(item.get("_sourceUrl") or HUPU_MOBILE_SOCCER_URL)
+        apply_hupu_metrics(hupu, item)
     elif item.get("_source") != "wc-2026":
         sporttery = match.setdefault("sporttery", {})
         if item.get("matchId"):
@@ -485,8 +513,20 @@ def apply_hupu_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         hupu["matchId"] = str(item.get("_hupuMatchId"))
     hupu["status"] = str(item.get("_hupuStatus") or "")
     hupu["sourceUrl"] = str(item.get("_sourceUrl") or HUPU_MOBILE_SOCCER_URL)
+    apply_hupu_metrics(hupu, item)
+    remove_source_prefix(match, "https://m.hupu.com/soccerleagues/")
     append_source_once(match, hupu["sourceUrl"])
-    append_note_once(match, "marketNotes", "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。")
+    remove_note(match, "marketNotes", "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。")
+    append_note_once(match, "marketNotes", "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。")
+
+
+def apply_hupu_metrics(hupu: dict[str, Any], item: dict[str, Any]) -> None:
+    if item.get("_hupuRatingCount") is not None:
+        hupu["ratingCount"] = int(item["_hupuRatingCount"])
+    if item.get("_hupuRatingText"):
+        hupu["ratingText"] = str(item["_hupuRatingText"])
+    if item.get("_hupuHeat") is not None:
+        hupu["heat"] = int(item["_hupuHeat"])
 
 
 def result_source_name(item: dict[str, Any]) -> str:
@@ -574,10 +614,22 @@ def append_note_once(match: dict[str, Any], field: str, note: str) -> None:
         notes.append(note)
 
 
+def remove_note(match: dict[str, Any], field: str, note: str) -> None:
+    notes = match.get(field)
+    if isinstance(notes, list):
+        match[field] = [item for item in notes if item != note]
+
+
 def append_source_once(match: dict[str, Any], source: str) -> None:
     sources = match.setdefault("sources", [])
     if source not in sources:
         sources.append(source)
+
+
+def remove_source_prefix(match: dict[str, Any], prefix: str) -> None:
+    sources = match.get("sources")
+    if isinstance(sources, list):
+        match["sources"] = [source for source in sources if not str(source).startswith(prefix)]
 
 
 def to_float(value: Any) -> float | None:
@@ -585,6 +637,15 @@ def to_float(value: Any) -> float | None:
         return None
     try:
         return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def to_int(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    try:
+        return int(value)
     except (TypeError, ValueError):
         return None
 
@@ -627,6 +688,11 @@ def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[d
 
     try:
         result_items.extend(parse_hupu_schedules(fetch_text(HUPU_MOBILE_SOCCER_URL, options.timeout)))
+    except RuntimeError as exc:
+        warnings.append(str(exc))
+
+    try:
+        result_items.extend(parse_hupu_schedules(fetch_text(HUPU_MOBILE_SCHEDULE_URL, options.timeout)))
     except RuntimeError as exc:
         warnings.append(str(exc))
 

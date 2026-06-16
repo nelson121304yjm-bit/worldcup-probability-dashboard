@@ -166,6 +166,7 @@ function normalizeMatch(raw, index) {
     sources: Array.isArray(raw.sources) ? raw.sources.map(String) : [],
     marketNotes: Array.isArray(raw.marketNotes) ? raw.marketNotes.map(String) : [],
     sporttery: normalizeSporttery(raw.sporttery),
+    hupu: normalizeHupu(raw.hupu),
     performance: normalizePerformance(raw.performance),
     performanceNotes: Array.isArray(raw.performanceNotes) ? raw.performanceNotes.map(String) : [],
   };
@@ -254,6 +255,17 @@ function normalizeSporttery(raw) {
     had: normalizeSportteryPool(raw?.had),
     hhad: normalizeSportteryPool(raw?.hhad),
     correctScore: normalizeScoreOdds(raw?.correctScore),
+  };
+}
+
+function normalizeHupu(raw) {
+  return {
+    matchId: raw?.matchId ? String(raw.matchId) : "",
+    status: raw?.status ? String(raw.status) : "",
+    sourceUrl: raw?.sourceUrl ? String(raw.sourceUrl) : "",
+    heat: toNumber(raw?.heat),
+    ratingCount: toNumber(raw?.ratingCount),
+    ratingText: raw?.ratingText ? String(raw.ratingText) : "",
   };
 }
 
@@ -497,6 +509,7 @@ function renderDetail() {
         ${metaItem("开赛", match.kickoff)}
         ${metaItem("场馆", match.venue)}
         ${metaItem("覆盖", coverageLabel(match))}
+        ${metaItem("虎扑", hupuMetaLabel(match))}
       </div>
     </article>
 
@@ -543,6 +556,15 @@ function renderSources(sources) {
         .join("")}
     </div>
   `;
+}
+
+function hupuMetaLabel(match) {
+  const hupu = match.hupu || {};
+  const parts = [];
+  if (Number.isFinite(hupu.heat)) parts.push(`热度 ${formatCompactCount(hupu.heat)}`);
+  if (Number.isFinite(hupu.ratingCount)) parts.push(`评分 ${formatCompactCount(hupu.ratingCount)}`);
+  if (!parts.length && hupu.status) parts.push(hupu.status);
+  return parts.length ? parts.join(" · ") : "未公开";
 }
 
 function renderCoverageStrip(match) {
@@ -1432,7 +1454,7 @@ function compactSourceName(value) {
   if (value.includes("sporttery.cn")) parts.push("体彩官方");
   if (value.includes("wc-2026.com")) parts.push("wc-2026");
   if (value.includes("Polymarket")) parts.push("Polymarket");
-  if (value.includes("虎扑") || value.includes("hupu")) parts.push("虎扑赛程");
+  if (value.includes("虎扑") || value.includes("hupu")) parts.push("虎扑热度");
   return parts.length ? parts.join(" + ") : value;
 }
 
@@ -1513,6 +1535,16 @@ function bestBookmakerProbability(odd) {
 
 function formatPercent(value) {
   return Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : "-";
+}
+
+function formatCompactCount(value) {
+  if (!Number.isFinite(value)) return "-";
+  if (value >= 10000) {
+    const compact = value / 10000;
+    const fixed = compact >= 10 ? compact.toFixed(1) : compact.toFixed(1);
+    return `${fixed.replace(/\.0$/, "")}万`;
+  }
+  return Math.round(value).toLocaleString("zh-CN");
 }
 
 function formatAmerican(value) {

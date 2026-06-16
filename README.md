@@ -5,7 +5,7 @@
 
 这个项目最初用于整理 Polymarket、体彩和公开赔率数据，做世界杯比赛概率与比分预测分析。现在包含两部分：
 
-- 静态前端看板：展示赛程、比分预测、体彩 HAD/HHAD/CRS、wc-2026 参考赔率、虎扑近期赛程校验、Polymarket 长期市场和模型概率。
+- 静态前端看板：展示赛程、比分预测、体彩 HAD/HHAD/CRS、wc-2026 参考赔率、虎扑近期赛程校验与公开热度、Polymarket 长期市场和模型概率。
 - Python 研究工具：把固定奖金赔率和预测市场价格统一成同一个成本口径，用于分析概率差异和理论套利条件。
 
 ## Demo
@@ -28,7 +28,7 @@ Python 工具里的成本口径是：
 - 赔率、盘口、数据源和赛事状态可能延迟、缺失或变更。
 - 使用者需要自行确认所在地法律、平台条款、彩票规则和税费规则。
 - 项目不会绕过登录、反爬、付费墙或平台访问限制。
-- 虎扑目前只作为公开赛程/赛果校验源，不提供赔率或支持率，不参与模型计权。
+- 虎扑目前只作为公开赛程/赛果校验与热度/评分人数来源，不提供赔率或支持率，不参与模型计权。
 
 ## 关键假设
 
@@ -77,7 +77,7 @@ python3 -m http.server 8765
 
 然后打开 `http://localhost:8765/web/index.html`。
 
-看板包含比赛进程、比分、关键事件、sporttery.cn 官方 HAD/HHAD/CRS 赔率、wc-2026.com 参考赔率、虎扑近期赛程校验、Polymarket YES 价格、公开数据折算的球队/球员表现指标和预测胜率 edge。前端不内置虚构比赛；默认读取 `web/data/matches.js`，也可以在页面里导入真实 JSON。页面只展示当前真的抓到的价格，缺失盘口会明确标注为未匹配。
+看板包含比赛进程、比分、关键事件、sporttery.cn 官方 HAD/HHAD/CRS 赔率、wc-2026.com 参考赔率、虎扑近期赛程校验与公开热度、Polymarket YES 价格、公开数据折算的球队/球员表现指标和预测胜率 edge。前端不内置虚构比赛；默认读取 `web/data/matches.js`，也可以在页面里导入真实 JSON。页面只展示当前真的抓到的价格，缺失盘口会明确标注为未匹配。
 
 比分预测使用两层概率：
 
@@ -95,7 +95,7 @@ python3 -m http.server 8765
 - 从 Sporttery 官方公开足球接口读取计算器赔率，并尝试读取赛果。
 - 如果 Sporttery 赛果接口被 WAF 或网络拦截，会退回解析 wc-2026 公开赔率页上的已完赛比分卡片，并读取虎扑移动端公开足球页里的近期世界杯赛程 JSON。
 - 能按 Sporttery `matchId` 或“中文队名 + 开赛日期”匹配时，更新比分、状态、HAD/HHAD/CRS；wc-2026/虎扑等备用赛果源只会在开赛时间已经过去至少 2 小时后生效。
-- 虎扑只写入近期赛程/赛果校验元数据和公开比赛页链接，不写入赔率或支持率。
+- 虎扑写入近期赛程/赛果校验元数据、公开比赛页链接、公开热度和评分人数；这些不是赔率或支持率，也不参与模型计权。
 - 抓不到或匹配不上的比赛保持原样，不补造赔率、不补造历史收盘盘。
 - 有实际数据变化时才自动 commit `web/data/matches.js`，没有变化就跳过空提交。
 
@@ -166,7 +166,10 @@ python3 scripts/update_data.py --stamp --note "manual Sporttery refresh"
       "hupu": {
         "matchId": "3513900",
         "status": "未开始",
-        "sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900"
+        "heat": 4,
+        "ratingCount": 12000,
+        "ratingText": "1.2万评分",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
       }
     }
   ]

@@ -4,6 +4,7 @@ from scripts.fetch_sporttery import (
     correct_score_odds,
     hupu_item_to_result,
     parse_hupu_schedules,
+    parse_hupu_metric_text,
     parse_score,
     parse_wc2026_results,
     result_update_allowed,
@@ -64,6 +65,8 @@ def test_parse_hupu_schedules_from_next_data() -> None:
                         "status": {"txt": "未开始"},
                         "matchBigStatus": {"txt": "未开始"},
                         "currentMatchId": "3513900",
+                        "matchCount": 4,
+                        "pv": "1.2万评分",
                     },
                     {
                         "title": "英超",
@@ -85,9 +88,12 @@ def test_parse_hupu_schedules_from_next_data() -> None:
             "awayTeam": "塞内加尔",
             "leagueNameAbbr": "世界杯",
             "_source": "hupu",
-            "_sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900",
+            "_sourceUrl": "https://m.hupu.com/soccer/schedule",
             "_hupuStatus": "未开始",
             "_hupuMatchId": "3513900",
+            "_hupuRatingCount": 12000,
+            "_hupuRatingText": "1.2万评分",
+            "_hupuHeat": 4,
         }
     ]
 
@@ -109,6 +115,12 @@ def test_hupu_finished_match_includes_score() -> None:
     assert result
     assert result["matchDate"] == "2026-06-16"
     assert result["sectionsNo999"] == "2:1"
+
+
+def test_parse_hupu_metric_text_handles_rating_units() -> None:
+    assert parse_hupu_metric_text("20.2万评分") == 202000
+    assert parse_hupu_metric_text("9251评分") == 9251
+    assert parse_hupu_metric_text(None) is None
 
 
 def test_sporttery_pool_converts_had_fields() -> None:
@@ -252,7 +264,7 @@ def test_hupu_metadata_applies_to_upcoming_match_without_score() -> None:
                 "odds": [],
                 "sporttery": {},
                 "sources": [],
-                "marketNotes": [],
+                "marketNotes": ["虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。"],
             }
         ],
     }
@@ -263,9 +275,12 @@ def test_hupu_metadata_applies_to_upcoming_match_without_score() -> None:
             "awayTeam": "塞内加尔",
             "leagueNameAbbr": "世界杯",
             "_source": "hupu",
-            "_sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900",
+            "_sourceUrl": "https://m.hupu.com/soccer/schedule",
             "_hupuStatus": "未开始",
             "_hupuMatchId": "3513900",
+            "_hupuRatingCount": 12000,
+            "_hupuRatingText": "1.2万评分",
+            "_hupuHeat": 4,
         }
     ]
 
@@ -276,8 +291,12 @@ def test_hupu_metadata_applies_to_upcoming_match_without_score() -> None:
     assert match["status"] == "upcoming"
     assert match["score"] == ["-", "-"]
     assert match["hupu"]["matchId"] == "3513900"
-    assert "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。" in match["marketNotes"]
-    assert "虎扑赛程校验" in payload["sourceName"]
+    assert match["hupu"]["ratingCount"] == 12000
+    assert match["hupu"]["ratingText"] == "1.2万评分"
+    assert match["hupu"]["heat"] == 4
+    assert "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。" not in match["marketNotes"]
+    assert "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。" in match["marketNotes"]
+    assert "虎扑赛程/热度校验" in payload["sourceName"]
 
 
 def json_dumps(value: dict) -> str:
