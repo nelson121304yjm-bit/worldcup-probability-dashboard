@@ -8,6 +8,13 @@
 - 静态前端看板：展示赛程、比分预测、体彩 HAD/HHAD/CRS、wc-2026 参考赔率、Polymarket 长期市场和模型概率。
 - Python 研究工具：把固定奖金赔率和预测市场价格统一成同一个成本口径，用于分析概率差异和理论套利条件。
 
+## Demo
+
+- GitHub Pages: <https://nelson121304yjm-bit.github.io/worldcup-probability-dashboard/>
+- Local dashboard: `web/index.html`
+
+![Dashboard preview](docs/dashboard-preview.jpg)
+
 Python 工具里的成本口径是：
 
 > 为某个互斥且完备的结果锁定 1 元基础货币返还，需要付出多少成本。
@@ -79,6 +86,22 @@ python3 -m http.server 8765
 
 这个权重只是当前研究参数，发布前后都应该通过历史比赛回测重新校准。
 
+## 数据更新
+
+当前仓库内置的是静态快照。更新数据时，先用你自己的数据采集流程重生成 `web/data/matches.js`，再运行校验脚本：
+
+```bash
+python3 scripts/update_data.py
+```
+
+如果只是完成了一次人工刷新并想更新时间戳：
+
+```bash
+python3 scripts/update_data.py --stamp --note "manual Sporttery refresh"
+```
+
+脚本只校验和更新时间戳，不会绕过登录、反爬、付费墙或平台限制。
+
 前端 JSON 结构：
 
 ```json
@@ -131,9 +154,9 @@ python3 -m http.server 8765
 1. Repository settings -> Pages。
 2. Source 选择 `Deploy from a branch`。
 3. Branch 选择 `main`，目录选择 `/root`。
-4. 发布后访问 `/web/index.html`。
+4. 发布后访问仓库 Pages 首页，根目录 `index.html` 会自动跳转到 `web/index.html`。
 
-如果希望首页直接是看板，可以把 `web/` 目录内容复制到仓库根目录，或增加一个根目录 `index.html` 跳转到 `web/index.html`。
+如果 GitHub Pages 还没打开，项目仍然可以通过本地静态服务预览。
 
 ## 输入格式
 
