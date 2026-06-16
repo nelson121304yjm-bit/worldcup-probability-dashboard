@@ -1,0 +1,56 @@
+name: Update dashboard data
+
+on:
+  schedule:
+    # GitHub Actions uses UTC. This runs every 30 minutes.
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh public data snapshot
+        id: refresh
+        run: |
+          set +e
+          python scripts/fetch_sporttery.py
+          code=$?
+          if [ "$code" = "2" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$code" != "0" ]; then
+            exit "$code"
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Validate data
+        if: steps.refresh.outputs.changed == 'true'
+        run: |
+          python scripts/update_data.py
+          python -m pytest
+
+      - name: Commit refreshed data
+        if: steps.refresh.outputs.changed == 'true'
+        run: |
+          if git diff --quiet -- web/data/matches.js; then
+            echo "No data diff after refresh."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data/matches.js
+          git commit -m "Update Sporttery dashboard data"
+          git push

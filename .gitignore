@@ -21,6 +21,8 @@ env/
 
 # Local data snapshots and exports
 /data/
+/outputs/
+/work/
 *.local.json
 *.snapshot.json
 

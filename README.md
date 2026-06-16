@@ -88,7 +88,33 @@ python3 -m http.server 8765
 
 ## 数据更新
 
-当前仓库内置的是静态快照。更新数据时，先用你自己的数据采集流程重生成 `web/data/matches.js`，再运行校验脚本：
+当前仓库内置的是静态快照。GitHub Pages 不会自己改数据；自动刷新由 GitHub Actions 定时运行 `scripts/fetch_sporttery.py` 完成。
+
+自动更新当前只做保守刷新：
+
+- 从 Sporttery 官方公开足球接口读取计算器赔率，并尝试读取赛果。
+- 如果 Sporttery 赛果接口被 WAF 或网络拦截，会退回解析 wc-2026 公开赔率页上的已完赛比分卡片。
+- 能按 Sporttery `matchId` 或“中文队名 + 开赛日期”匹配时，更新比分、状态、HAD/HHAD/CRS；备用赛果源只会在开赛时间已经过去至少 2 小时后生效。
+- 抓不到或匹配不上的比赛保持原样，不补造赔率、不补造历史收盘盘。
+- 有实际数据变化时才自动 commit `web/data/matches.js`，没有变化就跳过空提交。
+
+GitHub Actions 位于 `.github/workflows/update-data.yml`，默认每 30 分钟运行一次，也可以在 GitHub 的 Actions 页面手动触发。
+
+本地手动刷新：
+
+```bash
+python3 scripts/fetch_sporttery.py
+python3 scripts/update_data.py
+python3 -m pytest
+```
+
+只预览会改哪些比赛、不写文件：
+
+```bash
+python3 scripts/fetch_sporttery.py --dry-run
+```
+
+如果你用自己的数据采集流程重生成 `web/data/matches.js`，仍然可以运行校验脚本：
 
 ```bash
 python3 scripts/update_data.py
