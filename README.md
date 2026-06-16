@@ -3,7 +3,7 @@
 > Research-only World Cup probability dashboard and odds comparison toolkit.
 > It is not betting advice, financial advice, or an automated betting system.
 
-这个项目包含两部分：
+这个项目最初用于整理 Polymarket、体彩和公开赔率数据，做世界杯比赛概率与比分预测分析。现在包含两部分：
 
 - 静态前端看板：展示赛程、比分预测、体彩 HAD/HHAD/CRS、wc-2026 参考赔率、Polymarket 长期市场和模型概率。
 - Python 研究工具：把固定奖金赔率和预测市场价格统一成同一个成本口径，用于分析概率差异和理论套利条件。
