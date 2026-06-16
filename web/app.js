@@ -346,8 +346,12 @@ function render() {
 }
 
 function renderSource() {
-  document.querySelector("#sourceName").textContent = state.sourceName;
-  document.querySelector("#lastUpdated").textContent = state.lastUpdated;
+  const sourceName = document.querySelector("#sourceName");
+  const lastUpdated = document.querySelector("#lastUpdated");
+  sourceName.textContent = compactSourceName(state.sourceName);
+  sourceName.title = state.sourceName;
+  lastUpdated.textContent = compactLastUpdated(state.lastUpdated);
+  lastUpdated.title = state.lastUpdated;
 }
 
 function renderSummary() {
@@ -360,17 +364,22 @@ function renderSummary() {
   const sportteryMatches = state.matches.filter(hasSportteryData).length;
 
   document.querySelector("#summaryGrid").innerHTML = [
-    summaryItem("未开始", upcomingCount),
-    summaryItem("进行中", liveCount),
-    summaryItem("已结束", finishedCount),
-    summaryItem("体彩", sportteryMatches || "-"),
-    summaryItem("PM 单场", pmMatches),
-    summaryItem("可预测", modelMatches || "-"),
+    summaryItem("未开始", upcomingCount, "upcoming", "场"),
+    summaryItem("进行中", liveCount, "live", "场"),
+    summaryItem("已结束", finishedCount, "finished", "场"),
+    summaryItem("体彩覆盖", sportteryMatches || "-", "sporttery", "场"),
+    summaryItem("PM 单场", pmMatches, "polymarket", "场"),
+    summaryItem("可预测", modelMatches || "-", "model", "场"),
   ].join("");
 }
 
-function summaryItem(label, value) {
-  return `<div class="summary-item"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+function summaryItem(label, value, tone = "", suffix = "") {
+  return `
+    <div class="summary-item ${tone ? `summary-${tone}` : ""}">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}${suffix && value !== "-" ? `<small>${escapeHtml(suffix)}</small>` : ""}</strong>
+    </div>
+  `;
 }
 
 function renderMatchList() {
@@ -447,6 +456,7 @@ function matchRow(match, options = {}) {
   const pinned = options.pinned ? " pinned-prediction" : "";
   const status = marketStatus(match);
   const prediction = options.pinned && hasCompleteMarketVector(match) ? calculateScorePrediction(match) : null;
+  const displayScore = formatScore(match.score, match.status);
 
   return `
     <button class="match-row${active}${pinned}" data-match-id="${escapeAttr(match.id)}" type="button">
@@ -458,7 +468,7 @@ function matchRow(match, options = {}) {
         </span>
         <span class="teams">
           <span>${escapeHtml(match.home)} vs ${escapeHtml(match.away)}</span>
-          <span class="score-mini">${escapeHtml(formatScore(match.score))} · ${escapeHtml(match.kickoff)}</span>
+          <span class="score-mini">${escapeHtml(displayScore)} · ${escapeHtml(match.kickoff)}</span>
           ${
             prediction
               ? `<span class="prediction-mini">预测 ${escapeHtml(prediction.primaryScore)} · ${escapeHtml(prediction.primaryLabel)} · ${formatPercent(prediction.primaryProbability)}</span>`
@@ -486,12 +496,18 @@ function renderDetail() {
   }
 
   const bestOutcome = getBestOutcome(match);
+  const scoreDisplay = formatScore(match.score, match.status);
   detail.innerHTML = `
     <article class="detail-card">
+      <div class="detail-kicker">
+        <span class="tag ${match.status}">${statusLabels[match.status]}</span>
+        <strong>${escapeHtml(match.stage)}</strong>
+        <span>${escapeHtml(match.kickoff)}</span>
+      </div>
       <div class="detail-head">
         ${teamBlock("主队", match.home)}
         <div class="scorebox">
-          <div class="score">${escapeHtml(formatScore(match.score))}</div>
+          <div class="score">${escapeHtml(scoreDisplay)}</div>
           <small>${statusLabels[match.status]} · ${escapeHtml(match.minute)}</small>
         </div>
         ${teamBlock("客队", match.away, "away")}
@@ -623,6 +639,7 @@ function renderScorePrediction(match) {
   }
 
   const prediction = calculateScorePrediction(match);
+  const confidence = confidenceLabel(prediction.primaryProbability);
   return `
     <section class="score-prediction">
       <div class="score-forecast-main">
@@ -635,6 +652,7 @@ function renderScorePrediction(match) {
           ${metric("主队 xG", prediction.homeGoals.toFixed(2))}
           ${metric("客队 xG", prediction.awayGoals.toFixed(2))}
           ${metric("总进球", prediction.totalGoals.toFixed(2))}
+          ${metric("信心", confidence)}
         </div>
       </div>
       <div class="probability-bars">
@@ -1017,6 +1035,13 @@ function metaItem(label, value) {
 
 function metric(label, value) {
   return `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+}
+
+function confidenceLabel(probability) {
+  if (!Number.isFinite(probability)) return "-";
+  if (probability >= 0.18) return "高";
+  if (probability >= 0.12) return "中";
+  return "低";
 }
 
 function oddsRow(odd, bestOutcome) {
@@ -1446,9 +1471,27 @@ function sampleSchema() {
   return '{"sourceName":"真实数据源","lastUpdated":"2026-06-12T08:00:00Z","matches":[{"id":"...","status":"upcoming","home":"...","away":"...","odds":[{"outcome":"主胜","referenceOdds":2.1,"polymarket":0.45}],"performance":{"home":{"form":60},"away":{"form":55}}}]}';
 }
 
-function formatScore(score) {
+function formatScore(score, status = "") {
+  if (status === "upcoming") return "VS";
   if (!Array.isArray(score)) return "-";
+  if (score[0] === "-" && score[1] === "-") return "VS";
   return `${score[0] ?? "-"} - ${score[1] ?? "-"}`;
+}
+
+function compactSourceName(value) {
+  if (!value || value === "未载入真实数据") return value;
+  const parts = [];
+  if (value.includes("sporttery.cn")) parts.push("体彩官方");
+  if (value.includes("wc-2026.com")) parts.push("wc-2026");
+  if (value.includes("Polymarket")) parts.push("Polymarket");
+  if (value.includes("XHS") || value.includes("小红书")) parts.push("XHS 未接入");
+  return parts.length ? parts.join(" + ") : value;
+}
+
+function compactLastUpdated(value) {
+  if (!value || value === "-") return value;
+  const cstMatch = String(value).match(/\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s+CST/);
+  return cstMatch ? cstMatch[0] : value;
 }
 
 function formatDecimal(value) {
