@@ -166,7 +166,6 @@ function normalizeMatch(raw, index) {
     sources: Array.isArray(raw.sources) ? raw.sources.map(String) : [],
     marketNotes: Array.isArray(raw.marketNotes) ? raw.marketNotes.map(String) : [],
     sporttery: normalizeSporttery(raw.sporttery),
-    community: normalizeCommunity(raw.community),
     performance: normalizePerformance(raw.performance),
     performanceNotes: Array.isArray(raw.performanceNotes) ? raw.performanceNotes.map(String) : [],
   };
@@ -255,25 +254,6 @@ function normalizeSporttery(raw) {
     had: normalizeSportteryPool(raw?.had),
     hhad: normalizeSportteryPool(raw?.hhad),
     correctScore: normalizeScoreOdds(raw?.correctScore),
-  };
-}
-
-function normalizeCommunity(raw) {
-  return {
-    xhs: normalizeCommunitySignal(raw?.xhs),
-  };
-}
-
-function normalizeCommunitySignal(raw) {
-  return {
-    source: raw?.source ? String(raw.source) : "小红书",
-    status: raw?.status ? String(raw.status) : "unavailable",
-    homeSupport: toNumber(raw?.homeSupport),
-    drawSupport: toNumber(raw?.drawSupport),
-    awaySupport: toNumber(raw?.awaySupport),
-    sampleSize: toNumber(raw?.sampleSize),
-    lastUpdated: raw?.lastUpdated ? String(raw.lastUpdated) : "",
-    note: raw?.note ? String(raw.note) : "未找到稳定公开赔率或投票接口，暂不参与模型计权。",
   };
 }
 
@@ -917,7 +897,6 @@ function renderPredictionModel(match) {
         ${renderPerformanceSnapshot(match, "home", match.home)}
         ${renderPerformanceSnapshot(match, "away", match.away)}
       </div>
-      ${renderCommunityPanel(match)}
       ${renderPerformanceNotes(match.performanceNotes)}
       <div class="odds-scroll">
         <table class="model-table">
@@ -934,33 +913,6 @@ function renderPredictionModel(match) {
         </table>
       </div>
     </section>
-  `;
-}
-
-function renderCommunityPanel(match) {
-  const xhs = match.community?.xhs;
-  const hasXhsSignal = hasCompleteCommunitySignal(xhs);
-  return `
-    <div class="community-panel ${hasXhsSignal ? "ok" : "missing"}">
-      <div>
-        <strong>小红书支持率</strong>
-        <span>${escapeHtml(xhs?.note || "未找到稳定公开赔率或投票接口，暂不参与模型计权。")}</span>
-      </div>
-      <div class="community-stats">
-        ${communityStat(match.home, xhs?.homeSupport)}
-        ${communityStat("平局", xhs?.drawSupport)}
-        ${communityStat(match.away, xhs?.awaySupport)}
-      </div>
-    </div>
-  `;
-}
-
-function communityStat(label, value) {
-  return `
-    <span>
-      <em>${escapeHtml(label)}</em>
-      <strong>${formatPercent(value)}</strong>
-    </span>
   `;
 }
 
@@ -1402,10 +1354,6 @@ function hasCompleteSportteryPool(pool) {
   return [pool?.home, pool?.draw, pool?.away].every((value) => Number.isFinite(value) && value > 0);
 }
 
-function hasCompleteCommunitySignal(signal) {
-  return [signal?.homeSupport, signal?.drawSupport, signal?.awaySupport].every((value) => Number.isFinite(value) && value >= 0);
-}
-
 function hasPolymarketPrices(match) {
   return match.odds.some((odd) => Number.isFinite(odd.polymarket));
 }
@@ -1484,7 +1432,7 @@ function compactSourceName(value) {
   if (value.includes("sporttery.cn")) parts.push("体彩官方");
   if (value.includes("wc-2026.com")) parts.push("wc-2026");
   if (value.includes("Polymarket")) parts.push("Polymarket");
-  if (value.includes("XHS") || value.includes("小红书")) parts.push("XHS 未接入");
+  if (value.includes("虎扑") || value.includes("hupu")) parts.push("虎扑赛程");
   return parts.length ? parts.join(" + ") : value;
 }
 

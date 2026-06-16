@@ -5,7 +5,8 @@ The updater is deliberately conservative:
 - It uses Sporttery public JSON for calculator odds and attempts Sporttery
   public results.
 - If Sporttery results are unavailable, it falls back to finished-score cards on
-  the public wc-2026 odds page.
+  the public wc-2026 odds page and recent schedules from Hupu's public football
+  page.
 - It updates a match only when it can match by Sporttery match id or by
   Chinese team names plus kickoff date.
 - It does not invent missing odds, historical closing lines, or community
@@ -17,6 +18,7 @@ The updater is deliberately conservative:
 from __future__ import annotations
 
 import argparse
+import html as html_lib
 import json
 import re
 import sys
@@ -38,6 +40,8 @@ SPORTTERY_CALCULATOR_URL = "https://webapi.sporttery.cn/gateway/uniform/football
 SPORTTERY_RESULTS_URL = "https://webapi.sporttery.cn/gateway/uniform/football/getUniformMatchResultV1.qry"
 SPORTTERY_SOURCE_URL = "https://www.sporttery.cn/jc/zqsgkj/"
 WC2026_ODDS_URL = "https://wc-2026.com/world-cup-odds/"
+HUPU_MOBILE_SOCCER_URL = "https://m.hupu.com/soccer"
+HUPU_MATCH_URL = "https://m.hupu.com/soccerleagues/fifaWC/live/{match_id}?matchId={match_id}"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
 
 
@@ -183,6 +187,102 @@ def parse_wc2026_results(html: str) -> list[dict[str, Any]]:
     return results
 
 
+def parse_hupu_schedules(html: str) -> list[dict[str, Any]]:
+    match = re.search(r'<script[^>]+id=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>', html, re.S)
+    if not match:
+        return []
+
+    try:
+        payload = json.loads(html_lib.unescape(match.group(1)))
+    except json.JSONDecodeError:
+        return []
+
+    schedules = (((payload.get("props") or {}).get("pageProps") or {}).get("schedules") or [])
+    results: list[dict[str, Any]] = []
+    for item in schedules:
+        if not isinstance(item, dict) or not is_hupu_world_cup_item(item):
+            continue
+
+        converted = hupu_item_to_result(item)
+        if converted:
+            results.append(converted)
+    return results
+
+
+def is_hupu_world_cup_item(item: dict[str, Any]) -> bool:
+    title = str(item.get("title") or "")
+    competition_id = str(item.get("competitionId") or "")
+    return "世界杯" in title or competition_id == "13009"
+
+
+def hupu_item_to_result(item: dict[str, Any]) -> dict[str, Any] | None:
+    home = hupu_team_name(item.get("home"))
+    away = hupu_team_name(item.get("away"))
+    kickoff = hupu_match_datetime(item)
+    if not home or not away or not kickoff:
+        return None
+
+    match_id = str(item.get("currentMatchId") or "").strip()
+    status = hupu_status_text(item)
+    result: dict[str, Any] = {
+        "matchDate": kickoff.date().isoformat(),
+        "homeTeam": home,
+        "awayTeam": away,
+        "leagueNameAbbr": "世界杯",
+        "_source": "hupu",
+        "_sourceUrl": HUPU_MATCH_URL.format(match_id=match_id) if match_id else HUPU_MOBILE_SOCCER_URL,
+        "_hupuStatus": status,
+        "_hupuMatchId": match_id,
+    }
+
+    home_score = item.get("home_score")
+    away_score = item.get("away_score")
+    if hupu_is_finished(status) and isinstance(home_score, int) and isinstance(away_score, int):
+        result["sectionsNo999"] = f"{home_score}:{away_score}"
+
+    return result
+
+
+def hupu_team_name(raw: Any) -> str:
+    if isinstance(raw, dict):
+        return normalize_team(str(raw.get("name") or "").strip())
+    return normalize_team(str(raw or "").strip())
+
+
+def hupu_match_datetime(item: dict[str, Any]) -> datetime | None:
+    begin_time = item.get("begin_time")
+    if isinstance(begin_time, (int, float)) and begin_time > 0:
+        return datetime.fromtimestamp(begin_time, tz=SHANGHAI)
+
+    china_time = str(item.get("chinaMatchTime") or "")
+    if china_time:
+        try:
+            return datetime.fromisoformat(china_time.replace("Z", "+00:00")).astimezone(SHANGHAI)
+        except ValueError:
+            pass
+
+    date_time = str(item.get("dateTime") or "")
+    match = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日\s+(\d{1,2})点(?:(\d{1,2})分)?", date_time)
+    if match:
+        year, month, day, hour, minute = match.groups()
+        return datetime(int(year), int(month), int(day), int(hour), int(minute or 0), tzinfo=SHANGHAI)
+    return None
+
+
+def hupu_status_text(item: dict[str, Any]) -> str:
+    for key in ("matchBigStatus", "status"):
+        status = item.get(key)
+        if isinstance(status, dict):
+            text = str(status.get("txt") or status.get("desc") or "").strip()
+            if text:
+                return text
+    return ""
+
+
+def hupu_is_finished(status: str) -> bool:
+    return any(token in status for token in ("已结束", "完场", "结束", "FT"))
+
+
 def wc2026_date(text: str) -> str | None:
     match = re.search(r"(\d{1,2})月(\d{1,2})日", text)
     if not match:
@@ -228,6 +328,21 @@ def sporttery_id(match: dict[str, Any]) -> str:
     return str((match.get("sporttery") or {}).get("matchId") or "").strip()
 
 
+def item_source(item: dict[str, Any]) -> str:
+    return str(item.get("_source") or "sporttery")
+
+
+def source_priority(item: dict[str, Any]) -> int:
+    source = item_source(item)
+    if source == "sporttery":
+        return 0
+    if source == "wc-2026":
+        return 1
+    if source == "hupu":
+        return 2
+    return 9
+
+
 def build_indexes(
     calculator_items: list[dict[str, Any]],
     result_items: list[dict[str, Any]],
@@ -236,11 +351,13 @@ def build_indexes(
     dict[str, dict[str, Any]],
     dict[tuple[str, str, str], dict[str, Any]],
     dict[tuple[str, str, str], dict[str, Any]],
+    dict[tuple[str, str, str], dict[str, Any]],
 ]:
     calculator_by_id: dict[str, dict[str, Any]] = {}
     result_by_id: dict[str, dict[str, Any]] = {}
     calculator_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
     result_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    hupu_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
 
     for item in calculator_items:
         item_id = str(item.get("matchId") or "")
@@ -248,17 +365,19 @@ def build_indexes(
             calculator_by_id[item_id] = item
         calculator_by_key[match_key(item)] = item
 
-    for item in result_items:
+    for item in sorted(result_items, key=source_priority, reverse=True):
+        if item_source(item) == "hupu":
+            hupu_by_key[match_key(item)] = item
         item_id = str(item.get("matchId") or "")
         if item_id:
             result_by_id[item_id] = item
         result_by_key[match_key(item)] = item
 
-    return calculator_by_id, result_by_id, calculator_by_key, result_by_key
+    return calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key
 
 
 def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any]], result_items: list[dict[str, Any]]) -> list[str]:
-    calculator_by_id, result_by_id, calculator_by_key, result_by_key = build_indexes(calculator_items, result_items)
+    calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key = build_indexes(calculator_items, result_items)
     changes: list[str] = []
 
     for match in payload.get("matches") or []:
@@ -266,9 +385,13 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
         key = dashboard_key(match)
         calc_item = calculator_by_id.get(sporttery_id(match)) or calculator_by_key.get(key)
         result_item = result_by_id.get(sporttery_id(match)) or result_by_key.get(key)
+        hupu_item = hupu_by_key.get(key)
 
         if calc_item and is_same_dashboard_match(match, calc_item):
             apply_calculator_item(match, calc_item)
+
+        if hupu_item and is_same_dashboard_match(match, hupu_item):
+            apply_hupu_item(match, hupu_item)
 
         if result_item and is_same_dashboard_match(match, result_item):
             apply_result_item(match, result_item)
@@ -279,10 +402,14 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
 
     if changes:
         now = datetime.now(SHANGHAI).strftime("%Y-%m-%d %H:%M CST")
-        payload["lastUpdated"] = f"{now}（自动刷新 Sporttery 公开赛果/赔率；未匹配数据保持原状）"
+        payload["lastUpdated"] = f"{now}（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程；未匹配数据保持原状）"
         source = str(payload.get("sourceName") or "")
         if "Sporttery 自动更新" not in source:
             payload["sourceName"] = f"{source}；Sporttery 自动更新" if source else "Sporttery 自动更新"
+        else:
+            payload["sourceName"] = source
+        if "虎扑赛程校验" not in payload["sourceName"]:
+            payload["sourceName"] = f"{payload['sourceName']}；虎扑赛程校验"
 
     return changes
 
@@ -321,7 +448,7 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         match["minute"] = "FT"
         match["score"] = list(score)
         if old_status != "finished" or old_score != score:
-            source_name = "wc-2026 公开比赛赔率页面" if item.get("_source") == "wc-2026" else "Sporttery 官方公开赛果接口"
+            source_name = result_source_name(item)
             source_url = str(item.get("_sourceUrl") or SPORTTERY_SOURCE_URL)
             append_timeline_result(match, score, f"赛果来自 {source_name} 自动刷新。")
             append_note_once(match, "marketNotes", f"已完赛比分由 {source_name} 自动刷新；未保存的历史盘口不补造。")
@@ -337,13 +464,37 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         }
         update_odds_vector(match, pool)
 
-    if item.get("_source") != "wc-2026":
+    if item.get("_source") == "hupu":
+        hupu = match.setdefault("hupu", {})
+        if item.get("_hupuMatchId"):
+            hupu["matchId"] = str(item.get("_hupuMatchId"))
+        hupu["status"] = str(item.get("_hupuStatus") or "")
+        hupu["sourceUrl"] = str(item.get("_sourceUrl") or HUPU_MOBILE_SOCCER_URL)
+    elif item.get("_source") != "wc-2026":
         sporttery = match.setdefault("sporttery", {})
         if item.get("matchId"):
             sporttery["matchId"] = str(item.get("matchId"))
         if item.get("matchNumStr"):
             sporttery["matchNumStr"] = str(item.get("matchNumStr"))
         sporttery["sourceUrl"] = sporttery.get("sourceUrl") or SPORTTERY_SOURCE_URL
+
+
+def apply_hupu_item(match: dict[str, Any], item: dict[str, Any]) -> None:
+    hupu = match.setdefault("hupu", {})
+    if item.get("_hupuMatchId"):
+        hupu["matchId"] = str(item.get("_hupuMatchId"))
+    hupu["status"] = str(item.get("_hupuStatus") or "")
+    hupu["sourceUrl"] = str(item.get("_sourceUrl") or HUPU_MOBILE_SOCCER_URL)
+    append_source_once(match, hupu["sourceUrl"])
+    append_note_once(match, "marketNotes", "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。")
+
+
+def result_source_name(item: dict[str, Any]) -> str:
+    if item.get("_source") == "wc-2026":
+        return "wc-2026 公开比赛赔率页面"
+    if item.get("_source") == "hupu":
+        return "虎扑公开足球赛程页面"
+    return "Sporttery 官方公开赛果接口"
 
 
 def result_update_allowed(match: dict[str, Any]) -> bool:
@@ -439,12 +590,18 @@ def to_float(value: Any) -> float | None:
 
 
 def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    calculator = fetch_json(SPORTTERY_CALCULATOR_URL, {"channel": "c"}, options.timeout)
     today = datetime.now(SHANGHAI).date()
     begin = today - timedelta(days=options.days_back)
     end = today + timedelta(days=options.days_forward)
+    calculator_items: list[dict[str, Any]] = []
     result_items: list[dict[str, Any]] = []
     warnings: list[str] = []
+    try:
+        calculator = fetch_json(SPORTTERY_CALCULATOR_URL, {"channel": "c"}, options.timeout)
+        calculator_items = iter_calculator_matches(calculator)
+    except RuntimeError as exc:
+        warnings.append(str(exc))
+
     try:
         results = fetch_json(
             SPORTTERY_RESULTS_URL,
@@ -468,14 +625,19 @@ def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[d
     except RuntimeError as exc:
         warnings.append(str(exc))
 
+    try:
+        result_items.extend(parse_hupu_schedules(fetch_text(HUPU_MOBILE_SOCCER_URL, options.timeout)))
+    except RuntimeError as exc:
+        warnings.append(str(exc))
+
     if warnings:
         print(json.dumps({"warnings": warnings}, ensure_ascii=False), file=sys.stderr)
 
-    return iter_calculator_matches(calculator), result_items
+    return calculator_items, result_items
 
 
 def parse_args() -> FetchOptions:
-    parser = argparse.ArgumentParser(description="Refresh dashboard data from Sporttery public football APIs.")
+    parser = argparse.ArgumentParser(description="Refresh dashboard data from public football sources.")
     parser.add_argument("--file", type=Path, default=DATA_FILE, help="Path to web/data/matches.js")
     parser.add_argument("--dry-run", action="store_true", help="Print planned changes without writing")
     parser.add_argument("--days-back", type=int, default=7, help="How many days of results to request")

@@ -2,6 +2,8 @@ import copy
 
 from scripts.fetch_sporttery import (
     correct_score_odds,
+    hupu_item_to_result,
+    parse_hupu_schedules,
     parse_score,
     parse_wc2026_results,
     result_update_allowed,
@@ -44,6 +46,69 @@ def test_parse_wc2026_finished_cards() -> None:
         }
     ]
     assert wc2026_date("06月16日 00:00 · 北京时间") == "2026-06-16"
+
+
+def test_parse_hupu_schedules_from_next_data() -> None:
+    payload = {
+        "props": {
+            "pageProps": {
+                "schedules": [
+                    {
+                        "title": "世界杯第1轮",
+                        "competitionId": "13009",
+                        "home": {"name": "法国"},
+                        "away": {"name": "塞内加尔"},
+                        "begin_time": 1781636400,
+                        "home_score": 0,
+                        "away_score": 0,
+                        "status": {"txt": "未开始"},
+                        "matchBigStatus": {"txt": "未开始"},
+                        "currentMatchId": "3513900",
+                    },
+                    {
+                        "title": "英超",
+                        "competitionId": "1",
+                        "home": {"name": "阿森纳"},
+                        "away": {"name": "切尔西"},
+                        "dateTime": "2026年6月17日 3点00分 周三",
+                    },
+                ]
+            }
+        }
+    }
+    html = f'<script id="__NEXT_DATA__" type="application/json">{json_dumps(payload)}</script>'
+
+    assert parse_hupu_schedules(html) == [
+        {
+            "matchDate": "2026-06-17",
+            "homeTeam": "法国",
+            "awayTeam": "塞内加尔",
+            "leagueNameAbbr": "世界杯",
+            "_source": "hupu",
+            "_sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900",
+            "_hupuStatus": "未开始",
+            "_hupuMatchId": "3513900",
+        }
+    ]
+
+
+def test_hupu_finished_match_includes_score() -> None:
+    result = hupu_item_to_result(
+        {
+            "title": "世界杯第1轮",
+            "home": {"name": "西班牙"},
+            "away": {"name": "佛得角"},
+            "dateTime": "2026年6月16日 0点00分 周二",
+            "home_score": 2,
+            "away_score": 1,
+            "matchBigStatus": {"txt": "已结束"},
+            "currentMatchId": "123",
+        }
+    )
+
+    assert result
+    assert result["matchDate"] == "2026-06-16"
+    assert result["sectionsNo999"] == "2:1"
 
 
 def test_sporttery_pool_converts_had_fields() -> None:
@@ -170,3 +235,52 @@ def test_future_results_are_not_applied_even_if_source_marks_finished() -> None:
     assert update_matches(payload, [], result_items) == []
     assert payload["matches"][0]["status"] == "upcoming"
     assert payload["matches"][0]["score"] == ["-", "-"]
+
+
+def test_hupu_metadata_applies_to_upcoming_match_without_score() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            {
+                "id": "france-senegal",
+                "status": "upcoming",
+                "kickoff": "2026-06-17 03:00 CST",
+                "home": "法国",
+                "away": "塞内加尔",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+                "sources": [],
+                "marketNotes": [],
+            }
+        ],
+    }
+    hupu_items = [
+        {
+            "matchDate": "2026-06-17",
+            "homeTeam": "法国",
+            "awayTeam": "塞内加尔",
+            "leagueNameAbbr": "世界杯",
+            "_source": "hupu",
+            "_sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900",
+            "_hupuStatus": "未开始",
+            "_hupuMatchId": "3513900",
+        }
+    ]
+
+    changes = update_matches(payload, [], hupu_items)
+    match = payload["matches"][0]
+
+    assert changes == ["france-senegal 法国 vs 塞内加尔"]
+    assert match["status"] == "upcoming"
+    assert match["score"] == ["-", "-"]
+    assert match["hupu"]["matchId"] == "3513900"
+    assert "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。" in match["marketNotes"]
+    assert "虎扑赛程校验" in payload["sourceName"]
+
+
+def json_dumps(value: dict) -> str:
+    import json
+
+    return json.dumps(value, ensure_ascii=False)

@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
-  "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；XHS 社区支持率通道预留但未接入稳定公开源；Sporttery 自动更新",
-  "lastUpdated": "2026-06-16 21:56 CST（自动刷新 Sporttery 公开赛果/赔率；未匹配数据保持原状）",
+  "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程校验",
+  "lastUpdated": "2026-06-16 23:26 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -1054,7 +1054,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HAD 胜平负：法国胜 1.33 / 平 4.15 / 塞内加尔胜 7.30。",
         "体彩官方 HHAD 让球(-1)：主胜 2.12 / 平 3.45 / 客胜 2.72。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
-        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -1078,7 +1079,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/2026/02/11/france-vs-senegal/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
-        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c"
+        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+        "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900"
       ],
       "sporttery": {
         "matchId": "2040178",
@@ -1130,6 +1132,11 @@ window.WORLD_CUP_MATCHES = {
           "5-1": 40.0,
           "5-2": 70.0
         }
+      },
+      "hupu": {
+        "matchId": "3513900",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513900?matchId=3513900"
       }
     },
     {
@@ -1360,7 +1367,8 @@ window.WORLD_CUP_MATCHES = {
         "源站附加盘口摘录：让球: -1.3 @ 2.04 +1.3 @ 1.88 大小球: O 2.5 @ 2.05 U 2.5 @ 1.85 更新于 32 分 前。",
         "体彩官方 HAD 胜平负：阿根廷胜 1.26 / 平 4.40 / 阿尔及利亚胜 9.20。",
         "体彩官方 HHAD 让球(-1)：主胜 1.90 / 平 3.50 / 客胜 3.15。",
-        "体彩官方 CRS 比分盘已匹配 28 个比分赔率。"
+        "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -1384,7 +1392,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/2026/02/11/argentina-vs-algeria/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
-        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c"
+        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+        "https://m.hupu.com/soccerleagues/fifaWC/live/3514781?matchId=3514781"
       ],
       "sporttery": {
         "matchId": "2040180",
@@ -1436,6 +1445,11 @@ window.WORLD_CUP_MATCHES = {
           "5-1": 50,
           "5-2": 100
         }
+      },
+      "hupu": {
+        "matchId": "3514781",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3514781?matchId=3514781"
       }
     },
     {
@@ -1514,7 +1528,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HAD 胜平负：奥地利胜 1.25 / 平 4.75 / 约旦胜 8.40。",
         "体彩官方 HHAD 让球(-1)：主胜 1.80 / 平 3.80 / 客胜 3.22。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
-        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -1538,7 +1553,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/2026/02/17/austria-vs-jordan/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
-        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c"
+        "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+        "https://m.hupu.com/soccerleagues/fifaWC/live/3513910?matchId=3513910"
       ],
       "sporttery": {
         "matchId": "2040181",
@@ -1590,6 +1606,11 @@ window.WORLD_CUP_MATCHES = {
           "5-1": 50.0,
           "5-2": 100.0
         }
+      },
+      "hupu": {
+        "matchId": "3513910",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccerleagues/fifaWC/live/3513910?matchId=3513910"
       }
     },
     {

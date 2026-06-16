@@ -968,8 +968,7 @@ select {
   color: var(--red);
 }
 
-.score-blend-note,
-.community-panel {
+.score-blend-note {
   display: grid;
   gap: 6px;
   padding: 11px 12px;
@@ -981,49 +980,8 @@ select {
   line-height: 1.5;
 }
 
-.score-blend-note strong,
-.community-panel strong {
+.score-blend-note strong {
   color: var(--text);
-}
-
-.community-panel {
-  grid-template-columns: minmax(180px, 1fr) minmax(240px, 1fr);
-  align-items: center;
-}
-
-.community-panel.missing {
-  background: #fffaf0;
-  border-color: #e8d8b8;
-}
-
-.community-panel > div:first-child {
-  display: grid;
-  gap: 2px;
-}
-
-.community-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.community-stats span {
-  display: grid;
-  gap: 2px;
-  padding: 8px;
-  border: 1px solid #e6ebf0;
-  border-radius: 8px;
-  background: white;
-}
-
-.community-stats em {
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 900;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .bet-panel {
@@ -1493,7 +1451,6 @@ select {
   .topbar,
   .workspace,
   .content-grid,
-  .community-panel,
   .score-forecast-main {
     grid-template-columns: 1fr;
   }
@@ -1604,8 +1561,7 @@ select {
   .model-grid,
   .goal-expectation,
   .bet-grid,
-  .score-grid,
-  .community-stats {
+  .score-grid {
     grid-template-columns: 1fr;
   }
 
