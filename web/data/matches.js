@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-19 00:31 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-19 03:27 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -593,8 +593,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514787",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 48000,
-        "ratingText": "4.8万评分"
+        "ratingCount": 49000,
+        "ratingText": "4.9万评分"
       },
       "sporttery": {
         "matchId": "2040169",
@@ -1193,8 +1193,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513906",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 18000,
-        "ratingText": "1.8万评分"
+        "ratingCount": 19000,
+        "ratingText": "1.9万评分"
       },
       "sporttery": {
         "matchId": "2040177",
@@ -1369,8 +1369,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 137000,
-        "ratingText": "13.7万评分"
+        "ratingCount": 138000,
+        "ratingText": "13.8万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -1875,8 +1875,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 229000,
-        "ratingText": "22.9万评分"
+        "ratingCount": 230000,
+        "ratingText": "23.0万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:44 CST",
@@ -2626,8 +2626,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514790",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 137000,
-        "ratingText": "13.7万评分"
+        "ratingCount": 138000,
+        "ratingText": "13.8万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2880,8 +2880,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513928",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 7496,
-        "ratingText": "7496评分"
+        "ratingCount": 7597,
+        "ratingText": "7597评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -3222,15 +3222,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-19-0000-czechia-south-africa",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "A组",
       "kickoff": "2026-06-19 00:00 CST",
-      "minute": "00:00",
+      "minute": "FT",
       "home": "捷克",
       "away": "南非",
       "score": [
-        "-",
-        "-"
+        1,
+        1
       ],
       "venue": "亚特兰大",
       "possession": "-",
@@ -3297,9 +3297,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(-1)：主胜 3.36 / 平 3.40 / 客胜 1.86。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "捷克 1 - 1 南非",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "00:00",
           "title": "捷克 vs 南非",
@@ -3377,8 +3383,94 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3514783",
-        "status": "进行中",
-        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+        "status": "已结束",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule",
+        "ratingCount": 9888,
+        "ratingText": "9888评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-19 03:27 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-19 00:00 CST",
+        "odds": [
+          {
+            "outcome": "捷克胜",
+            "referenceOdds": 1.74,
+            "sporttery": 1.66,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 3.75,
+            "sporttery": 3.36,
+            "polymarket": null
+          },
+          {
+            "outcome": "南非胜",
+            "referenceOdds": 4.75,
+            "sporttery": 4.35,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040235",
+          "matchNumStr": "周四025",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.66,
+            "draw": 3.36,
+            "away": 4.35,
+            "goalLine": "",
+            "lastUpdated": "2026-06-18 12:21:46"
+          },
+          "hhad": {
+            "home": 3.2,
+            "draw": 3.35,
+            "away": 1.93,
+            "goalLine": "-1",
+            "lastUpdated": "2026-06-18 12:21:40"
+          },
+          "correctScore": {
+            "0-0": 9.25,
+            "0-1": 12.0,
+            "0-2": 26.0,
+            "0-3": 80.0,
+            "0-4": 300.0,
+            "0-5": 600.0,
+            "1-0": 6.5,
+            "1-1": 5.3,
+            "1-2": 13.0,
+            "1-3": 55.0,
+            "1-4": 175.0,
+            "1-5": 500.0,
+            "2-0": 6.25,
+            "2-1": 6.25,
+            "2-2": 15.0,
+            "2-3": 50.0,
+            "2-4": 200.0,
+            "2-5": 600.0,
+            "3-0": 13.0,
+            "3-1": 13.0,
+            "3-2": 30.0,
+            "3-3": 70.0,
+            "4-0": 40.0,
+            "4-1": 40.0,
+            "4-2": 85.0,
+            "5-0": 100.0,
+            "5-1": 100.0,
+            "5-2": 300.0
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/05/03/czechia-vs-south-africa/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
@@ -3538,7 +3630,7 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3514794",
-        "status": "未开始",
+        "status": "进行中",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
       }
     },
