@@ -8,6 +8,7 @@ from scripts.fetch_sporttery import (
     parse_score,
     parse_wc2026_results,
     result_update_allowed,
+    result_odds_pool,
     sporttery_pool,
     update_matches,
     wc2026_date,
@@ -189,6 +190,108 @@ def test_update_matches_refreshes_odds_and_finished_score() -> None:
     assert match["odds"][1]["sporttery"] == 4.2
     assert match["odds"][2]["sporttery"] == 7.45
     assert match["sporttery"]["correctScore"] == {"2-0": 6.5}
+    assert "closingSnapshot" not in match
+
+
+def test_update_matches_snapshots_existing_odds_before_finished_refresh() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            {
+                "id": "france-senegal",
+                "status": "upcoming",
+                "stage": "I组",
+                "kickoff": "2026-06-12 03:00 CST",
+                "minute": "03:00",
+                "home": "法国",
+                "away": "塞内加尔",
+                "score": ["-", "-"],
+                "odds": [
+                    {"outcome": "法国胜", "sporttery": 1.4},
+                    {"outcome": "平局", "sporttery": 4.0},
+                    {"outcome": "塞内加尔胜", "sporttery": 7.1},
+                ],
+                "sporttery": {"matchId": "2040178", "correctScore": {"2-0": 7.0}},
+                "timeline": [],
+                "sources": ["https://www.sporttery.cn/jc/jsq/zqspf/"],
+                "marketNotes": [],
+            }
+        ],
+    }
+    calculator_items = [
+        {
+            "matchId": 2040178,
+            "matchNumStr": "周二017",
+            "matchDate": "2026-06-12",
+            "homeTeamAbbName": "法国",
+            "awayTeamAbbName": "塞内加尔",
+            "leagueAbbName": "世界杯",
+            "had": {"h": "1.32", "d": "4.20", "a": "7.45", "updateDate": "2026-06-16", "updateTime": "18:59:59"},
+            "hhad": {"h": "2.07", "d": "3.45", "a": "2.81", "goalLine": "-1"},
+            "crs": {"s02s00": "6.50"},
+        }
+    ]
+    result_items = [
+        {
+            "matchId": 2040178,
+            "matchDate": "2026-06-12",
+            "homeTeam": "法国",
+            "awayTeam": "塞内加尔",
+            "leagueNameAbbr": "世界杯",
+            "sectionsNo999": "2:0",
+        }
+    ]
+
+    update_matches(payload, calculator_items, result_items)
+    match = payload["matches"][0]
+
+    assert match["closingSnapshot"]["odds"][0]["sporttery"] == 1.4
+    assert match["closingSnapshot"]["sporttery"]["correctScore"] == {"2-0": 7.0}
+    assert match["odds"][0]["sporttery"] == 1.32
+    assert match["sporttery"]["correctScore"] == {"2-0": 6.5}
+
+
+def test_update_matches_does_not_backfill_snapshot_for_already_finished_match() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            {
+                "id": "france-senegal",
+                "status": "finished",
+                "kickoff": "2026-06-12 03:00 CST",
+                "home": "法国",
+                "away": "塞内加尔",
+                "score": [2, 0],
+                "minute": "FT",
+                "odds": [{"outcome": "法国胜", "sporttery": 1.32}, {"outcome": "平局", "sporttery": 4.2}, {"outcome": "塞内加尔胜", "sporttery": 7.45}],
+                "sporttery": {"matchId": "2040178", "correctScore": {"2-0": 6.5}, "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"},
+                "timeline": [],
+                "sources": [],
+                "marketNotes": [],
+            }
+        ],
+    }
+    result_items = [
+        {
+            "matchId": 2040178,
+            "matchDate": "2026-06-12",
+            "homeTeam": "法国",
+            "awayTeam": "塞内加尔",
+            "leagueNameAbbr": "世界杯",
+            "sectionsNo999": "2:0",
+        }
+    ]
+
+    assert update_matches(payload, [], result_items) == []
+    assert "closingSnapshot" not in payload["matches"][0]
+
+
+def test_result_odds_pool_converts_result_had_fields() -> None:
+    pool = result_odds_pool({"h": "2.10", "d": "3.20", "a": "3.40", "goalLine": "-1", "matchDate": "2026-06-12"})
+
+    assert pool == {"home": 2.1, "draw": 3.2, "away": 3.4, "goalLine": "-1", "lastUpdated": "2026-06-12"}
 
 
 def test_update_matches_does_not_touch_unmatched_games() -> None:

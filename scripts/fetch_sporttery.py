@@ -18,6 +18,7 @@ The updater is deliberately conservative:
 from __future__ import annotations
 
 import argparse
+import copy
 import html as html_lib
 import json
 import re
@@ -414,6 +415,9 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
         result_item = result_by_id.get(sporttery_id(match)) or result_by_key.get(key)
         hupu_item = hupu_by_key.get(key)
 
+        if result_item and is_same_dashboard_match(match, result_item):
+            preserve_snapshot_before_result(match, result_item)
+
         if calc_item and is_same_dashboard_match(match, calc_item):
             apply_calculator_item(match, calc_item)
 
@@ -439,6 +443,16 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
             payload["sourceName"] = f"{payload['sourceName']}；虎扑赛程/热度校验"
 
     return changes
+
+
+def preserve_snapshot_before_result(match: dict[str, Any], result_item: dict[str, Any]) -> None:
+    if match.get("status") == "finished":
+        return
+    if not result_update_allowed(match):
+        return
+    if not parse_score(str(result_item.get("sectionsNo999") or "")):
+        return
+    preserve_closing_snapshot(match, result_item)
 
 
 def is_same_dashboard_match(match: dict[str, Any], sporttery_item: dict[str, Any]) -> bool:
@@ -481,15 +495,9 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
             append_note_once(match, "marketNotes", f"已完赛比分由 {source_name} 自动刷新；未保存的历史盘口不补造。")
             append_source_once(match, source_url)
 
-    if any(str(item.get(key) or "").strip() for key in ("h", "d", "a")):
-        pool = {
-            "home": to_float(item.get("h")),
-            "draw": to_float(item.get("d")),
-            "away": to_float(item.get("a")),
-            "goalLine": str(item.get("goalLine") or ""),
-            "lastUpdated": str(item.get("matchDate") or ""),
-        }
-        update_odds_vector(match, pool)
+    result_pool = result_odds_pool(item)
+    if result_pool:
+        update_odds_vector(match, result_pool)
 
     if item.get("_source") == "hupu":
         hupu = match.setdefault("hupu", {})
@@ -505,6 +513,119 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         if item.get("matchNumStr"):
             sporttery["matchNumStr"] = str(item.get("matchNumStr"))
         sporttery["sourceUrl"] = sporttery.get("sourceUrl") or SPORTTERY_SOURCE_URL
+
+
+def result_odds_pool(item: dict[str, Any]) -> dict[str, Any] | None:
+    if not any(str(item.get(key) or "").strip() for key in ("h", "d", "a")):
+        return None
+    return {
+        "home": to_float(item.get("h")),
+        "draw": to_float(item.get("d")),
+        "away": to_float(item.get("a")),
+        "goalLine": str(item.get("goalLine") or ""),
+        "lastUpdated": str(item.get("matchDate") or ""),
+    }
+
+
+def preserve_closing_snapshot(match: dict[str, Any], item: dict[str, Any]) -> None:
+    if isinstance(match.get("closingSnapshot"), dict):
+        return
+
+    odds = snapshot_odds(match.get("odds") or [])
+    sporttery = snapshot_sporttery(match.get("sporttery") or {})
+    if not odds and not sporttery:
+        return
+
+    snapshot: dict[str, Any] = {
+        "capturedAt": datetime.now(SHANGHAI).strftime("%Y-%m-%d %H:%M CST"),
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": result_source_name(item),
+        "kickoff": str(match.get("kickoff") or ""),
+    }
+    if odds:
+        snapshot["odds"] = odds
+    if sporttery:
+        snapshot["sporttery"] = sporttery
+    if isinstance(match.get("sources"), list) and match["sources"]:
+        snapshot["sources"] = [str(source) for source in match["sources"]]
+
+    match["closingSnapshot"] = snapshot
+
+
+def snapshot_odds(raw_odds: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw_odds, list):
+        return []
+
+    odds: list[dict[str, Any]] = []
+    has_price = False
+    for raw in raw_odds[:3]:
+        if not isinstance(raw, dict):
+            continue
+        cleaned: dict[str, Any] = {}
+        for key in ("outcome", "referenceOdds", "referenceValid", "sporttery", "polymarket"):
+            if key in raw:
+                cleaned[key] = copy.deepcopy(raw[key])
+
+        bookmakers = snapshot_bookmakers(raw.get("bookmakers"))
+        if bookmakers:
+            cleaned["bookmakers"] = bookmakers
+
+        if cleaned:
+            has_price = has_price or odds_entry_has_price(cleaned)
+            odds.append(cleaned)
+
+    return odds if has_price else []
+
+
+def snapshot_bookmakers(raw_bookmakers: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw_bookmakers, list):
+        return []
+
+    bookmakers: list[dict[str, Any]] = []
+    for raw in raw_bookmakers:
+        if not isinstance(raw, dict):
+            continue
+        cleaned = {
+            key: copy.deepcopy(raw[key])
+            for key in ("book", "decimalOdds", "americanOdds", "sourceUrl", "lastUpdated")
+            if key in raw
+        }
+        if cleaned and odds_entry_has_price(cleaned):
+            bookmakers.append(cleaned)
+    return bookmakers
+
+
+def snapshot_sporttery(raw_sporttery: Any) -> dict[str, Any]:
+    if not isinstance(raw_sporttery, dict):
+        return {}
+
+    cleaned: dict[str, Any] = {}
+    for key in ("matchId", "matchNumStr", "sourceUrl", "lastUpdated"):
+        if raw_sporttery.get(key):
+            cleaned[key] = copy.deepcopy(raw_sporttery[key])
+    for key in ("had", "hhad", "correctScore"):
+        value = raw_sporttery.get(key)
+        if isinstance(value, dict) and value:
+            cleaned[key] = copy.deepcopy(value)
+    return cleaned if snapshot_sporttery_has_market(cleaned) else {}
+
+
+def snapshot_sporttery_has_market(sporttery: dict[str, Any]) -> bool:
+    return any(isinstance(sporttery.get(key), dict) and sporttery[key] for key in ("had", "hhad", "correctScore"))
+
+
+def odds_entry_has_price(odd: dict[str, Any]) -> bool:
+    for key in ("referenceOdds", "sporttery", "decimalOdds"):
+        value = odd.get(key)
+        if isinstance(value, (int, float)) and value > 0:
+            return True
+    polymarket = odd.get("polymarket")
+    if isinstance(polymarket, (int, float)) and 0 <= polymarket <= 1:
+        return True
+    american = odd.get("americanOdds")
+    if isinstance(american, (int, float)) and american != 0:
+        return True
+    return False
 
 
 def apply_hupu_item(match: dict[str, Any], item: dict[str, Any]) -> None:
