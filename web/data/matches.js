@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-19 03:27 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-19 05:34 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -968,8 +968,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513912",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 218000,
-        "ratingText": "21.8万评分"
+        "ratingCount": 219000,
+        "ratingText": "21.9万评分"
       },
       "sporttery": {
         "matchId": "2040174",
@@ -2880,8 +2880,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513928",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 7597,
-        "ratingText": "7597评分"
+        "ratingCount": 7606,
+        "ratingText": "7606评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -3385,8 +3385,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514783",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 9888,
-        "ratingText": "9888评分"
+        "ratingCount": 10000,
+        "ratingText": "1.0万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-19 03:27 CST",
@@ -3475,15 +3475,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-19-0300-switzerland-bosnia-herzegovina",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "B组",
       "kickoff": "2026-06-19 03:00 CST",
-      "minute": "03:00",
+      "minute": "FT",
       "home": "瑞士",
       "away": "波黑",
       "score": [
-        "-",
-        "-"
+        4,
+        1
       ],
       "venue": "洛杉矶",
       "possession": "-",
@@ -3550,9 +3550,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(-1)：主胜 2.23 / 平 3.35 / 客胜 2.62。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 虎扑公开足球赛程页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "瑞士 4 - 1 波黑",
+          "text": "赛果来自 虎扑公开足球赛程页面 自动刷新。"
+        },
         {
           "minute": "03:00",
           "title": "瑞士 vs 波黑",
@@ -3630,8 +3636,94 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3514794",
-        "status": "进行中",
-        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+        "status": "已结束",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule",
+        "ratingCount": 3415,
+        "ratingText": "3415评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-19 05:34 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "虎扑公开足球赛程页面",
+        "kickoff": "2026-06-19 03:00 CST",
+        "odds": [
+          {
+            "outcome": "瑞士胜",
+            "referenceOdds": 1.54,
+            "sporttery": 1.38,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 4.1,
+            "sporttery": 3.95,
+            "polymarket": null
+          },
+          {
+            "outcome": "波黑胜",
+            "referenceOdds": 6.4,
+            "sporttery": 6.6,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040236",
+          "matchNumStr": "周四026",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.38,
+            "draw": 3.95,
+            "away": 6.6,
+            "goalLine": "",
+            "lastUpdated": "2026-06-18 11:59:38"
+          },
+          "hhad": {
+            "home": 2.33,
+            "draw": 3.3,
+            "away": 2.52,
+            "goalLine": "-1",
+            "lastUpdated": "2026-06-18 11:59:04"
+          },
+          "correctScore": {
+            "0-0": 10.5,
+            "0-1": 16.0,
+            "0-2": 45.0,
+            "0-3": 150.0,
+            "0-4": 500.0,
+            "0-5": 800.0,
+            "1-0": 5.75,
+            "1-1": 7.0,
+            "1-2": 19.0,
+            "1-3": 90.0,
+            "1-4": 400.0,
+            "1-5": 800.0,
+            "2-0": 5.55,
+            "2-1": 6.5,
+            "2-2": 20.0,
+            "2-3": 80.0,
+            "2-4": 400.0,
+            "2-5": 800.0,
+            "3-0": 8.75,
+            "3-1": 10.0,
+            "3-2": 30.0,
+            "3-3": 70.0,
+            "4-0": 19.0,
+            "4-1": 26.0,
+            "4-2": 65.0,
+            "5-0": 55.0,
+            "5-1": 75.0,
+            "5-2": 125.0
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/05/10/switzerland-vs-bosnia/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
