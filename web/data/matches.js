@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-18 20:52 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-19 00:31 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -668,8 +668,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513913",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 92000,
-        "ratingText": "9.2万评分"
+        "ratingCount": 93000,
+        "ratingText": "9.3万评分"
       },
       "sporttery": {
         "matchId": "2040170",
@@ -743,8 +743,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514788",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 71000,
-        "ratingText": "7.1万评分"
+        "ratingCount": 72000,
+        "ratingText": "7.2万评分"
       },
       "sporttery": {
         "matchId": "2040171",
@@ -968,8 +968,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513912",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 216000,
-        "ratingText": "21.6万评分"
+        "ratingCount": 218000,
+        "ratingText": "21.8万评分"
       },
       "sporttery": {
         "matchId": "2040174",
@@ -1875,8 +1875,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 228000,
-        "ratingText": "22.8万评分"
+        "ratingCount": 229000,
+        "ratingText": "22.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:44 CST",
@@ -2626,8 +2626,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514790",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 134000,
-        "ratingText": "13.4万评分"
+        "ratingCount": 137000,
+        "ratingText": "13.7万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2880,8 +2880,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513928",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 7331,
-        "ratingText": "7331评分"
+        "ratingCount": 7496,
+        "ratingText": "7496评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -3132,8 +3132,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513925",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 24000,
-        "ratingText": "2.4万评分"
+        "ratingCount": 25000,
+        "ratingText": "2.5万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:44 CST",
@@ -3377,7 +3377,7 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3514783",
-        "status": "未开始",
+        "status": "进行中",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
       }
     },
@@ -7673,7 +7673,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：塞内加尔 0.65%，伊拉克 0.05%。",
-        "源站附加盘口摘录：让球: -1.5 @ 2.20 +1.5 @ 1.65 大小球: O 2.5 @ 1.91 U 2.5 @ 1.87 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: -1.5 @ 2.20 +1.5 @ 1.65 大小球: O 2.5 @ 1.91 U 2.5 @ 1.87 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -7695,8 +7696,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/05/22/senegal-vs-iraq/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3514802",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-27-0300-norway-france",
@@ -7770,7 +7777,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：挪威 2.45%，法国 17.65%。",
-        "源站附加盘口摘录：让球: +0.5 @ 1.95 -0.5 @ 1.83 大小球: O 2.5 @ 1.98 U 2.5 @ 1.81 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: +0.5 @ 1.95 -0.5 @ 1.83 大小球: O 2.5 @ 1.98 U 2.5 @ 1.81 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -7792,8 +7800,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/18/norway-vs-france/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3513924",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-27-0800-cape-verde-saudi-arabia",
@@ -7867,7 +7881,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：佛得角 0.05%，沙特阿拉伯 0.05%。",
-        "源站附加盘口摘录：让球: +0.5 @ 1.54 -0.5 @ 2.43 大小球: O 2.5 @ 2.09 U 2.5 @ 1.70 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: +0.5 @ 1.54 -0.5 @ 2.43 大小球: O 2.5 @ 2.09 U 2.5 @ 1.70 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -7889,8 +7904,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/21/cape-verde-vs-saudi-arabia/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3514808",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-27-0800-uruguay-spain",
@@ -7964,7 +7985,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：乌拉圭 0.65%，西班牙 14.45%。",
-        "源站附加盘口摘录：让球: +0.5 @ 2.46 -0.5 @ 1.53 大小球: O 2.5 @ 1.83 U 2.5 @ 1.95 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: +0.5 @ 2.46 -0.5 @ 1.53 大小球: O 2.5 @ 1.83 U 2.5 @ 1.95 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -7986,8 +8008,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/22/uruguay-vs-spain/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3514800",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-27-1100-egypt-iran",
@@ -8061,7 +8089,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：埃及 0.25%，伊朗 0.05%。",
-        "源站附加盘口摘录：让球: -0.5 @ 2.07 +0.5 @ 1.73 大小球: O 1.5 @ 1.53 U 1.5 @ 2.56 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: -0.5 @ 2.07 +0.5 @ 1.73 大小球: O 1.5 @ 1.53 U 1.5 @ 2.56 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -8083,8 +8112,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/19/egypt-vs-iran/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3514804",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-27-1100-new-zealand-belgium",
@@ -8158,7 +8193,8 @@ window.WORLD_CUP_MATCHES = {
         "Polymarket Gamma 当前抓到的是 World Cup Winner 冠军长期市场；未把冠军市场价格填入单场 1X2 赔率列。",
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：新西兰 0.05%，比利时 1.75%。",
-        "源站附加盘口摘录：让球: +1.5 @ 2.11 -1.5 @ 1.70 大小球: O 2.5 @ 1.65 U 2.5 @ 2.15 更新于 32 分 前。"
+        "源站附加盘口摘录：让球: +1.5 @ 2.11 -1.5 @ 1.70 大小球: O 2.5 @ 1.65 U 2.5 @ 2.15 更新于 32 分 前。",
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
       ],
       "timeline": [
         {
@@ -8180,8 +8216,14 @@ window.WORLD_CUP_MATCHES = {
       "sources": [
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/20/new-zeland-vs-belgium/",
-        "https://gamma-api.polymarket.com/events?slug=world-cup-winner"
-      ]
+        "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+        "https://m.hupu.com/soccer/schedule"
+      ],
+      "hupu": {
+        "matchId": "3513923",
+        "status": "未开始",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      }
     },
     {
       "id": "wc2026-6-28-0500-panama-england",
