@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-18 14:40 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-18 14:44 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -1712,15 +1712,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-17-0900-argentina-algeria",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "J组",
       "kickoff": "2026-06-17 09:00 CST",
-      "minute": "09:00",
+      "minute": "FT",
       "home": "阿根廷",
       "away": "阿尔及利亚",
       "score": [
-        "-",
-        "-"
+        3,
+        0
       ],
       "venue": "堪萨斯城",
       "possession": "-",
@@ -1786,9 +1786,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HAD 胜平负：阿根廷胜 1.26 / 平 4.40 / 阿尔及利亚胜 9.20。",
         "体彩官方 HHAD 让球(-1)：主胜 1.90 / 平 3.50 / 客胜 3.15。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "阿根廷 3 - 0 阿尔及利亚",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "09:00",
           "title": "阿根廷 vs 阿尔及利亚",
@@ -1871,6 +1877,90 @@ window.WORLD_CUP_MATCHES = {
         "heat": 4,
         "ratingCount": 224000,
         "ratingText": "22.4万评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-18 14:44 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-17 09:00 CST",
+        "odds": [
+          {
+            "outcome": "阿根廷胜",
+            "referenceOdds": 1.44,
+            "sporttery": 1.26,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 4.55,
+            "sporttery": 4.4,
+            "polymarket": null
+          },
+          {
+            "outcome": "阿尔及利亚胜",
+            "referenceOdds": 8.9,
+            "sporttery": 9.2,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040180",
+          "matchNumStr": "周二019",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.26,
+            "draw": 4.4,
+            "away": 9.2,
+            "goalLine": "",
+            "lastUpdated": "2026-06-14 13:24:37"
+          },
+          "hhad": {
+            "home": 1.9,
+            "draw": 3.5,
+            "away": 3.15,
+            "goalLine": "-1",
+            "lastUpdated": "2026-06-15 12:13:56"
+          },
+          "correctScore": {
+            "0-0": 12,
+            "0-1": 20,
+            "0-2": 55,
+            "0-3": 250,
+            "0-4": 700,
+            "0-5": 1000,
+            "1-0": 5.9,
+            "1-1": 8.25,
+            "1-2": 27,
+            "1-3": 120,
+            "1-4": 500,
+            "1-5": 1000,
+            "2-0": 4.75,
+            "2-1": 6.5,
+            "2-2": 22,
+            "2-3": 80,
+            "2-4": 500,
+            "2-5": 1000,
+            "3-0": 7.75,
+            "3-1": 10,
+            "3-2": 32,
+            "3-3": 75,
+            "4-0": 17,
+            "4-1": 23,
+            "4-2": 50,
+            "5-0": 35,
+            "5-1": 50,
+            "5-2": 100
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/02/11/argentina-vs-algeria/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
@@ -2130,15 +2220,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-18-0100-portugal-congo-dr",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "K组",
       "kickoff": "2026-06-18 01:00 CST",
-      "minute": "01:00",
+      "minute": "FT",
       "home": "葡萄牙",
       "away": "刚果民主共和国",
       "score": [
-        "-",
-        "-"
+        1,
+        1
       ],
       "venue": "休斯顿",
       "possession": "-",
@@ -2203,9 +2293,15 @@ window.WORLD_CUP_MATCHES = {
         "源站附加盘口摘录：让球: -1.5 @ 1.88 +1.5 @ 2.03 大小球: O 2.5 @ 1.70 U 2.5 @ 2.18 更新于 32 分 前。",
         "体彩官方 HAD 胜平负：葡萄牙胜 1.13 / 平 5.86 / 刚果民主共和国胜 13.50。",
         "体彩官方 HHAD 让球(-2)：主胜 2.66 / 平 3.94 / 客胜 2.00。",
-        "体彩官方 CRS 比分盘已匹配 28 个比分赔率。"
+        "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "葡萄牙 1 - 1 刚果民主共和国",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "01:00",
           "title": "葡萄牙 vs 刚果民主共和国",
@@ -2279,6 +2375,89 @@ window.WORLD_CUP_MATCHES = {
           "5-1": 35,
           "5-2": 90
         }
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-18 14:44 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-18 01:00 CST",
+        "odds": [
+          {
+            "outcome": "葡萄牙胜",
+            "referenceOdds": 1.3,
+            "sporttery": 1.13,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 5.8,
+            "sporttery": 5.86,
+            "polymarket": null
+          },
+          {
+            "outcome": "刚果民主共和国胜",
+            "referenceOdds": 12,
+            "sporttery": 13.5,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040182",
+          "matchNumStr": "周三021",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.13,
+            "draw": 5.86,
+            "away": 13.5,
+            "goalLine": "",
+            "lastUpdated": "2026-06-15 12:50:27"
+          },
+          "hhad": {
+            "home": 2.66,
+            "draw": 3.94,
+            "away": 2,
+            "goalLine": "-2",
+            "lastUpdated": "2026-06-15 12:50:33"
+          },
+          "correctScore": {
+            "0-0": 15,
+            "0-1": 27,
+            "0-2": 90,
+            "0-3": 350,
+            "0-4": 1000,
+            "0-5": 1000,
+            "1-0": 6,
+            "1-1": 10,
+            "1-2": 35,
+            "1-3": 175,
+            "1-4": 600,
+            "1-5": 1000,
+            "2-0": 5.2,
+            "2-1": 7.5,
+            "2-2": 29,
+            "2-3": 150,
+            "2-4": 500,
+            "2-5": 1000,
+            "3-0": 6.5,
+            "3-1": 10,
+            "3-2": 30,
+            "3-3": 175,
+            "4-0": 10.5,
+            "4-1": 17,
+            "4-2": 60,
+            "5-0": 21,
+            "5-1": 35,
+            "5-2": 90
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/05/02/portugal-vs-congo-dr/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c"
+        ]
       }
     },
     {
@@ -2447,8 +2626,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514790",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 119000,
-        "ratingText": "11.9万评分"
+        "ratingCount": 120000,
+        "ratingText": "12.0万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2701,8 +2880,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513928",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 6539,
-        "ratingText": "6539评分"
+        "ratingCount": 6563,
+        "ratingText": "6563评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2791,15 +2970,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-18-1000-uzbekistan-colombia",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "K组",
       "kickoff": "2026-06-18 10:00 CST",
-      "minute": "10:00",
+      "minute": "FT",
       "home": "乌兹别克斯坦",
       "away": "哥伦比亚",
       "score": [
-        "-",
-        "-"
+        1,
+        3
       ],
       "venue": "墨西哥城",
       "possession": "-",
@@ -2865,9 +3044,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HAD 胜平负：乌兹别克斯坦胜 9.10 / 平 4.55 / 哥伦比亚胜 1.25。",
         "体彩官方 HHAD 让球(+1)：主胜 3.12 / 平 3.44 / 客胜 1.93。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "乌兹别克斯坦 1 - 3 哥伦比亚",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "10:00",
           "title": "乌兹别克斯坦 vs 哥伦比亚",
@@ -2949,6 +3134,90 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "ratingCount": 19000,
         "ratingText": "1.9万评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-18 14:44 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-18 10:00 CST",
+        "odds": [
+          {
+            "outcome": "乌兹别克斯坦胜",
+            "referenceOdds": 9.5,
+            "sporttery": 9.1,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 4.7,
+            "sporttery": 4.55,
+            "polymarket": null
+          },
+          {
+            "outcome": "哥伦比亚胜",
+            "referenceOdds": 1.38,
+            "sporttery": 1.25,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040185",
+          "matchNumStr": "周三024",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 9.1,
+            "draw": 4.55,
+            "away": 1.25,
+            "goalLine": "",
+            "lastUpdated": "2026-06-12 12:49:23"
+          },
+          "hhad": {
+            "home": 3.12,
+            "draw": 3.44,
+            "away": 1.93,
+            "goalLine": "+1",
+            "lastUpdated": "2026-06-14 13:03:24"
+          },
+          "correctScore": {
+            "0-0": 11,
+            "0-1": 5.2,
+            "0-2": 5.2,
+            "0-3": 7.5,
+            "0-4": 14,
+            "0-5": 30,
+            "1-0": 16,
+            "1-1": 8,
+            "1-2": 7,
+            "1-3": 11,
+            "1-4": 23,
+            "1-5": 60,
+            "2-0": 50,
+            "2-1": 25,
+            "2-2": 25,
+            "2-3": 35,
+            "2-4": 70,
+            "2-5": 175,
+            "3-0": 250,
+            "3-1": 120,
+            "3-2": 120,
+            "3-3": 150,
+            "4-0": 350,
+            "4-1": 500,
+            "4-2": 500,
+            "5-0": 1000,
+            "5-1": 1000,
+            "5-2": 1000
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/02/20/uzbekistan-vs-colombia/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
