@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-19 07:46 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-19 12:11 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -668,8 +668,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513913",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 93000,
-        "ratingText": "9.3万评分"
+        "ratingCount": 99000,
+        "ratingText": "9.9万评分"
       },
       "sporttery": {
         "matchId": "2040170",
@@ -818,8 +818,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513909",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 29000,
-        "ratingText": "2.9万评分"
+        "ratingCount": 35000,
+        "ratingText": "3.5万评分"
       },
       "sporttery": {
         "matchId": "2040172",
@@ -893,8 +893,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513914",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 27000,
-        "ratingText": "2.7万评分"
+        "ratingCount": 33000,
+        "ratingText": "3.3万评分"
       },
       "sporttery": {
         "matchId": "2040173",
@@ -968,8 +968,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513912",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 219000,
-        "ratingText": "21.9万评分"
+        "ratingCount": 220000,
+        "ratingText": "22.0万评分"
       },
       "sporttery": {
         "matchId": "2040174",
@@ -1043,8 +1043,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514777",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 26000,
-        "ratingText": "2.6万评分"
+        "ratingCount": 35000,
+        "ratingText": "3.5万评分"
       },
       "sporttery": {
         "matchId": "2040175",
@@ -1118,8 +1118,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514791",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 17000,
-        "ratingText": "1.7万评分"
+        "ratingCount": 25000,
+        "ratingText": "2.5万评分"
       },
       "sporttery": {
         "matchId": "2040176",
@@ -1193,8 +1193,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513906",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 19000,
-        "ratingText": "1.9万评分"
+        "ratingCount": 24000,
+        "ratingText": "2.4万评分"
       },
       "sporttery": {
         "matchId": "2040177",
@@ -1369,8 +1369,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 138000,
-        "ratingText": "13.8万评分"
+        "ratingCount": 144000,
+        "ratingText": "14.4万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -1875,8 +1875,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 230000,
-        "ratingText": "23.0万评分"
+        "ratingCount": 234000,
+        "ratingText": "23.4万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:44 CST",
@@ -2130,8 +2130,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 13000,
-        "ratingText": "1.3万评分"
+        "ratingCount": 17000,
+        "ratingText": "1.7万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2626,8 +2626,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514790",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 138000,
-        "ratingText": "13.8万评分"
+        "ratingCount": 141000,
+        "ratingText": "14.1万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2880,8 +2880,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513928",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 7609,
-        "ratingText": "7609评分"
+        "ratingCount": 13000,
+        "ratingText": "1.3万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -3385,8 +3385,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514783",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 11000,
-        "ratingText": "1.1万评分"
+        "ratingCount": 21000,
+        "ratingText": "2.1万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-19 03:27 CST",
@@ -3638,8 +3638,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514794",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 4880,
-        "ratingText": "4880评分"
+        "ratingCount": 19000,
+        "ratingText": "1.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-19 05:34 CST",
@@ -3728,15 +3728,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-19-0600-canada-qatar",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "B组",
       "kickoff": "2026-06-19 06:00 CST",
-      "minute": "06:00",
+      "minute": "FT",
       "home": "加拿大",
       "away": "卡塔尔",
       "score": [
-        "-",
-        "-"
+        6,
+        0
       ],
       "venue": "温哥华",
       "possession": "-",
@@ -3803,9 +3803,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(-1)：主胜 1.87 / 平 3.45 / 客胜 3.28。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "加拿大 6 - 0 卡塔尔",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "06:00",
           "title": "加拿大 vs 卡塔尔",
@@ -3883,21 +3889,107 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3511600",
-        "status": "进行中",
-        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+        "status": "已结束",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule",
+        "ratingCount": 29000,
+        "ratingText": "2.9万评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-19 12:11 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-19 06:00 CST",
+        "odds": [
+          {
+            "outcome": "加拿大胜",
+            "referenceOdds": 1.23,
+            "sporttery": 1.2,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 5.3,
+            "sporttery": 5.0,
+            "polymarket": null
+          },
+          {
+            "outcome": "卡塔尔胜",
+            "referenceOdds": 8.5,
+            "sporttery": 10.5,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040237",
+          "matchNumStr": "周四027",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.2,
+            "draw": 5.0,
+            "away": 10.5,
+            "goalLine": "",
+            "lastUpdated": "2026-06-18 12:26:45"
+          },
+          "hhad": {
+            "home": 1.76,
+            "draw": 3.55,
+            "away": 3.6,
+            "goalLine": "-1",
+            "lastUpdated": "2026-06-18 12:26:52"
+          },
+          "correctScore": {
+            "0-0": 16.0,
+            "0-1": 25.0,
+            "0-2": 70.0,
+            "0-3": 200.0,
+            "0-4": 600.0,
+            "0-5": 800.0,
+            "1-0": 6.0,
+            "1-1": 8.5,
+            "1-2": 27.0,
+            "1-3": 100.0,
+            "1-4": 500.0,
+            "1-5": 800.0,
+            "2-0": 5.0,
+            "2-1": 6.5,
+            "2-2": 21.0,
+            "2-3": 90.0,
+            "2-4": 500.0,
+            "2-5": 800.0,
+            "3-0": 7.0,
+            "3-1": 9.5,
+            "3-2": 32.0,
+            "3-3": 90.0,
+            "4-0": 13.5,
+            "4-1": 21.0,
+            "4-2": 50.0,
+            "5-0": 31.0,
+            "5-1": 50.0,
+            "5-2": 120.0
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/03/02/canada-vs-qatar/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
       "id": "wc2026-6-19-0900-mexico-south-korea",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "A组",
       "kickoff": "2026-06-19 09:00 CST",
-      "minute": "09:00",
+      "minute": "FT",
       "home": "墨西哥",
       "away": "韩国",
       "score": [
-        "-",
-        "-"
+        1,
+        0
       ],
       "venue": "瓜达拉哈拉",
       "possession": "-",
@@ -3964,9 +4056,15 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(-1)：主胜 3.78 / 平 3.45 / 客胜 1.74。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "墨西哥 1 - 0 韩国",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "09:00",
           "title": "墨西哥 vs 韩国",
@@ -4044,8 +4142,94 @@ window.WORLD_CUP_MATCHES = {
       },
       "hupu": {
         "matchId": "3512540",
-        "status": "未开始",
-        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+        "status": "已结束",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule",
+        "ratingCount": 16000,
+        "ratingText": "1.6万评分"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-19 12:11 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-19 09:00 CST",
+        "odds": [
+          {
+            "outcome": "墨西哥胜",
+            "referenceOdds": 2.02,
+            "sporttery": 1.89,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 3.2,
+            "sporttery": 2.91,
+            "polymarket": null
+          },
+          {
+            "outcome": "韩国胜",
+            "referenceOdds": 4,
+            "sporttery": 3.9,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040238",
+          "matchNumStr": "周四028",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "lastUpdated": "2026-06-16 15:51 CST（wc-2026 比赛赔率表显示 2026-06-16 11:29 BJT，最佳射手表 15:49 BJT）",
+          "had": {
+            "home": 1.89,
+            "draw": 2.91,
+            "away": 3.9,
+            "goalLine": "",
+            "lastUpdated": "2026-06-18 13:26:20"
+          },
+          "hhad": {
+            "home": 4.05,
+            "draw": 3.32,
+            "away": 1.72,
+            "goalLine": "-1",
+            "lastUpdated": "2026-06-18 13:26:28"
+          },
+          "correctScore": {
+            "0-0": 8.5,
+            "0-1": 10.0,
+            "0-2": 23.0,
+            "0-3": 70.0,
+            "0-4": 200.0,
+            "0-5": 600.0,
+            "1-0": 6.25,
+            "1-1": 5.2,
+            "1-2": 11.5,
+            "1-3": 45.0,
+            "1-4": 175.0,
+            "1-5": 500.0,
+            "2-0": 8.0,
+            "2-1": 6.25,
+            "2-2": 12.5,
+            "2-3": 55.0,
+            "2-4": 175.0,
+            "2-5": 600.0,
+            "3-0": 17.0,
+            "3-1": 15.5,
+            "3-2": 25.0,
+            "3-3": 50.0,
+            "4-0": 50.0,
+            "4-1": 50.0,
+            "4-2": 80.0,
+            "5-0": 170.0,
+            "5-1": 175.0,
+            "5-2": 300.0
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/03/03/mexico-vs-south-korea/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
+          "https://m.hupu.com/soccer/schedule"
+        ]
       }
     },
     {
