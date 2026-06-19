@@ -122,6 +122,10 @@ h1 {
   background: var(--cyan);
 }
 
+.summary-ai::after {
+  background: #7d5cc7;
+}
+
 .summary-model::after {
   background: #2f8f71;
 }
@@ -984,6 +988,195 @@ select {
   color: var(--text);
 }
 
+.score-blend-note a {
+  color: var(--blue);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.panews-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.panews-summary {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.72fr) minmax(320px, 1.28fr);
+  gap: 12px;
+}
+
+.panews-consensus {
+  display: grid;
+  align-content: center;
+  min-height: 142px;
+  padding: 17px;
+  border: 1px solid #d5c8ef;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, #f6f1ff 0%, #ffffff 76%),
+    #f7f3ff;
+}
+
+.panews-consensus span,
+.panews-consensus small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.panews-consensus strong {
+  margin: 8px 0 6px;
+  font-size: 36px;
+  line-height: 1.05;
+}
+
+.panews-bars {
+  display: grid;
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.prob-track.panews-home span {
+  background: linear-gradient(90deg, #7d5cc7, var(--blue));
+}
+
+.prob-track.panews-draw span {
+  background: linear-gradient(90deg, #7d5cc7, var(--gold));
+}
+
+.prob-track.panews-away span {
+  background: linear-gradient(90deg, #7d5cc7, var(--cyan));
+}
+
+.panews-market {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.panews-market > div {
+  display: grid;
+  gap: 4px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.panews-market span,
+.panews-market small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.panews-market strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.panews-model-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.panews-model-card {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--model-color);
+  border-radius: 8px;
+  background: white;
+}
+
+.panews-model-head,
+.panews-model-pick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.panews-model-head strong {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.panews-model-head strong span {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--model-color);
+}
+
+.panews-model-head em {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.panews-model-pick span {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.panews-model-pick strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.panews-model-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.panews-model-meta span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 7px;
+  border-radius: 6px;
+  background: #f7fafb;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.panews-model-meta small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.panews-model-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
 .bet-panel {
   display: grid;
   gap: 12px;
@@ -1451,6 +1644,7 @@ select {
   .topbar,
   .workspace,
   .content-grid,
+  .panews-summary,
   .score-forecast-main {
     grid-template-columns: 1fr;
   }
@@ -1474,6 +1668,10 @@ select {
   .score-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .panews-model-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
@@ -1483,6 +1681,7 @@ select {
   .arb-grid,
   .model-grid,
   .goal-expectation,
+  .panews-market,
   .bet-grid,
   .score-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1549,6 +1748,10 @@ select {
     min-width: 620px;
   }
 
+  .panews-model-grid {
+    grid-template-columns: 1fr;
+  }
+
   .odds-scroll {
     overflow-x: auto;
   }
@@ -1560,6 +1763,7 @@ select {
   .coverage-strip,
   .model-grid,
   .goal-expectation,
+  .panews-market,
   .bet-grid,
   .score-grid {
     grid-template-columns: 1fr;

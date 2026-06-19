@@ -167,6 +167,7 @@ function normalizeMatch(raw, index) {
     marketNotes: Array.isArray(raw.marketNotes) ? raw.marketNotes.map(String) : [],
     sporttery: normalizeSporttery(raw.sporttery),
     hupu: normalizeHupu(raw.hupu),
+    panewsAi: normalizePanewsAi(raw.panewsAi),
     performance: normalizePerformance(raw.performance),
     performanceNotes: Array.isArray(raw.performanceNotes) ? raw.performanceNotes.map(String) : [],
   };
@@ -269,6 +270,59 @@ function normalizeHupu(raw) {
   };
 }
 
+function normalizePanewsAi(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const models = Array.isArray(raw.models) ? raw.models.map(normalizePanewsModel).filter(Boolean) : [];
+  return {
+    sourceName: raw.sourceName ? String(raw.sourceName) : "PANews AI Arena",
+    sourceUrl: raw.sourceUrl ? String(raw.sourceUrl) : "https://worldcup.panewslab.com/",
+    matchUrl: raw.matchUrl ? String(raw.matchUrl) : "",
+    arenaMatchId: raw.arenaMatchId ? String(raw.arenaMatchId) : "",
+    lastUpdated: raw.lastUpdated ? String(raw.lastUpdated) : "",
+    marketPrices: normalizeProbabilityObject(raw.marketPrices),
+    consensus: normalizePanewsConsensus(raw.consensus),
+    models,
+    note: raw.note ? String(raw.note) : "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。",
+  };
+}
+
+function normalizePanewsModel(raw) {
+  if (!raw?.modelId) return null;
+  return {
+    modelId: String(raw.modelId),
+    name: raw.name ? String(raw.name) : String(raw.modelId),
+    short: raw.short ? String(raw.short) : String(raw.modelId),
+    color: raw.color ? String(raw.color) : "#255fc7",
+    latestAction: raw.latestAction ? String(raw.latestAction) : "hold",
+    outcome: raw.outcome ? String(raw.outcome) : "",
+    probabilities: normalizeProbabilityObject(raw.probabilities),
+    reason: raw.reason ? String(raw.reason) : "",
+    amount: toNumber(raw.amount),
+    price: toNumber(raw.price),
+    shares: toNumber(raw.shares),
+    positionValue: toNumber(raw.positionValue),
+    updatedAt: raw.updatedAt ? String(raw.updatedAt) : "",
+  };
+}
+
+function normalizePanewsConsensus(raw) {
+  return {
+    modelCount: toNumber(raw?.modelCount, 0),
+    topOutcome: raw?.topOutcome ? String(raw.topOutcome) : "",
+    topProbability: toNumber(raw?.topProbability),
+    averageProbabilities: normalizeProbabilityObject(raw?.averageProbabilities),
+    agreement: toNumber(raw?.agreement),
+  };
+}
+
+function normalizeProbabilityObject(raw) {
+  return {
+    home: toNumber(raw?.home),
+    draw: toNumber(raw?.draw),
+    away: toNumber(raw?.away),
+  };
+}
+
 function normalizeSportteryPool(raw) {
   return {
     home: toNumber(raw?.home),
@@ -354,13 +408,14 @@ function renderSummary() {
   const pmMatches = state.matches.filter(hasPolymarketPrices).length;
   const modelMatches = state.matches.filter(hasCompleteMarketVector).length;
   const sportteryMatches = state.matches.filter(hasSportteryData).length;
+  const panewsMatches = state.matches.filter(hasPanewsAiData).length;
 
   document.querySelector("#summaryGrid").innerHTML = [
     summaryItem("未开始", upcomingCount, "upcoming", "场"),
     summaryItem("进行中", liveCount, "live", "场"),
     summaryItem("已结束", finishedCount, "finished", "场"),
     summaryItem("体彩覆盖", sportteryMatches || "-", "sporttery", "场"),
-    summaryItem("PM 单场", pmMatches, "polymarket", "场"),
+    summaryItem("AI 观点", panewsMatches || "-", "ai", "场"),
     summaryItem("可预测", modelMatches || "-", "model", "场"),
   ].join("");
 }
@@ -510,6 +565,7 @@ function renderDetail() {
         ${metaItem("场馆", match.venue)}
         ${metaItem("覆盖", coverageLabel(match))}
         ${metaItem("虎扑", hupuMetaLabel(match))}
+        ${metaItem("AI观点", panewsMetaLabel(match))}
       </div>
     </article>
 
@@ -522,6 +578,7 @@ function renderDetail() {
           <span class="arb-pill ${hasCompleteMarketVector(match) ? "" : "muted"}">${hasCompleteMarketVector(match) ? "可预测" : "数据不足"}</span>
         </div>
         ${renderScorePrediction(match)}
+        ${renderPanewsAiPanel(match)}
         ${renderBettingRecommendations(match)}
         ${renderPredictionModel(match)}
         <div class="section-title compact odds-heading">
@@ -567,11 +624,21 @@ function hupuMetaLabel(match) {
   return parts.length ? parts.join(" · ") : "未公开";
 }
 
+function panewsMetaLabel(match) {
+  if (!hasPanewsAiData(match)) return "未匹配";
+  const consensus = match.panewsAi.consensus;
+  const outcome = panewsOutcomeLabel(match, consensus.topOutcome);
+  const parts = [`${consensus.modelCount}模型`];
+  if (outcome && Number.isFinite(consensus.topProbability)) parts.push(`${outcome} ${formatPercent(consensus.topProbability)}`);
+  return parts.join(" · ");
+}
+
 function renderCoverageStrip(match) {
   const items = [
     ["体彩官方", hasSportteryData(match) ? sportteryCoverageLabel(match) : "未匹配", hasSportteryData(match)],
     ["wc-2026 1X2", hasCompleteReferenceVector(match) ? "已抓取" : "缺失", hasCompleteReferenceVector(match)],
     ["Polymarket 单场", hasPolymarketPrices(match) ? "已抓取" : "未发现", hasPolymarketPrices(match)],
+    ["PANews AI", hasPanewsAiData(match) ? `${match.panewsAi.consensus.modelCount}模型` : "未匹配", hasPanewsAiData(match)],
     ["预测模型", hasCompleteMarketVector(match) ? "可计算" : "等待赔率", hasCompleteMarketVector(match)],
   ];
 
@@ -666,6 +733,109 @@ function renderScorePrediction(match) {
       ${renderScoreBlendNote(prediction)}
     </section>
   `;
+}
+
+function renderPanewsAiPanel(match) {
+  if (!hasPanewsAiData(match)) {
+    return `
+      <section class="panews-panel">
+        <div class="section-title compact">
+          <h2>外部 AI 预测</h2>
+          <span class="tag">PANews</span>
+        </div>
+        ${emptyBlock("PANews AI Arena 暂未匹配到本场公开 AI 交易观点")}
+      </section>
+    `;
+  }
+
+  const ai = match.panewsAi;
+  const consensus = ai.consensus;
+  const topOutcome = panewsOutcomeLabel(match, consensus.topOutcome);
+  const updated = formatExternalTime(ai.lastUpdated);
+  return `
+    <section class="panews-panel">
+      <div class="section-title compact">
+        <h2>外部 AI 预测</h2>
+        <span class="tag">PANews AI Arena</span>
+      </div>
+      <div class="panews-summary">
+        <div class="panews-consensus">
+          <span>AI 共识方向</span>
+          <strong>${escapeHtml(topOutcome || "-")}</strong>
+          <small>${formatPercent(consensus.topProbability)} · 一致度 ${formatPercent(consensus.agreement)}</small>
+        </div>
+        <div class="panews-bars">
+          ${panewsProbabilityBar(match, "home", match.home, consensus.averageProbabilities.home)}
+          ${panewsProbabilityBar(match, "draw", "平局", consensus.averageProbabilities.draw)}
+          ${panewsProbabilityBar(match, "away", match.away, consensus.averageProbabilities.away)}
+        </div>
+      </div>
+      <div class="panews-market">
+        ${panewsMarketPill(match, "home", match.home)}
+        ${panewsMarketPill(match, "draw", "平局")}
+        ${panewsMarketPill(match, "away", match.away)}
+      </div>
+      <div class="panews-model-grid">
+        ${ai.models.map((model) => panewsModelCard(match, model)).join("")}
+      </div>
+      <div class="score-blend-note">
+        <strong>${escapeHtml(ai.sourceName)} · ${escapeHtml(updated || "更新时间未知")}</strong>
+        <span>${escapeHtml(ai.note)}</span>
+        <a href="${escapeAttr(ai.sourceUrl)}" target="_blank" rel="noreferrer">打开 PANews AI Arena</a>
+      </div>
+    </section>
+  `;
+}
+
+function panewsProbabilityBar(match, outcome, label, probability) {
+  const width = Number.isFinite(probability) ? Math.round(probability * 100) : 0;
+  return `
+    <div class="prob-row">
+      <span>${escapeHtml(label)}</span>
+      <span class="prob-track panews-${escapeAttr(outcome)}"><span style="width: ${width}%"></span></span>
+      <strong>${formatPercent(probability)}</strong>
+    </div>
+  `;
+}
+
+function panewsMarketPill(match, outcome, label) {
+  const price = match.panewsAi.marketPrices[outcome];
+  return `
+    <div>
+      <span>${escapeHtml(label)}</span>
+      <strong>${formatPercent(price)}</strong>
+      <small>PM 市场价</small>
+    </div>
+  `;
+}
+
+function panewsModelCard(match, model) {
+  const actionClass = panewsActionClass(model.latestAction);
+  const actionLabel = panewsActionLabel(model.latestAction);
+  const outcome = panewsOutcomeLabel(match, model.outcome);
+  const probability = model.probabilities?.[model.outcome];
+  return `
+    <article class="panews-model-card" style="--model-color:${escapeAttr(model.color)}">
+      <div class="panews-model-head">
+        <strong><span></span>${escapeHtml(model.short)}</strong>
+        <em class="${actionClass}">${escapeHtml(actionLabel)}</em>
+      </div>
+      <div class="panews-model-pick">
+        <span>${escapeHtml(outcome || "观察")}</span>
+        <strong>${formatPercent(probability)}</strong>
+      </div>
+      <div class="panews-model-meta">
+        ${panewsMiniStat("价格", formatDecimal(model.price))}
+        ${panewsMiniStat("金额", formatArenaMoney(model.amount))}
+        ${panewsMiniStat("持仓", formatArenaMoney(model.positionValue))}
+      </div>
+      ${model.reason ? `<p>${escapeHtml(model.reason)}</p>` : `<p>暂无公开理由。</p>`}
+    </article>
+  `;
+}
+
+function panewsMiniStat(label, value) {
+  return `<span><small>${escapeHtml(label)}</small>${escapeHtml(value)}</span>`;
 }
 
 function scoreOutcomeBar(item) {
@@ -1380,6 +1550,10 @@ function hasPolymarketPrices(match) {
   return match.odds.some((odd) => Number.isFinite(odd.polymarket));
 }
 
+function hasPanewsAiData(match) {
+  return Boolean(match.panewsAi && Array.isArray(match.panewsAi.models) && match.panewsAi.models.length);
+}
+
 function hasCompleteMarketVector(match) {
   return hasCompleteSportteryVector(match) || hasCompleteReferenceVector(match) || hasCompletePolymarketVector(match) || hasCompleteBookmakerVector(match);
 }
@@ -1455,6 +1629,7 @@ function compactSourceName(value) {
   if (value.includes("wc-2026.com")) parts.push("wc-2026");
   if (value.includes("Polymarket")) parts.push("Polymarket");
   if (value.includes("虎扑") || value.includes("hupu")) parts.push("虎扑热度");
+  if (value.includes("PANews")) parts.push("PANews AI");
   return parts.length ? parts.join(" + ") : value;
 }
 
@@ -1466,6 +1641,19 @@ function compactLastUpdated(value) {
 
 function formatDecimal(value) {
   return Number.isFinite(value) ? value.toFixed(2) : "-";
+}
+
+function formatExternalTime(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return date.toLocaleString("zh-CN", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }
 
 function formatOdds(value) {
@@ -1561,6 +1749,12 @@ function formatMoney(value) {
   return Number.isFinite(value) ? `${value} CNY` : "-";
 }
 
+function formatArenaMoney(value) {
+  if (!Number.isFinite(value)) return "-";
+  const rounded = Math.round(value);
+  return `${rounded.toLocaleString("zh-CN")} 点`;
+}
+
 function formatCurrency(value) {
   if (!Number.isFinite(value)) return "-";
   return `¥${Math.round(value).toLocaleString("zh-CN")}`;
@@ -1575,6 +1769,25 @@ function formatSignedCurrency(value) {
 function formatProfit(value) {
   if (!Number.isFinite(value)) return "-";
   return `${value > 0 ? "+" : ""}${value} CNY`;
+}
+
+function panewsOutcomeLabel(match, outcome) {
+  if (outcome === "home") return match.home;
+  if (outcome === "draw") return "平局";
+  if (outcome === "away") return match.away;
+  return "";
+}
+
+function panewsActionLabel(action) {
+  if (action === "buy") return "买入";
+  if (action === "sell") return "卖出";
+  return "观望";
+}
+
+function panewsActionClass(action) {
+  if (action === "buy") return "up";
+  if (action === "sell") return "down";
+  return "";
 }
 
 function average(values) {

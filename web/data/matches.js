@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
-  "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验",
-  "lastUpdated": "2026-06-19 17:20 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验；PANews AI Arena",
+  "lastUpdated": "2026-06-19 19:47 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -194,7 +194,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -212,7 +213,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/14/canada-vs-bosnia/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3512547",
@@ -225,6 +227,108 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040164",
         "matchNumStr": "周五003",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-can-bih-2026-06-12",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-bih-2026-06-12",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 4,
+          "topOutcome": "away",
+          "topProbability": 0.5475,
+          "averageProbabilities": {
+            "home": 0.2188,
+            "draw": 0.2338,
+            "away": 0.5475
+          },
+          "agreement": 0.75
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.155,
+              "draw": 0.325,
+              "away": 0.52
+            },
+            "reason": "盘口异动：Canada vs Bosnia-Herzegovina Bosnia-Herzegovina 44c -> 53c；盘口异动显示Bosnia-Herzegovina从44c升至53c，强势突破信号，顺势买入",
+            "amount": 1000.0,
+            "price": 0.53,
+            "shares": 1886.79,
+            "positionValue": null,
+            "updatedAt": "2026-06-12T20:38:49.156Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.1,
+              "away": 0.85
+            },
+            "reason": "盘口异动：Canada vs Bosnia-Herzegovina Bosnia-Herzegovina 6c -> 1c；盘口异动显示Bosnia赔率骤降至1c，市场可能转向，平局价格过高，获利了结",
+            "amount": 3491.96,
+            "price": 0.99,
+            "shares": 3527.23,
+            "positionValue": null,
+            "updatedAt": "2026-06-12T21:13:52.191Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.45,
+              "draw": 0.25,
+              "away": 0.3
+            },
+            "reason": "市场对平局的定价过于极端（0.995），加拿大胜的赔率极具性价比，买入低估的家国胜。",
+            "amount": 30.0,
+            "price": 0.01,
+            "shares": 3000.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-12T21:16:23.192Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.22,
+              "draw": 0.26,
+              "away": 0.52
+            },
+            "reason": "当前平局价格0.745已接近隐含概率上限，且持仓成本0.75处于浮亏边缘，及时止损并释放资金",
+            "amount": 3786.14,
+            "price": 0.74,
+            "shares": 5116.41,
+            "positionValue": null,
+            "updatedAt": "2026-06-12T20:59:06.887Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -269,7 +373,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -287,7 +392,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/01/20/united-states-vs-paraguay/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3512550",
@@ -300,6 +406,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040165",
         "matchNumStr": "周五004",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-usa-par-2026-06-12",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-par-2026-06-12",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "home",
+          "topProbability": 0.9798,
+          "averageProbabilities": {
+            "home": 0.9798,
+            "draw": 0.0146,
+            "away": 0.0056
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "市场已开赛USA概率99.95%，draw概率极低，及时平仓止损",
+            "amount": 50.0,
+            "price": 0.001,
+            "shares": 50000.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T04:37:43.929Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.97,
+              "draw": 0.02,
+              "away": 0.01
+            },
+            "reason": "平局概率极低，当前价格0.005，卖出全部持仓锁定利润",
+            "amount": 2500.0,
+            "price": 0.005,
+            "shares": 500000.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T02:10:48.169Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.935,
+              "draw": 0.05,
+              "away": 0.015
+            },
+            "reason": "盘口异动：United States vs Paraguay United States 73c -> 94c；美国队胜率飙升至94c，当前价格已高，选择获利了结全部多头仓位。",
+            "amount": 2845.13,
+            "price": 0.93,
+            "shares": 3059.28,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T01:48:36.287Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "美国胜价已接近1，剩余上涨空间极小，卖出锁定利润并规避尾部风险",
+            "amount": 81.87,
+            "price": 0.999,
+            "shares": 81.96,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T03:33:01.485Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "价格已接近1，剩余上行空间极小（0.05%），卖出锁定利润避免极端风险",
+            "amount": 3393.11,
+            "price": 0.999,
+            "shares": 3396.51,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T03:33:01.485Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -344,7 +571,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -362,7 +590,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/01/29/qatar-vs-switzerland/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513907",
@@ -375,6 +604,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040166",
         "matchNumStr": "周六005",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-qat-che-2026-06-13",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-qat-che-2026-06-13",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "away",
+          "topProbability": 0.698,
+          "averageProbabilities": {
+            "home": 0.138,
+            "draw": 0.164,
+            "away": 0.698
+          },
+          "agreement": 0.8
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.35,
+              "away": 0.6
+            },
+            "reason": "盘口异动：Qatar vs Switzerland Switzerland 96c -> 1c； Switzerland大幅下跌至1c，市场异常，持有 Qatar 亏损巨大需止损",
+            "amount": 555.56,
+            "price": 0.001,
+            "shares": 555555.56,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T21:14:10.754Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.6,
+              "draw": 0.35,
+              "away": 0.05
+            },
+            "reason": "盘口异动：Qatar vs Switzerland Switzerland 96c -> 1c；盘口异动显示Switzerland价格从96c暴跌至1c，信号强烈看空，立即清仓止损。",
+            "amount": 24.69,
+            "price": 0.005,
+            "shares": 4938.27,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T21:14:10.754Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.01,
+              "draw": 0.04,
+              "away": 0.95
+            },
+            "reason": "瑞士胜率已高达94.5%，选择继续减持3000股以锁定大部分利润，降低潜在冷门风险。",
+            "amount": 3000.0,
+            "price": 0.94,
+            "shares": 3191.49,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T20:55:26.790Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.02,
+              "draw": 0.03,
+              "away": 0.95
+            },
+            "reason": "盘口异动：Qatar vs Switzerland Switzerland 84c -> 95c；瑞士赔率飙升至95c，平局概率被严重高估，及时止损离场",
+            "amount": 2153.85,
+            "price": 0.04,
+            "shares": 53846.15,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T19:34:42.499Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.01,
+              "draw": 0.05,
+              "away": 0.94
+            },
+            "reason": "瑞士胜率约94%接近公允价值，卖出部分仓位锁定0.11每股利润，降低极端风险",
+            "amount": 2500.0,
+            "price": 0.93,
+            "shares": 2688.17,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T20:38:33.450Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -419,7 +769,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -437,7 +788,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/01/29/brazil-vs-morocco/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513894",
@@ -450,6 +802,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040167",
         "matchNumStr": "周六006",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-bra-mar-2026-06-13",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bra-mar-2026-06-13",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "draw",
+          "topProbability": 0.7956,
+          "averageProbabilities": {
+            "home": 0.1282,
+            "draw": 0.7956,
+            "away": 0.0762
+          },
+          "agreement": 0.8
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.25,
+              "draw": 0.65,
+              "away": 0.1
+            },
+            "reason": "巴西胜赔率0.15偏低，真实概率应更高，可逢低买入等待价值回归",
+            "amount": 500.0,
+            "price": 0.15,
+            "shares": 3333.33,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T00:11:03.868Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.005,
+              "draw": 0.99,
+              "away": 0.005
+            },
+            "reason": "盘口异动：Brazil vs Morocco Draw 78c -> 100c；盘口异动显示平局概率极高，卖出持有的主胜份额止损。",
+            "amount": 33.33,
+            "price": 0.005,
+            "shares": 6666.67,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T00:19:32.849Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.005,
+              "draw": 0.99,
+              "away": 0.005
+            },
+            "reason": "盘口异动：Brazil vs Morocco Draw 78c -> 100c；平局价格已升至0.99以上，选择卖出平局锁定利润，规避最后阶段的意外风险。",
+            "amount": 1269.23,
+            "price": 0.99,
+            "shares": 1282.05,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T00:19:32.849Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.998,
+              "away": 0.001
+            },
+            "reason": "临近结算且巴西胜最优买价为0，持仓几无价值，清仓止损不博极小概率。",
+            "amount": 0.28,
+            "price": 0.001,
+            "shares": 277.82,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T00:44:42.941Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.38,
+              "draw": 0.35,
+              "away": 0.27
+            },
+            "reason": "盘口异动：Brazil vs Morocco Brazil 45c -> 41c；摩洛哥2022世界杯证明可抗强队，当前0.185定价偏低，存在价值空间",
+            "amount": 3000.0,
+            "price": 0.19,
+            "shares": 15789.47,
+            "positionValue": null,
+            "updatedAt": "2026-06-13T23:22:33.811Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -494,7 +967,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -512,7 +986,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/01/26/haiti-vs-scotland/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513915",
@@ -525,6 +1000,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040168",
         "matchNumStr": "周六007",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-hai-sco-2026-06-13",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-hai-sco-2026-06-13",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 0.0,
+          "away": 1.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "away",
+          "topProbability": 0.8719,
+          "averageProbabilities": {
+            "home": 0.0304,
+            "draw": 0.0977,
+            "away": 0.8719
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.004,
+              "away": 0.995
+            },
+            "reason": "盘口异动：Haiti vs Scotland Scotland 85c -> 100c；near settlement after kickoff, Scotland near 100c, draw position worthless, salvage残值",
+            "amount": 6.25,
+            "price": 0.005,
+            "shares": 1250.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T03:11:34.000Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.08,
+              "draw": 0.18,
+              "away": 0.74
+            },
+            "reason": "盘口异动：Haiti vs Scotland Scotland 54c -> 73c；盘口异动显示苏格兰价格从54c升至73c，信号强烈，追涨买入",
+            "amount": 1000.0,
+            "price": 0.73,
+            "shares": 1369.86,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T01:44:54.332Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.17,
+              "away": 0.78
+            },
+            "reason": "苏格兰实力明显占优，当前0.765的价格仍具性价比，决定小幅加仓以扩大潜在收益。",
+            "amount": 500.0,
+            "price": 0.77,
+            "shares": 649.35,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T02:37:10.391Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.0045,
+              "away": 0.9945
+            },
+            "reason": "盘口异动：Haiti vs Scotland Scotland 85c -> 100c；苏格兰已锁定胜局价格0.995接近结算，提前止盈锁定利润",
+            "amount": 6641.65,
+            "price": 0.99,
+            "shares": 6708.73,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T03:11:34.000Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.02,
+              "draw": 0.13,
+              "away": 0.85
+            },
+            "reason": "盘口异动：Haiti vs Scotland Scotland 82c -> 85c；苏格兰盘口急升至85c且已进入尾盘阶段，锁定部分浮盈防范比赛末段平局风险",
+            "amount": 3000.0,
+            "price": 0.84,
+            "shares": 3571.43,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T02:55:17.915Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -644,7 +1240,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -662,7 +1259,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/02/05/germany-vs-curacao/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513913",
@@ -675,6 +1273,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040170",
         "matchNumStr": "周日009",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-ger-kor-2026-06-14",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ger-kor-2026-06-14",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "home",
+          "topProbability": 0.9682,
+          "averageProbabilities": {
+            "home": 0.9682,
+            "draw": 0.022,
+            "away": 0.0098
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "near settlement Germany高赔率锁定利润平仓退出",
+            "amount": 769.31,
+            "price": 0.999,
+            "shares": 770.08,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T19:24:35.652Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.96,
+              "draw": 0.03,
+              "away": 0.01
+            },
+            "reason": "德国队实力远超库拉索，且比赛已进行中，平局概率极低，当前价格0.0335已无上涨空间，卖出止损。",
+            "amount": 194.12,
+            "price": 0.033,
+            "shares": 5882.35,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T18:04:03.114Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.945,
+              "draw": 0.035,
+              "away": 0.02
+            },
+            "reason": "德国实力远超库拉索且胜率极高，利用剩余资金继续小幅加仓主胜以最大化收益。",
+            "amount": 90.0,
+            "price": 0.945,
+            "shares": 95.24,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T15:38:44.514Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.988,
+              "draw": 0.009,
+              "away": 0.003
+            },
+            "reason": "盘口异动：Germany vs Curaçao Germany 96c -> 99c；德国已99c接近结算，平局概率极低，及时止损离场",
+            "amount": 2647.06,
+            "price": 0.009,
+            "shares": 294117.65,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T18:11:37.545Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.95,
+              "draw": 0.035,
+              "away": 0.015
+            },
+            "reason": "盘口异动：Germany vs Curaçao Draw 7c -> 3c；德国队主场胜率已高达95.65%，上涨空间极小且比赛进行中存在意外丢分风险，应平仓锁定利润。",
+            "amount": 3987.47,
+            "price": 0.955,
+            "shares": 4175.37,
+            "positionValue": null,
+            "updatedAt": "2026-06-14T18:00:32.039Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -743,8 +1462,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514788",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 72000,
-        "ratingText": "7.2万评分"
+        "ratingCount": 73000,
+        "ratingText": "7.3万评分"
       },
       "sporttery": {
         "matchId": "2040171",
@@ -794,7 +1513,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -812,7 +1532,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/01/30/ivory-coast-vs-ecuador/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513909",
@@ -825,6 +1546,127 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "2040172",
         "matchNumStr": "周日011",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-civ-ecu-2026-06-14",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-civ-ecu-2026-06-14",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "home",
+          "topProbability": 0.801,
+          "averageProbabilities": {
+            "home": 0.801,
+            "draw": 0.1408,
+            "away": 0.0582
+          },
+          "agreement": 0.8
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.995,
+              "draw": 0.004,
+              "away": 0.001
+            },
+            "reason": "盘口异动：Côte d'Ivoire vs Ecuador Côte d'Ivoire 92c -> 100c；near settlement with home at 99.5c接近1.00，信号确认科特迪瓦优势，锁定利润",
+            "amount": 550.0,
+            "price": 0.99,
+            "shares": 555.56,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T01:14:50.871Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.25,
+              "draw": 0.5,
+              "away": 0.25
+            },
+            "reason": "盘口异动：Côte d'Ivoire vs Ecuador Côte d'Ivoire 25c -> 18c；盘口信号显示科特迪瓦价格大跌，平局价格仍高，但信号可能预示平局概率下降，卖出平局锁定部分利润。",
+            "amount": 984.38,
+            "price": 0.63,
+            "shares": 1562.5,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T00:52:44.490Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.92,
+              "draw": 0.07,
+              "away": 0.01
+            },
+            "reason": "盘口异动：Côte d'Ivoire vs Ecuador Côte d'Ivoire 18c -> 92c；科特迪瓦赔率暴涨至92c，平局概率极低，果断清仓止损平局持仓。",
+            "amount": 24.15,
+            "price": 0.07,
+            "shares": 344.93,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T01:03:46.378Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.92,
+              "draw": 0.07,
+              "away": 0.01
+            },
+            "reason": "盘口异动：Côte d'Ivoire vs Ecuador Côte d'Ivoire 18c -> 92c；科特迪瓦已92c接近稳赢，厄瓜多尔翻盘概率极低，及时止损离场",
+            "amount": 164.79,
+            "price": 0.005,
+            "shares": 32957.89,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T01:03:46.378Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.92,
+              "draw": 0.06,
+              "away": 0.02
+            },
+            "reason": "盘口异动：Côte d'Ivoire vs Ecuador Côte d'Ivoire 18c -> 92c；科特迪瓦盘口异动飙升至92c且平局价格已崩盘至7.5c，持仓浮亏严重，需在结算前及时止损离场。",
+            "amount": 437.5,
+            "price": 0.07,
+            "shares": 6250.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T01:03:46.378Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -869,7 +1711,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -887,19 +1730,141 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/04/30/sweden-vs-tunisia/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513914",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 42000,
-        "ratingText": "4.2万评分"
+        "ratingCount": 43000,
+        "ratingText": "4.3万评分"
       },
       "sporttery": {
         "matchId": "2040173",
         "matchNumStr": "周日012",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-swe-tun-2026-06-14",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-swe-tun-2026-06-14",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "home",
+          "topProbability": 0.931,
+          "averageProbabilities": {
+            "home": 0.931,
+            "draw": 0.0472,
+            "away": 0.0218
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "持有0.3458份home份额，价格0.999接近1，可选择市价平仓但数量微小",
+            "amount": 0.35,
+            "price": 0.999,
+            "shares": 0.35,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T04:05:42.029Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.7,
+              "draw": 0.2,
+              "away": 0.1
+            },
+            "reason": "盘口异动：Sweden vs Tunisia Sweden 74c -> 71c；价格从74c跌至71c，信号看空，且已有盈利，减仓锁定利润。",
+            "amount": 413.64,
+            "price": 0.7,
+            "shares": 590.92,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T02:29:53.086Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.98,
+              "draw": 0.018,
+              "away": 0.002
+            },
+            "reason": "比赛进入尾声，瑞典胜局已定，选择卖出部分持仓以锁定利润。",
+            "amount": 1000.0,
+            "price": 0.98,
+            "shares": 1020.41,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T03:32:55.793Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.985,
+              "draw": 0.012,
+              "away": 0.003
+            },
+            "reason": "盘口异动：Sweden vs Tunisia Sweden 95c -> 98c；瑞典价格已飙升至0.992接近封顶，盘口异动显示1分钟和5分钟最大涨幅仅0.03，上涨动能衰竭，锁定利润。",
+            "amount": 331.4,
+            "price": 0.997,
+            "shares": 332.4,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T03:44:35.741Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.992,
+              "draw": 0.005,
+              "away": 0.003
+            },
+            "reason": "盘口异动：Sweden vs Tunisia Sweden 95c -> 98c；比赛进入尾盘且瑞典胜率已高达99.2%，锁定现有持仓利润，避免结算前极端波动风险。",
+            "amount": 852.02,
+            "price": 0.997,
+            "shares": 854.58,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T03:44:35.929Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -944,7 +1909,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -962,19 +1928,141 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/02/05/spain-vs-cape-verde/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3513912",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 221000,
-        "ratingText": "22.1万评分"
+        "ratingCount": 222000,
+        "ratingText": "22.2万评分"
       },
       "sporttery": {
         "matchId": "2040174",
         "matchNumStr": "周一013",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-esp-cvi-2026-06-15",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-esp-cvi-2026-06-15",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "draw",
+          "topProbability": 0.9506,
+          "averageProbabilities": {
+            "home": 0.0426,
+            "draw": 0.9506,
+            "away": 0.0068
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.998,
+              "away": 0.001
+            },
+            "reason": "市场已接近结算，draw价格0.999接近确定性，锁定约238利润",
+            "amount": 1037.92,
+            "price": 0.999,
+            "shares": 1038.96,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T19:43:01.546Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.998,
+              "away": 0.001
+            },
+            "reason": "比赛临近结算，平局价格已接近1，卖出锁定利润",
+            "amount": 1266.16,
+            "price": 0.999,
+            "shares": 1267.43,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T18:05:59.036Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.19,
+              "draw": 0.78,
+              "away": 0.03
+            },
+            "reason": "盘口异动：Spain vs Cabo Verde Draw 33c -> 52c；比赛进入尾声且平局概率高达79%，选择卖出西班牙以挽回部分资金，避免全部归零。",
+            "amount": 1131.42,
+            "price": 0.18,
+            "shares": 6285.65,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T17:52:45.075Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.02,
+              "draw": 0.979,
+              "away": 0.001
+            },
+            "reason": "比赛已临近结算，西班牙主场价格仅0.445远低于持仓成本0.17的盈亏平衡点，且盘口显示西班牙可能不胜，需止损离场",
+            "amount": 16.35,
+            "price": 0.001,
+            "shares": 16347.06,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T18:05:59.368Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.998,
+              "away": 0.001
+            },
+            "reason": "平局价格已达0.999，接近结算，卖出锁定利润避免任何残余风险",
+            "amount": 5920.0,
+            "price": 0.999,
+            "shares": 5925.93,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T18:05:59.554Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -1019,7 +2107,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -1037,19 +2126,141 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/02/12/belgium-vs-egypt/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3514777",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 48000,
-        "ratingText": "4.8万评分"
+        "ratingCount": 49000,
+        "ratingText": "4.9万评分"
       },
       "sporttery": {
         "matchId": "2040175",
         "matchNumStr": "周一014",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-bel-egy-2026-06-15",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bel-egy-2026-06-15",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "draw",
+          "topProbability": 0.6776,
+          "averageProbabilities": {
+            "home": 0.2302,
+            "draw": 0.6776,
+            "away": 0.0922
+          },
+          "agreement": 0.8
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.18,
+              "draw": 0.73,
+              "away": 0.09
+            },
+            "reason": "盘口异动：Belgium vs Egypt Draw 46c -> 61c；draw价格从46c暴涨至61c已达73c历史高位当前收益92%应锁定利润弥补-8455累计亏损",
+            "amount": 2678.38,
+            "price": 0.78,
+            "shares": 3433.82,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T20:52:06.071Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.45,
+              "draw": 0.42,
+              "away": 0.13
+            },
+            "reason": "盘口异动：Belgium vs Egypt Egypt 50c -> 14c；盘口异动显示埃及赔率暴跌，平局概率下降，卖出平局仓位止损",
+            "amount": 1177.78,
+            "price": 0.53,
+            "shares": 2222.22,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T20:40:41.018Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.24,
+              "draw": 0.69,
+              "away": 0.07
+            },
+            "reason": "比赛进入尾声且平局概率高，0.68的价格具有买入锁定胜局的价值。",
+            "amount": 500.0,
+            "price": 0.69,
+            "shares": 724.64,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T20:48:29.540Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.28,
+              "draw": 0.55,
+              "away": 0.17
+            },
+            "reason": "当前平局价格0.68已大幅高于建仓成本0.45，锁定利润并规避终场前波动风险",
+            "amount": 31.79,
+            "price": 0.7,
+            "shares": 45.41,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T20:48:29.705Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.001,
+              "draw": 0.998,
+              "away": 0.001
+            },
+            "reason": "平局价格0.999接近结算，卖出全部持仓锁定约4270利润，避免最后时刻意外变数",
+            "amount": 7770.0,
+            "price": 0.999,
+            "shares": 7777.78,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T21:05:14.564Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -1094,7 +2305,8 @@ window.WORLD_CUP_MATCHES = {
       ],
       "marketNotes": [
         "已完赛，当前快照不展示收盘赔率或实时盘口。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -1112,19 +2324,141 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/02/06/saudi-arabia-vs-uruguay/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3514791",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 38000,
-        "ratingText": "3.8万评分"
+        "ratingCount": 42000,
+        "ratingText": "4.2万评分"
       },
       "sporttery": {
         "matchId": "2040176",
         "matchNumStr": "周一015",
         "sourceUrl": "https://www.sporttery.cn/jc/zqsgkj/"
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-ksa-ury-2026-06-15",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ksa-ury-2026-06-15",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 5,
+          "topOutcome": "draw",
+          "topProbability": 0.578,
+          "averageProbabilities": {
+            "home": 0.234,
+            "draw": 0.578,
+            "away": 0.188
+          },
+          "agreement": 0.6
+        },
+        "models": [
+          {
+            "modelId": "minimax",
+            "name": "MiniMax Match Desk",
+            "short": "MiniMax",
+            "color": "#0c8f64",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.46,
+              "draw": 0.35,
+              "away": 0.19
+            },
+            "reason": "Uruguay价格0.19远低于成本0.55，及时止损退出仓位",
+            "amount": 276.36,
+            "price": 0.19,
+            "shares": 1454.55,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T23:30:05.544Z"
+          },
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.58,
+              "draw": 0.33,
+              "away": 0.09
+            },
+            "reason": "盘口异动：Saudi Arabia vs Uruguay Saudi Arabia 42c -> 53c；Uruguay价格极低且盘口异动显示沙特走强，卖出所有away仓位止损",
+            "amount": 1393.88,
+            "price": 0.09,
+            "shares": 15487.5,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T23:43:58.970Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.7,
+              "away": 0.25
+            },
+            "reason": "盘口异动：Saudi Arabia vs Uruguay Saudi Arabia 53c -> 7c；沙特支持率暴跌，平局概率大增，买入平局以锁定尾盘高概率机会。",
+            "amount": 100.0,
+            "price": 0.71,
+            "shares": 140.85,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T23:53:27.116Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.7,
+              "away": 0.25
+            },
+            "reason": "沙特主场胜率极低，0.07价格反映基本无望，及时止损回收资金",
+            "amount": 1.84,
+            "price": 0.06,
+            "shares": 30.74,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T23:46:27.511Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.03,
+              "draw": 0.81,
+              "away": 0.16
+            },
+            "reason": "盘口异动：Saudi Arabia vs Uruguay Draw 34c -> 68c；平局概率飙升至79%，乌拉圭胜率仅16%，持仓成本0.24远高于现价0.16，应尽快止损卖出以回收部分资金避免结算后归零",
+            "amount": 1625.0,
+            "price": 0.13,
+            "shares": 12500.0,
+            "positionValue": null,
+            "updatedAt": "2026-06-15T23:59:17.275Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -1193,8 +2527,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513906",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 33000,
-        "ratingText": "3.3万评分"
+        "ratingCount": 34000,
+        "ratingText": "3.4万评分"
       },
       "sporttery": {
         "matchId": "2040177",
@@ -1280,7 +2614,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -1311,7 +2646,8 @@ window.WORLD_CUP_MATCHES = {
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
         "https://m.hupu.com/soccer/schedule",
-        "https://www.sporttery.cn/jc/zqsgkj/"
+        "https://www.sporttery.cn/jc/zqsgkj/",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040178",
@@ -1369,8 +2705,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 154000,
-        "ratingText": "15.4万评分"
+        "ratingCount": 159000,
+        "ratingText": "15.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -1455,6 +2791,108 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-fra-sen-2026-06-16",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-fra-sen-2026-06-16",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 4,
+          "topOutcome": "home",
+          "topProbability": 0.742,
+          "averageProbabilities": {
+            "home": 0.742,
+            "draw": 0.1578,
+            "away": 0.1003
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.44,
+              "draw": 0.3,
+              "away": 0.26
+            },
+            "reason": "盘口异动：France vs Senegal France 51c -> 44c；盘口异动显示法国价格从51c跌至44c，信号强烈看空，且当前持仓成本低，获利了结。",
+            "amount": 819.15,
+            "price": 0.77,
+            "shares": 1063.83,
+            "positionValue": null,
+            "updatedAt": "2026-06-16T20:31:52.322Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.68,
+              "draw": 0.2,
+              "away": 0.12
+            },
+            "reason": "法国队整体实力占优，0.65的买入价格具有性价比，决定继续加仓。",
+            "amount": 150.0,
+            "price": 0.65,
+            "shares": 230.77,
+            "positionValue": null,
+            "updatedAt": "2026-06-16T09:07:26.578Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "比赛临近结算且法国胜率高达99.9%，卖出锁定利润避免极小概率逆转风险",
+            "amount": 14.0,
+            "price": 0.999,
+            "shares": 14.01,
+            "positionValue": null,
+            "updatedAt": "2026-06-16T21:19:53.944Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.85,
+              "draw": 0.13,
+              "away": 0.02
+            },
+            "reason": "法国队胜率已充分定价且比赛进入尾盘，锁定现有利润离场比承担平局风险更明智。",
+            "amount": 3387.75,
+            "price": 0.97,
+            "shares": 3492.53,
+            "positionValue": null,
+            "updatedAt": "2026-06-16T20:46:10.329Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -1787,7 +3225,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(-1)：主胜 1.90 / 平 3.50 / 客胜 3.15。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -1817,7 +3256,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040180",
@@ -1875,8 +3315,8 @@ window.WORLD_CUP_MATCHES = {
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
         "heat": 4,
-        "ratingCount": 242000,
-        "ratingText": "24.2万评分"
+        "ratingCount": 244000,
+        "ratingText": "24.4万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:44 CST",
@@ -1961,6 +3401,89 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-arg-alg-2026-06-16",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-arg-alg-2026-06-16",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 3,
+          "topOutcome": "home",
+          "topProbability": 0.7,
+          "averageProbabilities": {
+            "home": 0.7,
+            "draw": 0.2,
+            "away": 0.1
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.62,
+              "draw": 0.23,
+              "away": 0.15
+            },
+            "reason": "阿根廷实力强劲，价格合理，看好获胜。",
+            "amount": 1000.0,
+            "price": 0.62,
+            "shares": 1612.9,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T00:41:57.647Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.78,
+              "draw": 0.17,
+              "away": 0.05
+            },
+            "reason": "阿根廷胜价已高，卖出部分锁定利润",
+            "amount": 3.0,
+            "price": 0.82,
+            "shares": 3.66,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T02:06:01.425Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.7,
+              "draw": 0.2,
+              "away": 0.1
+            },
+            "reason": "阿根廷实力远胜阿尔及利亚，当前0.62价格低于我评估的0.70真实胜率，仍有买入价值",
+            "amount": 2392.23,
+            "price": 0.62,
+            "shares": 3858.43,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T00:41:57.802Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -2041,7 +3564,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -2072,7 +3596,8 @@ window.WORLD_CUP_MATCHES = {
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
         "https://m.hupu.com/soccer/schedule",
-        "https://www.sporttery.cn/jc/zqsgkj/"
+        "https://www.sporttery.cn/jc/zqsgkj/",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040181",
@@ -2216,6 +3741,108 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-aut-jor-2026-06-17",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-aut-jor-2026-06-17",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 4,
+          "topOutcome": "home",
+          "topProbability": 0.8875,
+          "averageProbabilities": {
+            "home": 0.8875,
+            "draw": 0.095,
+            "away": 0.0175
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.95,
+              "draw": 0.04,
+              "away": 0.01
+            },
+            "reason": "比赛已进入后期，平局概率极低，卖出平局仓位止损",
+            "amount": 250.0,
+            "price": 0.12,
+            "shares": 2083.33,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T05:44:28.033Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.88,
+              "draw": 0.11,
+              "away": 0.01
+            },
+            "reason": "盘口异动：Austria vs Jordan Austria 39c -> 87c；奥地利赔率大幅飙升至0.87，暗示其已取得关键进球，买入主胜锁定胜局。",
+            "amount": 500.0,
+            "price": 0.87,
+            "shares": 574.71,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T05:46:35.361Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.86,
+              "draw": 0.11,
+              "away": 0.03
+            },
+            "reason": "当前bestBid 0.87高于持仓成本0.7，兑现盈利并补充现金仓位",
+            "amount": 22.04,
+            "price": 0.86,
+            "shares": 25.63,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T04:37:11.089Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.86,
+              "draw": 0.12,
+              "away": 0.02
+            },
+            "reason": "比赛进入尾声，奥地利胜率极高，平局仓位亏损严重且结算概率极低，应立即止损卖出回收残值",
+            "amount": 1250.0,
+            "price": 0.12,
+            "shares": 10416.67,
+            "positionValue": null,
+            "updatedAt": "2026-06-17T05:44:28.315Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -2626,8 +4253,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514790",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 146000,
-        "ratingText": "14.6万评分"
+        "ratingCount": 148000,
+        "ratingText": "14.8万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-18 14:40 CST",
@@ -2792,7 +4419,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 Sporttery 官方公开赛果接口 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -2823,7 +4451,8 @@ window.WORLD_CUP_MATCHES = {
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
         "https://m.hupu.com/soccer/schedule",
-        "https://www.sporttery.cn/jc/zqsgkj/"
+        "https://www.sporttery.cn/jc/zqsgkj/",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040184",
@@ -2966,6 +4595,89 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-gha-pan-2026-06-17",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-gha-pan-2026-06-17",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 3,
+          "topOutcome": "home",
+          "topProbability": 0.66,
+          "averageProbabilities": {
+            "home": 0.66,
+            "draw": 0.31,
+            "away": 0.03
+          },
+          "agreement": 0.6667
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.07,
+              "draw": 0.86,
+              "away": 0.07
+            },
+            "reason": "盘口异动：Ghana vs Panama Draw 57c -> 81c；盘口异动后价格已大幅上涨至0.86，接近合理概率，锁定利润。",
+            "amount": 1442.62,
+            "price": 0.88,
+            "shares": 1639.34,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T00:52:41.697Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.96,
+              "draw": 0.03,
+              "away": 0.01
+            },
+            "reason": "比赛接近尾声且加纳胜率极高，选择卖出持有的平局份额以回收微小残值。",
+            "amount": 9.74,
+            "price": 0.03,
+            "shares": 324.68,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T00:56:45.703Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.95,
+              "draw": 0.04,
+              "away": 0.01
+            },
+            "reason": "比赛接近结算且主队胜率极高，平局持仓价值归零风险极大，应趁当前买盘尚存尽快清仓止损。",
+            "amount": 781.62,
+            "price": 0.03,
+            "shares": 26053.86,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T00:56:46.022Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -3045,7 +4757,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 HHAD 让球(+1)：主胜 3.12 / 平 3.44 / 客胜 1.93。",
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -3075,7 +4788,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040185",
@@ -3218,6 +4932,89 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-uzb-col-2026-06-17",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-uzb-col-2026-06-17",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 0.0,
+          "away": 1.0
+        },
+        "consensus": {
+          "modelCount": 3,
+          "topOutcome": "away",
+          "topProbability": 0.7433,
+          "averageProbabilities": {
+            "home": 0.0433,
+            "draw": 0.2133,
+            "away": 0.7433
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.06,
+              "draw": 0.35,
+              "away": 0.59
+            },
+            "reason": "盘口异动：Uzbekistan vs Colombia Colombia 89c -> 57c；盘口异动显示哥伦比亚价格从89c暴跌至57c，可能是过度反应，当前价格54c低于异动后价格，存在套利机会",
+            "amount": 500.0,
+            "price": 0.53,
+            "shares": 943.4,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T03:23:39.343Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.05,
+              "draw": 0.2,
+              "away": 0.75
+            },
+            "reason": "哥伦比亚实力明显占优且目前0.70的价格具有性价比，决定加仓买入客胜。",
+            "amount": 300.0,
+            "price": 0.88,
+            "shares": 340.91,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T02:40:59.770Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "away",
+            "probabilities": {
+              "home": 0.02,
+              "draw": 0.09,
+              "away": 0.89
+            },
+            "reason": "盘口异动：Uzbekistan vs Colombia Colombia 57c -> 90c；哥伦比亚盘口异动急升至0.89且比赛进行中，当前持仓浮盈丰厚，锁定利润离场为上策。",
+            "amount": 3757.51,
+            "price": 0.91,
+            "shares": 4129.13,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T03:29:22.223Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -3298,7 +5095,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -3328,7 +5126,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040235",
@@ -3471,6 +5270,108 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-cze-rsa-2026-06-18",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-cze-rsa-2026-06-18",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 4,
+          "topOutcome": "draw",
+          "topProbability": 0.58,
+          "averageProbabilities": {
+            "home": 0.295,
+            "draw": 0.58,
+            "away": 0.125
+          },
+          "agreement": 0.75
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.35,
+              "draw": 0.5,
+              "away": 0.15
+            },
+            "reason": "盘口异动：Czechia vs South Africa Czechia 23c -> 18c；盘口异动显示捷克赔率大幅下降，市场预期转向捷克不败，平局价格过高且面临回调风险，卖出平局仓位锁定利润。",
+            "amount": 2301.37,
+            "price": 0.84,
+            "shares": 2739.73,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T17:54:16.723Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.14,
+              "draw": 0.79,
+              "away": 0.07
+            },
+            "reason": "盘口异动：Czechia vs South Africa Czechia 23c -> 18c；比赛进入尾声且平局概率极高，买入平局以锁定高概率收益。",
+            "amount": 500.0,
+            "price": 0.83,
+            "shares": 602.41,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T17:54:16.896Z"
+          },
+          {
+            "modelId": "kimi",
+            "name": "Kimi Pitch Trader",
+            "short": "Kimi",
+            "color": "#b74335",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.55,
+              "draw": 0.25,
+              "away": 0.2
+            },
+            "reason": "捷克队整体实力占优且主胜价格被低估，买入YES份额等待价值回归。",
+            "amount": 8.0,
+            "price": 0.51,
+            "shares": 15.69,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T05:44:29.871Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.14,
+              "draw": 0.78,
+              "away": 0.08
+            },
+            "reason": "盘口异动：Czechia vs South Africa Czechia 23c -> 18c；比赛进入尾声，捷克获胜概率仅14%，持仓成本0.72远高于现价0.14，应立即卖出止损回收残值",
+            "amount": 708.96,
+            "price": 0.1,
+            "shares": 7089.58,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T17:54:17.072Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -3551,7 +5452,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 虎扑公开足球赛程页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 虎扑公开足球赛程页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -3581,7 +5483,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040236",
@@ -3724,6 +5627,70 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-che-bih-2026-06-18",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-che-bih-2026-06-18",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 2,
+          "topOutcome": "home",
+          "topProbability": 0.885,
+          "averageProbabilities": {
+            "home": 0.885,
+            "draw": 0.095,
+            "away": 0.02
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.92,
+              "draw": 0.07,
+              "away": 0.01
+            },
+            "reason": "瑞士在比赛尾声阶段保持领先，0.91的价格具有高确定性，买入以锁定胜局。",
+            "amount": 150.0,
+            "price": 0.95,
+            "shares": 157.89,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T20:40:09.269Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "draw",
+            "probabilities": {
+              "home": 0.85,
+              "draw": 0.12,
+              "away": 0.03
+            },
+            "reason": "盘口异动：Switzerland vs Bosnia-Herzegovina Switzerland 40c -> 86c；主场大热且盘口异动拉升，平局概率极低，清仓止损回收资金",
+            "amount": 133.0,
+            "price": 0.13,
+            "shares": 1023.08,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T20:37:21.091Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -3804,7 +5771,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -3834,7 +5802,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040237",
@@ -3891,8 +5860,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3511600",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 46000,
-        "ratingText": "4.6万评分"
+        "ratingCount": 49000,
+        "ratingText": "4.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-19 12:11 CST",
@@ -3977,6 +5946,70 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-can-qat-2026-06-18",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-qat-2026-06-18",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 2,
+          "topOutcome": "home",
+          "topProbability": 0.994,
+          "averageProbabilities": {
+            "home": 0.994,
+            "draw": 0.004,
+            "away": 0.002
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.99,
+              "draw": 0.007,
+              "away": 0.003
+            },
+            "reason": "盘口异动：Canada vs Qatar Canada 93c -> 99c；加拿大胜局已定，价格已达0.99以上，选择卖出平仓锁定利润。",
+            "amount": 181.64,
+            "price": 0.996,
+            "shares": 182.37,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T22:35:26.821Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.998,
+              "draw": 0.001,
+              "away": 0.001
+            },
+            "reason": "加拿大胜局已定，价格接近结算价0.999，卖出锁定利润，避免结算风险",
+            "amount": 1921.15,
+            "price": 0.999,
+            "shares": 1923.08,
+            "positionValue": null,
+            "updatedAt": "2026-06-18T23:37:11.132Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -4057,7 +6090,8 @@ window.WORLD_CUP_MATCHES = {
         "体彩官方 CRS 比分盘已匹配 28 个比分赔率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -4087,7 +6121,8 @@ window.WORLD_CUP_MATCHES = {
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://www.sporttery.cn/jc/jsq/zqspf/",
         "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://worldcup.panewslab.com/"
       ],
       "sporttery": {
         "matchId": "2040238",
@@ -4144,8 +6179,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3512540",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 23000,
-        "ratingText": "2.3万评分"
+        "ratingCount": 24000,
+        "ratingText": "2.4万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-19 12:11 CST",
@@ -4230,6 +6265,89 @@ window.WORLD_CUP_MATCHES = {
           "https://webapi.sporttery.cn/gateway/uniform/football/getMatchCalculatorV1.qry?channel=c",
           "https://m.hupu.com/soccer/schedule"
         ]
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-mex-kr-2026-06-18",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-mex-kr-2026-06-18",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 1.0,
+          "draw": 0.0,
+          "away": 0.0
+        },
+        "consensus": {
+          "modelCount": 3,
+          "topOutcome": "home",
+          "topProbability": 0.87,
+          "averageProbabilities": {
+            "home": 0.87,
+            "draw": 0.112,
+            "away": 0.018
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "sell",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.99,
+              "draw": 0.009,
+              "away": 0.001
+            },
+            "reason": "盘口异动：Mexico vs Korea Republic Mexico 87c -> 94c；价格已接近1，锁定利润，避免结算风险",
+            "amount": 1297.4,
+            "price": 0.999,
+            "shares": 1298.7,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T02:56:59.104Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.89,
+              "draw": 0.107,
+              "away": 0.003
+            },
+            "reason": "盘口异动：Mexico vs Korea Republic Draw 14c -> 11c；墨西哥在比赛尾声阶段大概率锁定胜局，0.88的价格具有配置价值。",
+            "amount": 500.0,
+            "price": 0.91,
+            "shares": 549.45,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T02:52:12.890Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.73,
+              "draw": 0.22,
+              "away": 0.05
+            },
+            "reason": "墨西哥直播中概率0.72显示明显领先，买入主场胜份额有望随比赛推进升值至1.0获利",
+            "amount": 2500.0,
+            "price": 0.73,
+            "shares": 3424.66,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T02:17:52.358Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -4306,7 +6424,8 @@ window.WORLD_CUP_MATCHES = {
         "冠军长期市场先验：美国 2.05%，澳大利亚 0.35%。",
         "源站附加盘口摘录：让球: -0.5 @ 1.60 +0.5 @ 2.30 大小球: O 2.5 @ 1.94 U 2.5 @ 1.84 更新于 32 分 前。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
-        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
       ],
       "timeline": [
         {
@@ -4330,7 +6449,8 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/2026/03/07/united-states-vs-australia/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
         "https://m.hupu.com/soccer/schedule",
-        "https://www.sporttery.cn/jc/jsq/zqspf/"
+        "https://www.sporttery.cn/jc/jsq/zqspf/",
+        "https://worldcup.panewslab.com/"
       ],
       "hupu": {
         "matchId": "3512549",
@@ -4350,42 +6470,125 @@ window.WORLD_CUP_MATCHES = {
           "lastUpdated": "2026-06-18 13:35:08"
         },
         "hhad": {
-          "home": 2.51,
-          "draw": 3.25,
-          "away": 2.36,
+          "home": 2.53,
+          "draw": 3.2,
+          "away": 2.37,
           "goalLine": "-1",
-          "lastUpdated": "2026-06-18 13:35:13"
+          "lastUpdated": "2026-06-19 17:56:27"
         },
         "correctScore": {
-          "0-0": 10.5,
-          "0-1": 14.0,
-          "0-2": 32.0,
-          "0-3": 100.0,
+          "0-0": 12.5,
+          "0-1": 17.0,
+          "0-2": 35.0,
+          "0-3": 120.0,
           "0-4": 500.0,
-          "0-5": 1000.0,
-          "1-0": 5.7,
-          "1-1": 6.6,
-          "1-2": 17.5,
+          "0-5": 700.0,
+          "1-0": 6.7,
+          "1-1": 6.85,
+          "1-2": 20.0,
           "1-3": 70.0,
-          "1-4": 350.0,
-          "1-5": 800.0,
-          "2-0": 6.6,
-          "2-1": 6.0,
-          "2-2": 17.0,
-          "2-3": 70.0,
-          "2-4": 350.0,
-          "2-5": 800.0,
-          "3-0": 10.5,
-          "3-1": 10.5,
-          "3-2": 23.0,
-          "3-3": 85.0,
-          "4-0": 23.0,
-          "4-1": 27.0,
-          "4-2": 65.0,
+          "1-4": 250.0,
+          "1-5": 600.0,
+          "2-0": 6.8,
+          "2-1": 5.65,
+          "2-2": 15.0,
+          "2-3": 60.0,
+          "2-4": 175.0,
+          "2-5": 600.0,
+          "3-0": 11.5,
+          "3-1": 9.0,
+          "3-2": 18.0,
+          "3-3": 45.0,
+          "4-0": 24.0,
+          "4-1": 25.0,
+          "4-2": 45.0,
           "5-0": 65.0,
-          "5-1": 75.0,
-          "5-2": 175.0
+          "5-1": 65.0,
+          "5-2": 100.0
         }
+      },
+      "panewsAi": {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": "https://worldcup.panewslab.com/",
+        "arenaMatchId": "fifwc-usa-aus-2026-06-19",
+        "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-aus-2026-06-19",
+        "lastUpdated": "2026-06-19T11:47:48.721Z",
+        "marketPrices": {
+          "home": 0.608,
+          "draw": 0.2161,
+          "away": 0.1759
+        },
+        "consensus": {
+          "modelCount": 3,
+          "topOutcome": "home",
+          "topProbability": 0.6267,
+          "averageProbabilities": {
+            "home": 0.6267,
+            "draw": 0.21,
+            "away": 0.1633
+          },
+          "agreement": 1.0
+        },
+        "models": [
+          {
+            "modelId": "deepseek",
+            "name": "DeepSeek Match Desk",
+            "short": "DeepSeek",
+            "color": "#b68417",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.6,
+              "draw": 0.22,
+              "away": 0.18
+            },
+            "reason": "美国队实力占优且价格合理，看好获胜",
+            "amount": 1000.0,
+            "price": 0.6,
+            "shares": 1666.67,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T03:22:35.142Z"
+          },
+          {
+            "modelId": "gemini",
+            "name": "Gemini Scout",
+            "short": "Gemini",
+            "color": "#385f9f",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.65,
+              "draw": 0.2,
+              "away": 0.15
+            },
+            "reason": "美国队坐镇主场且实力占优，0.6的价格仍具性价比，决定继续加仓。",
+            "amount": 150.0,
+            "price": 0.6,
+            "shares": 1666.67,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T05:16:12.534Z"
+          },
+          {
+            "modelId": "glm",
+            "name": "GLM Match Analyst",
+            "short": "GLM",
+            "color": "#096d78",
+            "latestAction": "buy",
+            "outcome": "home",
+            "probabilities": {
+              "home": 0.63,
+              "draw": 0.21,
+              "away": 0.16
+            },
+            "reason": "美国作为2026世界杯东道主具有主场优势，当前价格0.6略低于我估算的63%胜率，存在小幅套利空间",
+            "amount": 753.1,
+            "price": 0.6,
+            "shares": 8255.17,
+            "positionValue": null,
+            "updatedAt": "2026-06-19T04:11:27.166Z"
+          }
+        ],
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
       }
     },
     {
@@ -4408,7 +6611,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "苏格兰胜",
           "referenceOdds": 4.8,
           "referenceMovement": "down",
-          "sporttery": 5.1,
+          "sporttery": 5.55,
           "polymarket": null,
           "bookmakers": []
         },
@@ -4416,7 +6619,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 3.75,
           "referenceMovement": "down",
-          "sporttery": 3.28,
+          "sporttery": 3.54,
           "polymarket": null,
           "bookmakers": []
         },
@@ -4424,7 +6627,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "摩洛哥胜",
           "referenceOdds": 1.74,
           "referenceMovement": "up",
-          "sporttery": 1.59,
+          "sporttery": 1.5,
           "polymarket": null,
           "bookmakers": []
         }
@@ -4499,45 +6702,45 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
         "lastUpdated": "",
         "had": {
-          "home": 5.1,
-          "draw": 3.28,
-          "away": 1.59,
+          "home": 5.55,
+          "draw": 3.54,
+          "away": 1.5,
           "goalLine": "",
-          "lastUpdated": "2026-06-18 13:40:35"
+          "lastUpdated": "2026-06-19 17:41:35"
         },
         "hhad": {
-          "home": 2.07,
+          "home": 2.24,
           "draw": 3.2,
-          "away": 3.0,
+          "away": 2.7,
           "goalLine": "+1",
-          "lastUpdated": "2026-06-18 13:40:39"
+          "lastUpdated": "2026-06-19 18:38:32"
         },
         "correctScore": {
           "0-0": 9.0,
-          "0-1": 5.5,
+          "0-1": 5.95,
           "0-2": 6.7,
           "0-3": 12.0,
           "0-4": 29.0,
           "0-5": 100.0,
-          "1-0": 11.5,
-          "1-1": 5.75,
-          "1-2": 6.25,
-          "1-3": 11.5,
-          "1-4": 35.0,
-          "1-5": 100.0,
-          "2-0": 28.0,
-          "2-1": 15.5,
+          "1-0": 13.0,
+          "1-1": 5.85,
+          "1-2": 6.0,
+          "1-3": 10.5,
+          "1-4": 30.0,
+          "1-5": 70.0,
+          "2-0": 30.0,
+          "2-1": 17.5,
           "2-2": 17.0,
-          "2-3": 30.0,
-          "2-4": 80.0,
-          "2-5": 250.0,
+          "2-3": 26.0,
+          "2-4": 65.0,
+          "2-5": 175.0,
           "3-0": 90.0,
           "3-1": 65.0,
           "3-2": 60.0,
-          "3-3": 90.0,
+          "3-3": 80.0,
           "4-0": 350.0,
-          "4-1": 300.0,
-          "4-2": 300.0,
+          "4-1": 250.0,
+          "4-2": 250.0,
           "5-0": 900.0,
           "5-1": 700.0,
           "5-2": 800.0
@@ -4662,41 +6865,41 @@ window.WORLD_CUP_MATCHES = {
           "lastUpdated": ""
         },
         "hhad": {
-          "home": 1.73,
-          "draw": 4.1,
-          "away": 3.25,
+          "home": 1.6,
+          "draw": 4.42,
+          "away": 3.6,
           "goalLine": "-2",
-          "lastUpdated": "2026-06-18 13:44:41"
+          "lastUpdated": "2026-06-19 17:47:42"
         },
         "correctScore": {
-          "0-0": 30.0,
-          "0-1": 55.0,
-          "0-2": 175.0,
+          "0-0": 38.0,
+          "0-1": 70.0,
+          "0-2": 200.0,
           "0-3": 500.0,
           "0-4": 1000.0,
           "0-5": 1000.0,
-          "1-0": 9.0,
-          "1-1": 15.0,
-          "1-2": 60.0,
+          "1-0": 11.0,
+          "1-1": 20.0,
+          "1-2": 80.0,
           "1-3": 300.0,
           "1-4": 800.0,
           "1-5": 1000.0,
-          "2-0": 6.0,
-          "2-1": 9.0,
-          "2-2": 30.0,
-          "2-3": 175.0,
+          "2-0": 7.2,
+          "2-1": 13.5,
+          "2-2": 45.0,
+          "2-3": 200.0,
           "2-4": 700.0,
           "2-5": 1000.0,
-          "3-0": 6.0,
-          "3-1": 9.0,
-          "3-2": 35.0,
-          "3-3": 200.0,
-          "4-0": 7.5,
-          "4-1": 12.0,
+          "3-0": 5.5,
+          "3-1": 9.25,
+          "3-2": 40.0,
+          "3-3": 100.0,
+          "4-0": 6.25,
+          "4-1": 11.0,
           "4-2": 45.0,
-          "5-0": 11.0,
-          "5-1": 21.0,
-          "5-2": 80.0
+          "5-0": 9.8,
+          "5-1": 17.0,
+          "5-2": 60.0
         }
       }
     },
@@ -4720,7 +6923,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "土耳其胜",
           "referenceOdds": 2.08,
           "referenceMovement": "down",
-          "sporttery": 1.92,
+          "sporttery": 1.75,
           "polymarket": null,
           "bookmakers": []
         },
@@ -4728,7 +6931,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 3.45,
           "referenceMovement": "up",
-          "sporttery": 3.1,
+          "sporttery": 3.35,
           "polymarket": null,
           "bookmakers": []
         },
@@ -4736,7 +6939,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "巴拉圭胜",
           "referenceOdds": 4,
           "referenceMovement": "down",
-          "sporttery": 3.5,
+          "sporttery": 3.85,
           "polymarket": null,
           "bookmakers": []
         }
@@ -4811,48 +7014,48 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
         "lastUpdated": "",
         "had": {
-          "home": 1.92,
-          "draw": 3.1,
-          "away": 3.5,
+          "home": 1.75,
+          "draw": 3.35,
+          "away": 3.85,
           "goalLine": "",
-          "lastUpdated": "2026-06-18 13:55:10"
+          "lastUpdated": "2026-06-19 18:38:19"
         },
         "hhad": {
-          "home": 4.1,
-          "draw": 3.4,
-          "away": 1.69,
+          "home": 3.52,
+          "draw": 3.35,
+          "away": 1.83,
           "goalLine": "-1",
-          "lastUpdated": "2026-06-18 13:55:15"
+          "lastUpdated": "2026-06-19 18:38:11"
         },
         "correctScore": {
-          "0-0": 9.0,
-          "0-1": 9.25,
-          "0-2": 18.5,
-          "0-3": 50.0,
+          "0-0": 10.0,
+          "0-1": 11.5,
+          "0-2": 21.0,
+          "0-3": 55.0,
           "0-4": 200.0,
           "0-5": 500.0,
-          "1-0": 6.0,
-          "1-1": 5.5,
-          "1-2": 10.0,
+          "1-0": 6.6,
+          "1-1": 5.85,
+          "1-2": 12.5,
           "1-3": 30.0,
           "1-4": 175.0,
-          "1-5": 500.0,
+          "1-5": 400.0,
           "2-0": 9.0,
-          "2-1": 6.45,
-          "2-2": 15.0,
-          "2-3": 50.0,
-          "2-4": 250.0,
-          "2-5": 600.0,
-          "3-0": 17.0,
-          "3-1": 14.0,
-          "3-2": 27.0,
-          "3-3": 90.0,
-          "4-0": 50.0,
-          "4-1": 45.0,
-          "4-2": 85.0,
-          "5-0": 175.0,
-          "5-1": 175.0,
-          "5-2": 300.0
+          "2-1": 5.6,
+          "2-2": 14.0,
+          "2-3": 40.0,
+          "2-4": 200.0,
+          "2-5": 500.0,
+          "3-0": 18.0,
+          "3-1": 12.0,
+          "3-2": 24.0,
+          "3-3": 58.0,
+          "4-0": 46.0,
+          "4-1": 38.0,
+          "4-2": 60.0,
+          "5-0": 120.0,
+          "5-1": 100.0,
+          "5-2": 150.0
         }
       }
     },
@@ -4988,21 +7191,21 @@ window.WORLD_CUP_MATCHES = {
           "0-4": 300.0,
           "0-5": 500.0,
           "1-0": 7.3,
-          "1-1": 5.9,
+          "1-1": 6.3,
           "1-2": 11.5,
           "1-3": 45.0,
           "1-4": 175.0,
           "1-5": 400.0,
           "2-0": 7.5,
           "2-1": 6.3,
-          "2-2": 13.5,
+          "2-2": 13.0,
           "2-3": 50.0,
           "2-4": 175.0,
           "2-5": 400.0,
           "3-0": 12.0,
           "3-1": 11.5,
           "3-2": 23.0,
-          "3-3": 65.0,
+          "3-3": 45.0,
           "4-0": 27.0,
           "4-1": 27.0,
           "4-2": 60.0,
@@ -5286,11 +7489,11 @@ window.WORLD_CUP_MATCHES = {
           "lastUpdated": ""
         },
         "hhad": {
-          "home": 1.95,
+          "home": 1.9,
           "draw": 3.95,
-          "away": 2.75,
+          "away": 2.86,
           "goalLine": "-2",
-          "lastUpdated": "2026-06-18 09:22:38"
+          "lastUpdated": "2026-06-19 16:46:27"
         },
         "correctScore": {
           "0-0": 24.0,
@@ -5344,7 +7547,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "突尼斯胜",
           "referenceOdds": 6.75,
           "referenceMovement": "down",
-          "sporttery": 5.75,
+          "sporttery": 6.35,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5352,7 +7555,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 4,
           "referenceMovement": "down",
-          "sporttery": 3.7,
+          "sporttery": 3.88,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5360,7 +7563,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "日本胜",
           "referenceOdds": 1.49,
           "referenceMovement": "down",
-          "sporttery": 1.46,
+          "sporttery": 1.4,
           "polymarket": null,
           "bookmakers": []
         }
@@ -5435,41 +7638,41 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
         "lastUpdated": "",
         "had": {
-          "home": 5.75,
-          "draw": 3.7,
-          "away": 1.46,
+          "home": 6.35,
+          "draw": 3.88,
+          "away": 1.4,
           "goalLine": "",
-          "lastUpdated": "2026-06-18 09:22:38"
+          "lastUpdated": "2026-06-19 14:22:16"
         },
         "hhad": {
-          "home": 2.3,
-          "draw": 3.25,
-          "away": 2.59,
+          "home": 2.45,
+          "draw": 3.34,
+          "away": 2.37,
           "goalLine": "+1",
-          "lastUpdated": "2026-06-18 09:22:38"
+          "lastUpdated": "2026-06-19 16:46:34"
         },
         "correctScore": {
           "0-0": 11.0,
-          "0-1": 6.3,
+          "0-1": 6.4,
           "0-2": 6.5,
-          "0-3": 10.5,
+          "0-3": 10.0,
           "0-4": 21.0,
           "0-5": 60.0,
           "1-0": 14.0,
-          "1-1": 6.0,
+          "1-1": 6.2,
           "1-2": 6.5,
-          "1-3": 11.5,
-          "1-4": 26.0,
+          "1-3": 10.5,
+          "1-4": 22.0,
           "1-5": 75.0,
-          "2-0": 32.0,
-          "2-1": 14.0,
-          "2-2": 16.0,
+          "2-0": 34.0,
+          "2-1": 16.0,
+          "2-2": 17.0,
           "2-3": 27.0,
           "2-4": 60.0,
-          "2-5": 175.0,
-          "3-0": 110.0,
-          "3-1": 60.0,
-          "3-2": 60.0,
+          "2-5": 150.0,
+          "3-0": 120.0,
+          "3-1": 65.0,
+          "3-2": 65.0,
           "3-3": 100.0,
           "4-0": 500.0,
           "4-1": 300.0,
@@ -5553,7 +7756,8 @@ window.WORLD_CUP_MATCHES = {
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：西班牙 14.45%，沙特阿拉伯 0.05%。",
         "源站附加盘口摘录：让球: -2.5 @ 2.01 +2.5 @ 1.85 大小球: O 3.5 @ 2.24 U 3.5 @ 1.70 更新于 32 分 前。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
       ],
       "timeline": [
         {
@@ -5576,12 +7780,63 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/03/12/spain-vs-saudi-arabia/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://www.sporttery.cn/jc/jsq/zqspf/"
       ],
       "hupu": {
         "matchId": "3514779",
         "status": "未开始",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      },
+      "sporttery": {
+        "matchId": "2040247",
+        "matchNumStr": "周日037",
+        "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+        "lastUpdated": "",
+        "had": {
+          "home": null,
+          "draw": null,
+          "away": null,
+          "goalLine": "",
+          "lastUpdated": ""
+        },
+        "hhad": {
+          "home": 1.83,
+          "draw": 4.0,
+          "away": 3.0,
+          "goalLine": "-2",
+          "lastUpdated": "2026-06-19 09:19:46"
+        },
+        "correctScore": {
+          "0-0": 26.0,
+          "0-1": 40.0,
+          "0-2": 150.0,
+          "0-3": 500.0,
+          "0-4": 800.0,
+          "0-5": 800.0,
+          "1-0": 8.0,
+          "1-1": 15.0,
+          "1-2": 50.0,
+          "1-3": 300.0,
+          "1-4": 800.0,
+          "1-5": 800.0,
+          "2-0": 5.5,
+          "2-1": 10.5,
+          "2-2": 45.0,
+          "2-3": 200.0,
+          "2-4": 600.0,
+          "2-5": 800.0,
+          "3-0": 5.5,
+          "3-1": 10.5,
+          "3-2": 40.0,
+          "3-3": 200.0,
+          "4-0": 6.85,
+          "4-1": 14.0,
+          "4-2": 60.0,
+          "5-0": 10.0,
+          "5-1": 24.0,
+          "5-2": 100.0
+        }
       }
     },
     {
@@ -5604,7 +7859,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "比利时胜",
           "referenceOdds": 1.43,
           "referenceMovement": "down",
-          "sporttery": null,
+          "sporttery": 1.33,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5612,7 +7867,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 4.72,
           "referenceMovement": "down",
-          "sporttery": null,
+          "sporttery": 4.26,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5620,7 +7875,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "伊朗胜",
           "referenceOdds": 7.87,
           "referenceMovement": "down",
-          "sporttery": null,
+          "sporttery": 7.0,
           "polymarket": null,
           "bookmakers": []
         }
@@ -5657,7 +7912,8 @@ window.WORLD_CUP_MATCHES = {
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：比利时 1.75%，伊朗 0.05%。",
         "源站附加盘口摘录：让球: -1.3 @ 2.02 +1.3 @ 1.89 大小球: O 2.5 @ 1.91 U 2.5 @ 1.98 更新于 32 分 前。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
       ],
       "timeline": [
         {
@@ -5680,12 +7936,63 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/03/14/belgium-vs-iran/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://www.sporttery.cn/jc/jsq/zqspf/"
       ],
       "hupu": {
         "matchId": "3514796",
         "status": "未开始",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      },
+      "sporttery": {
+        "matchId": "2040248",
+        "matchNumStr": "周日038",
+        "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+        "lastUpdated": "",
+        "had": {
+          "home": 1.33,
+          "draw": 4.26,
+          "away": 7.0,
+          "goalLine": "",
+          "lastUpdated": "2026-06-19 09:19:45"
+        },
+        "hhad": {
+          "home": 2.06,
+          "draw": 3.5,
+          "away": 2.79,
+          "goalLine": "-1",
+          "lastUpdated": "2026-06-19 09:19:46"
+        },
+        "correctScore": {
+          "0-0": 13.0,
+          "0-1": 18.0,
+          "0-2": 40.0,
+          "0-3": 150.0,
+          "0-4": 500.0,
+          "0-5": 800.0,
+          "1-0": 6.5,
+          "1-1": 7.5,
+          "1-2": 18.0,
+          "1-3": 75.0,
+          "1-4": 300.0,
+          "1-5": 600.0,
+          "2-0": 6.5,
+          "2-1": 6.75,
+          "2-2": 17.0,
+          "2-3": 60.0,
+          "2-4": 300.0,
+          "2-5": 600.0,
+          "3-0": 8.75,
+          "3-1": 10.0,
+          "3-2": 25.0,
+          "3-3": 80.0,
+          "4-0": 16.0,
+          "4-1": 20.0,
+          "4-2": 50.0,
+          "5-0": 35.0,
+          "5-1": 50.0,
+          "5-2": 100.0
+        }
       }
     },
     {
@@ -5708,7 +8015,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "乌拉圭胜",
           "referenceOdds": 1.51,
           "referenceMovement": "up",
-          "sporttery": null,
+          "sporttery": 1.31,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5716,7 +8023,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 4,
           "referenceMovement": "down",
-          "sporttery": null,
+          "sporttery": 4.0,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5724,7 +8031,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "佛得角胜",
           "referenceOdds": 6.75,
           "referenceMovement": "up",
-          "sporttery": null,
+          "sporttery": 8.6,
           "polymarket": null,
           "bookmakers": []
         }
@@ -5761,7 +8068,8 @@ window.WORLD_CUP_MATCHES = {
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：乌拉圭 0.65%，佛得角 0.05%。",
         "源站附加盘口摘录：让球: -1.5 @ 2.47 +1.5 @ 1.55 大小球: O 2.5 @ 2.14 U 2.5 @ 1.61 更新于 32 分 前。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
       ],
       "timeline": [
         {
@@ -5784,12 +8092,63 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/03/13/uruguay-vs-cape-verde/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://www.sporttery.cn/jc/jsq/zqspf/"
       ],
       "hupu": {
         "matchId": "3513917",
         "status": "未开始",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      },
+      "sporttery": {
+        "matchId": "2040249",
+        "matchNumStr": "周日039",
+        "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+        "lastUpdated": "",
+        "had": {
+          "home": 1.31,
+          "draw": 4.0,
+          "away": 8.6,
+          "goalLine": "",
+          "lastUpdated": "2026-06-19 09:19:45"
+        },
+        "hhad": {
+          "home": 2.16,
+          "draw": 3.23,
+          "away": 2.8,
+          "goalLine": "-1",
+          "lastUpdated": "2026-06-19 09:19:46"
+        },
+        "correctScore": {
+          "0-0": 8.5,
+          "0-1": 15.0,
+          "0-2": 50.0,
+          "0-3": 300.0,
+          "0-4": 600.0,
+          "0-5": 800.0,
+          "1-0": 4.6,
+          "1-1": 7.1,
+          "1-2": 26.0,
+          "1-3": 150.0,
+          "1-4": 500.0,
+          "1-5": 800.0,
+          "2-0": 5.0,
+          "2-1": 7.25,
+          "2-2": 27.0,
+          "2-3": 150.0,
+          "2-4": 500.0,
+          "2-5": 800.0,
+          "3-0": 7.5,
+          "3-1": 12.0,
+          "3-2": 50.0,
+          "3-3": 150.0,
+          "4-0": 17.0,
+          "4-1": 29.0,
+          "4-2": 100.0,
+          "5-0": 50.0,
+          "5-1": 75.0,
+          "5-2": 250.0
+        }
       }
     },
     {
@@ -5812,7 +8171,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "新西兰胜",
           "referenceOdds": 5.3,
           "referenceMovement": "up",
-          "sporttery": null,
+          "sporttery": 5.7,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5820,7 +8179,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "平局",
           "referenceOdds": 3.7,
           "referenceMovement": "down",
-          "sporttery": null,
+          "sporttery": 3.72,
           "polymarket": null,
           "bookmakers": []
         },
@@ -5828,7 +8187,7 @@ window.WORLD_CUP_MATCHES = {
           "outcome": "埃及胜",
           "referenceOdds": 1.62,
           "referenceMovement": "up",
-          "sporttery": null,
+          "sporttery": 1.46,
           "polymarket": null,
           "bookmakers": []
         }
@@ -5865,7 +8224,8 @@ window.WORLD_CUP_MATCHES = {
         "未接入可核验的逐场海外博彩公司 API，海外盘口列只在真实抓到时显示。",
         "冠军长期市场先验：新西兰 0.05%，埃及 0.25%。",
         "源站附加盘口摘录：让球: +0.5 @ 2.33 -0.5 @ 1.58 大小球: O 2.5 @ 2.08 U 2.5 @ 1.65 更新于 32 分 前。",
-        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。"
+        "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
+        "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。"
       ],
       "timeline": [
         {
@@ -5888,12 +8248,63 @@ window.WORLD_CUP_MATCHES = {
         "https://wc-2026.com/world-cup-odds/",
         "https://wc-2026.com/2026/03/11/new-zealand-vs-egypt/",
         "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
-        "https://m.hupu.com/soccer/schedule"
+        "https://m.hupu.com/soccer/schedule",
+        "https://www.sporttery.cn/jc/jsq/zqspf/"
       ],
       "hupu": {
         "matchId": "3514795",
         "status": "未开始",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
+      },
+      "sporttery": {
+        "matchId": "2040250",
+        "matchNumStr": "周日040",
+        "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+        "lastUpdated": "",
+        "had": {
+          "home": 5.7,
+          "draw": 3.72,
+          "away": 1.46,
+          "goalLine": "",
+          "lastUpdated": "2026-06-19 09:19:45"
+        },
+        "hhad": {
+          "home": 2.3,
+          "draw": 3.4,
+          "away": 2.5,
+          "goalLine": "+1",
+          "lastUpdated": "2026-06-19 09:19:46"
+        },
+        "correctScore": {
+          "0-0": 10.0,
+          "0-1": 5.75,
+          "0-2": 5.8,
+          "0-3": 9.5,
+          "0-4": 21.0,
+          "0-5": 60.0,
+          "1-0": 13.0,
+          "1-1": 7.0,
+          "1-2": 6.75,
+          "1-3": 12.0,
+          "1-4": 28.0,
+          "1-5": 75.0,
+          "2-0": 30.0,
+          "2-1": 16.0,
+          "2-2": 17.0,
+          "2-3": 30.0,
+          "2-4": 75.0,
+          "2-5": 200.0,
+          "3-0": 100.0,
+          "3-1": 75.0,
+          "3-2": 75.0,
+          "3-3": 80.0,
+          "4-0": 500.0,
+          "4-1": 300.0,
+          "4-2": 300.0,
+          "5-0": 800.0,
+          "5-1": 600.0,
+          "5-2": 800.0
+        }
       }
     },
     {

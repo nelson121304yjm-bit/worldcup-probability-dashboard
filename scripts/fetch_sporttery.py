@@ -43,7 +43,67 @@ SPORTTERY_SOURCE_URL = "https://www.sporttery.cn/jc/zqsgkj/"
 WC2026_ODDS_URL = "https://wc-2026.com/world-cup-odds/"
 HUPU_MOBILE_SOCCER_URL = "https://m.hupu.com/soccer"
 HUPU_MOBILE_SCHEDULE_URL = "https://m.hupu.com/soccer/schedule"
+PANEWS_ARENA_URL = "https://worldcup.panewslab.com/"
+PANEWS_ARENA_STATE_URL = "https://worldcup.panewslab.com/api/arena-state"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
+PANEWS_MODELS = {
+    "minimax": {"name": "MiniMax Match Desk", "short": "MiniMax", "color": "#0c8f64"},
+    "deepseek": {"name": "DeepSeek Match Desk", "short": "DeepSeek", "color": "#b68417"},
+    "gemini": {"name": "Gemini Scout", "short": "Gemini", "color": "#385f9f"},
+    "kimi": {"name": "Kimi Pitch Trader", "short": "Kimi", "color": "#b74335"},
+    "glm": {"name": "GLM Match Analyst", "short": "GLM", "color": "#096d78"},
+}
+TEAM_CODES = {
+    "阿尔及利亚": {"ALG"},
+    "阿根廷": {"ARG"},
+    "澳大利亚": {"AUS"},
+    "奥地利": {"AUT"},
+    "比利时": {"BEL"},
+    "波黑": {"BOS", "BIH"},
+    "巴西": {"BRA"},
+    "加拿大": {"CAN"},
+    "佛得角": {"CAB", "CVI"},
+    "哥伦比亚": {"COL"},
+    "哥斯达黎加": {"CRC"},
+    "刚果民主共和国": {"CDR", "COD", "DRC"},
+    "库拉索": {"CUR", "CUW"},
+    "捷克": {"CZE"},
+    "厄瓜多尔": {"ECU"},
+    "埃及": {"EGY"},
+    "英格兰": {"ENG"},
+    "法国": {"FRA"},
+    "德国": {"GER"},
+    "加纳": {"GHA"},
+    "海地": {"HAI"},
+    "伊朗": {"IRN"},
+    "伊拉克": {"IRQ"},
+    "意大利": {"ITA"},
+    "日本": {"JPN"},
+    "约旦": {"JOR"},
+    "韩国": {"KOR", "KR"},
+    "墨西哥": {"MEX"},
+    "摩洛哥": {"MAR"},
+    "荷兰": {"NLD", "NET"},
+    "新西兰": {"NZL"},
+    "挪威": {"NOR"},
+    "巴拿马": {"PAN"},
+    "巴拉圭": {"PAR"},
+    "葡萄牙": {"PRT"},
+    "卡塔尔": {"QAT"},
+    "沙特阿拉伯": {"KSA", "SAU"},
+    "苏格兰": {"SCO"},
+    "塞内加尔": {"SEN"},
+    "西班牙": {"ESP", "SPA"},
+    "南非": {"RSA"},
+    "瑞典": {"SWE"},
+    "瑞士": {"CHE"},
+    "突尼斯": {"TUN"},
+    "土耳其": {"TUR"},
+    "乌拉圭": {"URY", "URU"},
+    "美国": {"USA"},
+    "乌兹别克斯坦": {"UZB"},
+    "科特迪瓦": {"CIV", "CÔT", "COT"},
+}
 
 
 @dataclass(frozen=True)
@@ -70,8 +130,9 @@ def write_payload(path: Path, payload: dict[str, Any]) -> None:
 
 def fetch_json(url: str, params: dict[str, Any], timeout: int) -> dict[str, Any]:
     query = urllib.parse.urlencode(params)
+    full_url = f"{url}?{query}" if query else url
     request = urllib.request.Request(
-        f"{url}?{query}",
+        full_url,
         headers={
             "User-Agent": "worldcup-probability-dashboard/1.0 (+https://github.com/nelson121304yjm-bit/worldcup-probability-dashboard)",
             "Accept": "application/json,text/plain,*/*",
@@ -407,6 +468,7 @@ def build_indexes(
 def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any]], result_items: list[dict[str, Any]]) -> list[str]:
     calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key = build_indexes(calculator_items, result_items)
     changes: list[str] = []
+    panews_state = payload.pop("_panewsArenaState", None)
 
     for match in payload.get("matches") or []:
         before = json.dumps(match, ensure_ascii=False, sort_keys=True)
@@ -427,6 +489,9 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
         if result_item and is_same_dashboard_match(match, result_item):
             apply_result_item(match, result_item)
 
+        if panews_state:
+            apply_panews_ai_item(match, panews_state)
+
         after = json.dumps(match, ensure_ascii=False, sort_keys=True)
         if after != before:
             changes.append(f"{match.get('id')} {match.get('home')} vs {match.get('away')}")
@@ -441,6 +506,9 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
             payload["sourceName"] = source
         if "虎扑赛程/热度校验" not in payload["sourceName"]:
             payload["sourceName"] = f"{payload['sourceName']}；虎扑赛程/热度校验"
+        if any(isinstance(match.get("panewsAi"), dict) for match in payload.get("matches") or []):
+            if "PANews AI Arena" not in payload["sourceName"]:
+                payload["sourceName"] = f"{payload['sourceName']}；PANews AI Arena"
 
     return changes
 
@@ -628,6 +696,200 @@ def odds_entry_has_price(odd: dict[str, Any]) -> bool:
     return False
 
 
+def apply_panews_ai_item(match: dict[str, Any], arena_state: dict[str, Any]) -> None:
+    arena_match = find_panews_match(match, arena_state.get("matches") or [])
+    if not arena_match:
+        return
+
+    prediction = panews_prediction_for_match(arena_match, arena_state)
+    if not prediction:
+        return
+
+    match["panewsAi"] = prediction
+    append_source_once(match, PANEWS_ARENA_URL)
+    append_note_once(match, "marketNotes", "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。")
+
+
+def find_panews_match(match: dict[str, Any], arena_matches: list[dict[str, Any]]) -> dict[str, Any] | None:
+    kickoff = parse_dashboard_kickoff(match)
+    home_codes = team_codes(match.get("home"))
+    away_codes = team_codes(match.get("away"))
+    if not kickoff or not home_codes or not away_codes:
+        return None
+
+    best: tuple[int, dict[str, Any]] | None = None
+    for item in arena_matches:
+        if not isinstance(item, dict):
+            continue
+        arena_kickoff = parse_iso_datetime(item.get("kickoffTs"))
+        if not arena_kickoff:
+            continue
+        minutes = abs(int((arena_kickoff - kickoff).total_seconds() / 60))
+        if minutes > 90:
+            continue
+        arena_home = normalize_code(item.get("homeCode"))
+        arena_away = normalize_code(item.get("awayCode"))
+        if arena_home not in home_codes or arena_away not in away_codes:
+            continue
+        if best is None or minutes < best[0]:
+            best = (minutes, item)
+    return best[1] if best else None
+
+
+def panews_prediction_for_match(arena_match: dict[str, Any], arena_state: dict[str, Any]) -> dict[str, Any] | None:
+    trades = [
+        trade
+        for trade in (arena_state.get("tradeBook") or {}).get("trades") or []
+        if isinstance(trade, dict) and trade.get("matchId") == arena_match.get("id") and trade.get("status") == "executed"
+    ]
+    model_accounts = arena_state.get("modelAccounts") or {}
+    model_rows = []
+    for model_id, meta in PANEWS_MODELS.items():
+        model_trades = sorted(
+            [trade for trade in trades if trade.get("modelId") == model_id],
+            key=lambda trade: str(trade.get("ts") or ""),
+        )
+        latest = model_trades[-1] if model_trades else None
+        position = panews_position_for_model(model_accounts.get(model_id), arena_match.get("id"))
+        probabilities = normalize_panews_probabilities(
+            latest.get("probabilities") if latest else None,
+            arena_match.get("prices") or {},
+        )
+        if not latest and not position:
+            continue
+        model_rows.append(
+            {
+                "modelId": model_id,
+                "name": meta["name"],
+                "short": meta["short"],
+                "color": meta["color"],
+                "latestAction": panews_action(latest),
+                "outcome": str((latest or position or {}).get("outcome") or ""),
+                "probabilities": probabilities,
+                "reason": str((latest or {}).get("reason") or "").strip()[:220],
+                "amount": rounded_number((latest or {}).get("amount")),
+                "price": rounded_number((latest or {}).get("price"), 4),
+                "shares": rounded_number(position.get("shares") if position else (latest or {}).get("shares"), 2),
+                "positionValue": rounded_number(position.get("value") if position else None, 2),
+                "updatedAt": str((latest or {}).get("ts") or ""),
+            }
+        )
+
+    if not model_rows:
+        return None
+
+    consensus = panews_consensus(model_rows)
+    return {
+        "sourceName": "PANews AI Arena",
+        "sourceUrl": PANEWS_ARENA_URL,
+        "arenaMatchId": str(arena_match.get("id") or ""),
+        "matchUrl": str(arena_match.get("sourceUrl") or PANEWS_ARENA_URL),
+        "lastUpdated": str((arena_state.get("status") or {}).get("updatedAt") or (arena_state.get("status") or {}).get("lastTradeAt") or ""),
+        "marketPrices": normalize_panews_probabilities(arena_match.get("prices") or {}, None),
+        "consensus": consensus,
+        "models": model_rows,
+        "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。",
+    }
+
+
+def panews_position_for_model(account: Any, match_id: Any) -> dict[str, Any] | None:
+    if not isinstance(account, dict):
+        return None
+    positions = account.get("displayPositions")
+    if not isinstance(positions, list):
+        positions = list((account.get("positions") or {}).values()) if isinstance(account.get("positions"), dict) else []
+    best: dict[str, Any] | None = None
+    for item in positions:
+        if not isinstance(item, dict) or item.get("matchId") != match_id:
+            continue
+        value = to_float(item.get("value")) or 0
+        if best is None or value > (to_float(best.get("value")) or 0):
+            best = item
+    return best
+
+
+def normalize_panews_probabilities(raw: Any, fallback: Any) -> dict[str, float | None]:
+    raw = raw if isinstance(raw, dict) else {}
+    fallback = fallback if isinstance(fallback, dict) else {}
+    values = {
+        "home": to_float(raw.get("home")) if raw.get("home") is not None else to_float(fallback.get("home")),
+        "draw": to_float(raw.get("draw")) if raw.get("draw") is not None else to_float(fallback.get("draw")),
+        "away": to_float(raw.get("away")) if raw.get("away") is not None else to_float(fallback.get("away")),
+    }
+    finite = [value for value in values.values() if isinstance(value, (int, float)) and value >= 0]
+    total = sum(finite)
+    if total > 0:
+        return {
+            key: round(float(value) / total, 4) if isinstance(value, (int, float)) and value >= 0 else None
+            for key, value in values.items()
+        }
+    return {key: None for key in ("home", "draw", "away")}
+
+
+def panews_consensus(models: list[dict[str, Any]]) -> dict[str, Any]:
+    totals = {"home": [], "draw": [], "away": []}
+    picks: list[str] = []
+    for model in models:
+        probabilities = model.get("probabilities") or {}
+        finite = {key: probabilities.get(key) for key in ("home", "draw", "away") if isinstance(probabilities.get(key), (int, float))}
+        for key, value in finite.items():
+            totals[key].append(value)
+        if finite:
+            picks.append(max(finite.items(), key=lambda item: item[1])[0])
+
+    average_probabilities = {
+        key: round(sum(values) / len(values), 4) if values else None for key, values in totals.items()
+    }
+    top_outcome = ""
+    top_probability = None
+    finite_average = {key: value for key, value in average_probabilities.items() if isinstance(value, (int, float))}
+    if finite_average:
+        top_outcome, top_probability = max(finite_average.items(), key=lambda item: item[1])
+
+    return {
+        "modelCount": len(models),
+        "topOutcome": top_outcome,
+        "topProbability": top_probability,
+        "averageProbabilities": average_probabilities,
+        "agreement": round(picks.count(top_outcome) / len(picks), 4) if top_outcome and picks else None,
+    }
+
+
+def panews_action(trade: dict[str, Any] | None) -> str:
+    if not trade:
+        return "hold"
+    side = str(trade.get("side") or "")
+    if side in {"buy", "sell"}:
+        return side
+    return "hold"
+
+
+def team_codes(value: Any) -> set[str]:
+    normalized = normalize_team(str(value or ""))
+    return {normalize_code(code) for code in TEAM_CODES.get(normalized, set()) if normalize_code(code)}
+
+
+def normalize_code(value: Any) -> str:
+    return str(value or "").strip().upper()
+
+
+def parse_iso_datetime(value: Any) -> datetime | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00")).astimezone(SHANGHAI)
+    except ValueError:
+        return None
+
+
+def rounded_number(value: Any, digits: int = 2) -> float | None:
+    number = to_float(value)
+    if number is None:
+        return None
+    return round(number, digits)
+
+
 def apply_hupu_item(match: dict[str, Any], item: dict[str, Any]) -> None:
     hupu = match.setdefault("hupu", {})
     if item.get("_hupuMatchId"):
@@ -771,12 +1033,13 @@ def to_int(value: Any) -> int | None:
         return None
 
 
-def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any] | None]:
     today = datetime.now(SHANGHAI).date()
     begin = today - timedelta(days=options.days_back)
     end = today + timedelta(days=options.days_forward)
     calculator_items: list[dict[str, Any]] = []
     result_items: list[dict[str, Any]] = []
+    panews_state: dict[str, Any] | None = None
     warnings: list[str] = []
     try:
         calculator = fetch_json(SPORTTERY_CALCULATOR_URL, {"channel": "c"}, options.timeout)
@@ -817,10 +1080,15 @@ def fetch_sporttery(options: FetchOptions) -> tuple[list[dict[str, Any]], list[d
     except RuntimeError as exc:
         warnings.append(str(exc))
 
+    try:
+        panews_state = fetch_json(PANEWS_ARENA_STATE_URL, {}, options.timeout)
+    except RuntimeError as exc:
+        warnings.append(str(exc))
+
     if warnings:
         print(json.dumps({"warnings": warnings}, ensure_ascii=False), file=sys.stderr)
 
-    return calculator_items, result_items
+    return calculator_items, result_items, panews_state
 
 
 def parse_args() -> FetchOptions:
@@ -837,12 +1105,16 @@ def parse_args() -> FetchOptions:
 def main() -> int:
     options = parse_args()
     payload = load_payload(options.data_file)
-    calculator_items, result_items = fetch_sporttery(options)
+    calculator_items, result_items, panews_state = fetch_sporttery(options)
+    if panews_state:
+        payload["_panewsArenaState"] = panews_state
     changes = update_matches(payload, calculator_items, result_items)
 
     summary = {
         "calculatorMatches": len(calculator_items),
         "resultMatches": len(result_items),
+        "panewsMatches": len((panews_state or {}).get("matches") or []),
+        "panewsTrades": len(((panews_state or {}).get("tradeBook") or {}).get("trades") or []),
         "changes": changes,
         "dryRun": options.dry_run,
     }

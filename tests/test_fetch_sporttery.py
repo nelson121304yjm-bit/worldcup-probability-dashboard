@@ -7,6 +7,7 @@ from scripts.fetch_sporttery import (
     parse_hupu_metric_text,
     parse_score,
     parse_wc2026_results,
+    panews_prediction_for_match,
     result_update_allowed,
     result_odds_pool,
     sporttery_pool,
@@ -400,6 +401,112 @@ def test_hupu_metadata_applies_to_upcoming_match_without_score() -> None:
     assert "虎扑公开足球赛程页面用于近期赛程/赛果校验；不提供赔率或支持率。" not in match["marketNotes"]
     assert "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。" in match["marketNotes"]
     assert "虎扑赛程/热度校验" in payload["sourceName"]
+
+
+def test_update_matches_applies_panews_ai_by_team_codes_and_kickoff() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "_panewsArenaState": {
+            "matches": [
+                {
+                    "id": "fifwc-fra-sen-2026-06-16",
+                    "kickoffTs": "2026-06-16T19:00:00Z",
+                    "home": "France",
+                    "away": "Senegal",
+                    "homeCode": "FRA",
+                    "awayCode": "SEN",
+                    "prices": {"home": 0.62, "draw": 0.22, "away": 0.16},
+                    "sourceUrl": "https://polymarket.com/sports/world-cup/fifwc-fra-sen-2026-06-16",
+                }
+            ],
+            "tradeBook": {
+                "trades": [
+                    {
+                        "id": "t1",
+                        "ts": "2026-06-16T10:00:00Z",
+                        "modelId": "deepseek",
+                        "matchId": "fifwc-fra-sen-2026-06-16",
+                        "status": "executed",
+                        "side": "buy",
+                        "outcome": "home",
+                        "amount": 1000,
+                        "price": 0.62,
+                        "shares": 1612.9,
+                        "probabilities": {"home": 0.66, "draw": 0.2, "away": 0.14},
+                        "reason": "法国实力占优。",
+                    }
+                ]
+            },
+            "modelAccounts": {},
+            "status": {"updatedAt": "2026-06-16T10:01:00Z"},
+        },
+        "matches": [
+            {
+                "id": "france-senegal",
+                "status": "upcoming",
+                "kickoff": "2026-06-17 03:00 CST",
+                "home": "法国",
+                "away": "塞内加尔",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+                "timeline": [],
+                "sources": [],
+                "marketNotes": [],
+            }
+        ],
+    }
+
+    changes = update_matches(payload, [], [])
+    match = payload["matches"][0]
+
+    assert changes == ["france-senegal 法国 vs 塞内加尔"]
+    assert match["panewsAi"]["consensus"]["topOutcome"] == "home"
+    assert match["panewsAi"]["models"][0]["short"] == "DeepSeek"
+    assert "PANews AI Arena" in payload["sourceName"]
+    assert "https://worldcup.panewslab.com/" in match["sources"]
+
+
+def test_panews_prediction_averages_model_probabilities() -> None:
+    prediction = panews_prediction_for_match(
+        {
+            "id": "m1",
+            "prices": {"home": 0.4, "draw": 0.3, "away": 0.3},
+            "sourceUrl": "https://example.com/m1",
+        },
+        {
+            "tradeBook": {
+                "trades": [
+                    {
+                        "modelId": "deepseek",
+                        "matchId": "m1",
+                        "status": "executed",
+                        "side": "buy",
+                        "outcome": "draw",
+                        "ts": "2026-06-19T00:00:00Z",
+                        "probabilities": {"home": 0.2, "draw": 0.6, "away": 0.2},
+                    },
+                    {
+                        "modelId": "gemini",
+                        "matchId": "m1",
+                        "status": "executed",
+                        "side": "buy",
+                        "outcome": "draw",
+                        "ts": "2026-06-19T00:01:00Z",
+                        "probabilities": {"home": 0.3, "draw": 0.5, "away": 0.2},
+                    },
+                ]
+            },
+            "modelAccounts": {},
+            "status": {"updatedAt": "2026-06-19T00:02:00Z"},
+        },
+    )
+
+    assert prediction
+    assert prediction["consensus"]["modelCount"] == 2
+    assert prediction["consensus"]["topOutcome"] == "draw"
+    assert prediction["consensus"]["averageProbabilities"]["draw"] == 0.55
 
 
 def json_dumps(value: dict) -> str:
