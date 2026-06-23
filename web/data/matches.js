@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验；PANews AI Arena",
-  "lastUpdated": "2026-06-24 05:57 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-24 07:11 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -233,7 +233,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-can-bih-2026-06-12",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-bih-2026-06-12",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -412,7 +412,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-usa-par-2026-06-12",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-par-2026-06-12",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -610,7 +610,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-qat-che-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-qat-che-2026-06-13",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -808,7 +808,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bra-mar-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bra-mar-2026-06-13",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -1006,7 +1006,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-hai-sco-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-hai-sco-2026-06-13",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -1279,7 +1279,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ger-kor-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ger-kor-2026-06-14",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1552,7 +1552,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-civ-ecu-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-civ-ecu-2026-06-14",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1750,7 +1750,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-swe-tun-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-swe-tun-2026-06-14",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1948,7 +1948,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-esp-cvi-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-esp-cvi-2026-06-15",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2146,7 +2146,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bel-egy-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bel-egy-2026-06-15",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2344,7 +2344,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ksa-ury-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ksa-ury-2026-06-15",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2797,7 +2797,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-fra-sen-2026-06-16",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-fra-sen-2026-06-16",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -3407,7 +3407,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-arg-alg-2026-06-16",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-arg-alg-2026-06-16",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -3747,7 +3747,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-aut-jor-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-aut-jor-2026-06-17",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -4601,7 +4601,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-gha-pan-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-gha-pan-2026-06-17",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -4938,7 +4938,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-uzb-col-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-uzb-col-2026-06-17",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -5276,7 +5276,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-cze-rsa-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-cze-rsa-2026-06-18",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -5614,7 +5614,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-che-bih-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-che-bih-2026-06-18",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -5933,7 +5933,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-can-qat-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-qat-2026-06-18",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6252,7 +6252,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-mex-kr-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-mex-kr-2026-06-18",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6502,7 +6502,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-usa-aus-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-aus-2026-06-19",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6917,7 +6917,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-sco-mar-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -7249,7 +7249,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bra-hai-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bra-hai-2026-06-19",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -7688,8 +7688,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513898",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 149000,
-        "ratingText": "14.9万评分"
+        "ratingCount": 155000,
+        "ratingText": "15.5万评分"
       },
       "sporttery": {
         "matchId": "2040243",
@@ -7828,7 +7828,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-nld-swe-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-nld-swe-2026-06-20",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -8198,7 +8198,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ger-civ-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ger-civ-2026-06-20",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -8568,7 +8568,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ecu-kor-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ecu-kor-2026-06-20",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -8777,8 +8777,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514793",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 132000,
-        "ratingText": "13.2万评分"
+        "ratingCount": 137000,
+        "ratingText": "13.7万评分"
       },
       "sporttery": {
         "matchId": "2040246",
@@ -9026,8 +9026,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514779",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 159000,
-        "ratingText": "15.9万评分"
+        "ratingCount": 163000,
+        "ratingText": "16.3万评分"
       },
       "sporttery": {
         "matchId": "2040247",
@@ -9084,7 +9084,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-esp-ksa-2026-06-21",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-esp-ksa-2026-06-21",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -9357,8 +9357,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514796",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 106000,
-        "ratingText": "10.6万评分"
+        "ratingCount": 109000,
+        "ratingText": "10.9万评分"
       },
       "sporttery": {
         "matchId": "2040248",
@@ -9606,8 +9606,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513917",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 142000,
-        "ratingText": "14.2万评分"
+        "ratingCount": 147000,
+        "ratingText": "14.7万评分"
       },
       "sporttery": {
         "matchId": "2040249",
@@ -9746,7 +9746,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ury-cvi-2026-06-21",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ury-cvi-2026-06-21",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -9936,8 +9936,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514795",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 88000,
-        "ratingText": "8.8万评分"
+        "ratingCount": 94000,
+        "ratingText": "9.4万评分"
       },
       "sporttery": {
         "matchId": "2040250",
@@ -10185,8 +10185,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513918",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 346000,
-        "ratingText": "34.6万评分"
+        "ratingCount": 352000,
+        "ratingText": "35.2万评分"
       },
       "sporttery": {
         "matchId": "2040251",
@@ -10325,7 +10325,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-arg-aut-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-arg-aut-2026-06-22",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -10515,8 +10515,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513919",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 187000,
-        "ratingText": "18.7万评分"
+        "ratingCount": 188000,
+        "ratingText": "18.8万评分"
       },
       "sporttery": {
         "matchId": "2040252",
@@ -10764,8 +10764,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513921",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 169000,
-        "ratingText": "16.9万评分"
+        "ratingCount": 172000,
+        "ratingText": "17.2万评分"
       },
       "sporttery": {
         "matchId": "2040253",
@@ -10904,7 +10904,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-nor-sen-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-nor-sen-2026-06-22",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -11093,8 +11093,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514786",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 67000,
-        "ratingText": "6.7万评分"
+        "ratingCount": 69000,
+        "ratingText": "6.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-23 18:42 CST",
@@ -11133,7 +11133,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-jor-alg-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-jor-alg-2026-06-22",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -11320,8 +11320,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514782",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 122000,
-        "ratingText": "12.2万评分"
+        "ratingCount": 132000,
+        "ratingText": "13.2万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-24 04:03 CST",
@@ -11358,15 +11358,15 @@ window.WORLD_CUP_MATCHES = {
     },
     {
       "id": "wc2026-6-24-0400-england-ghana",
-      "status": "upcoming",
+      "status": "finished",
       "stage": "L组",
       "kickoff": "2026-06-24 04:00 CST",
-      "minute": "04:00",
+      "minute": "FT",
       "home": "英格兰",
       "away": "加纳",
       "score": [
-        "-",
-        "-"
+        0,
+        0
       ],
       "venue": "波士顿",
       "possession": "-",
@@ -11431,9 +11431,15 @@ window.WORLD_CUP_MATCHES = {
         "源站附加盘口摘录：让球: -1.5 @ 1.92 +1.5 @ 1.85 大小球: O 2.5 @ 1.61 U 2.5 @ 2.15 更新于 32 分 前。",
         "虎扑公开足球赛程页面用于近期赛程/赛果校验，并展示公开热度/评分人数；不提供赔率或支持率。",
         "Sporttery HAD/HHAD/CRS 由官方计算器公开接口自动刷新。",
-        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。"
+        "PANews AI Arena 提供外部 AI 交易观点/持仓快照；该数据来自公开页面，不参与本站模型计权。",
+        "已完赛比分由 wc-2026 公开比赛赔率页面 自动刷新；未保存的历史盘口不补造。"
       ],
       "timeline": [
+        {
+          "minute": "FT",
+          "title": "英格兰 0 - 0 加纳",
+          "text": "赛果来自 wc-2026 公开比赛赔率页面 自动刷新。"
+        },
         {
           "minute": "04:00",
           "title": "英格兰 vs 加纳",
@@ -11460,8 +11466,10 @@ window.WORLD_CUP_MATCHES = {
       ],
       "hupu": {
         "matchId": "3513922",
-        "status": "进行中",
-        "sourceUrl": "https://m.hupu.com/soccer/schedule"
+        "status": "已结束",
+        "sourceUrl": "https://m.hupu.com/soccer/schedule",
+        "ratingCount": 17000,
+        "ratingText": "1.7万评分"
       },
       "sporttery": {
         "matchId": "2040256",
@@ -11518,20 +11526,20 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-eng-gha-2026-06-23",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-eng-gha-2026-06-23",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
-          "home": 0.2626,
-          "draw": 0.6818,
-          "away": 0.0556
+          "home": 0.0,
+          "draw": 1.0,
+          "away": 0.0
         },
         "consensus": {
           "modelCount": 3,
           "topOutcome": "draw",
-          "topProbability": 0.6467,
+          "topProbability": 0.8762,
           "averageProbabilities": {
-            "home": 0.3,
-            "draw": 0.6467,
-            "away": 0.0533
+            "home": 0.1038,
+            "draw": 0.8762,
+            "away": 0.0201
           },
           "agreement": 1.0
         },
@@ -11544,35 +11552,35 @@ window.WORLD_CUP_MATCHES = {
             "latestAction": "sell",
             "outcome": "draw",
             "probabilities": {
-              "home": 0.44,
-              "draw": 0.5,
-              "away": 0.06
+              "home": 0.1313,
+              "draw": 0.8485,
+              "away": 0.0202
             },
-            "reason": "draw价格0.49已达合理盈利区间，平仓部分仓位锁定约28美元收益，降低风险敞口",
-            "amount": 400.0,
-            "price": 0.51,
+            "reason": "盘口异动：England vs Ghana Draw 68c -> 82c；Draw价格已从信号触发时的0.68升至0.84实现大幅盈利,近结算阶段应锁定利润而非持仓待涨",
+            "amount": 147.9,
+            "price": 0.88,
             "shares": 168.07,
             "positionValue": null,
-            "updatedAt": "2026-06-23T21:41:58.860Z"
+            "updatedAt": "2026-06-23T21:58:00.635Z"
           },
           {
             "modelId": "deepseek",
             "name": "DeepSeek Match Desk",
             "short": "DeepSeek",
             "color": "#b68417",
-            "latestAction": "buy",
+            "latestAction": "sell",
             "outcome": "draw",
             "probabilities": {
-              "home": 0.24,
-              "draw": 0.71,
-              "away": 0.05
+              "home": 0.13,
+              "draw": 0.85,
+              "away": 0.02
             },
-            "reason": "盘口异动：England vs Ghana England 40c -> 26c；盘口异动显示英格兰赔率大幅下跌，市场预期平局概率上升，当前平局价格0.7有套利空间",
-            "amount": 2000.0,
-            "price": 0.71,
+            "reason": "盘口异动：England vs Ghana Draw 68c -> 82c；盘口异动后价格已大幅上涨至0.84，且比赛临近结算，锁定利润",
+            "amount": 2478.87,
+            "price": 0.88,
             "shares": 2816.9,
             "positionValue": null,
-            "updatedAt": "2026-06-23T21:52:26.543Z"
+            "updatedAt": "2026-06-23T21:58:00.814Z"
           },
           {
             "modelId": "glm",
@@ -11582,19 +11590,102 @@ window.WORLD_CUP_MATCHES = {
             "latestAction": "sell",
             "outcome": "draw",
             "probabilities": {
-              "home": 0.22,
-              "draw": 0.73,
-              "away": 0.05
+              "home": 0.05,
+              "draw": 0.93,
+              "away": 0.02
             },
-            "reason": "盘口异动：England vs Ghana England 40c -> 26c；late-live阶段平局概率0.70已高位，部分止盈锁定利润，剩余持仓博结算全赢",
-            "amount": 3000.0,
-            "price": 0.72,
+            "reason": "平局概率极高，当前价格0.93已充分反映，且市场临近结算，卖出锁定丰厚利润。",
+            "amount": 5173.7,
+            "price": 0.95,
             "shares": 5446.0,
             "positionValue": null,
-            "updatedAt": "2026-06-23T21:52:27.200Z"
+            "updatedAt": "2026-06-23T21:59:21.666Z"
           }
         ],
         "note": "外部 AI 交易观点，来自 PANews World Cup AI Arena 公开账本；不等同本站概率模型。"
+      },
+      "closingSnapshot": {
+        "capturedAt": "2026-06-24 07:11 CST",
+        "reason": "Captured before marking the match as finished, for future model backtests.",
+        "resultSource": "wc-2026 公开比赛赔率页面",
+        "kickoff": "2026-06-24 04:00 CST",
+        "odds": [
+          {
+            "outcome": "英格兰胜",
+            "referenceOdds": 1.28,
+            "sporttery": null,
+            "polymarket": null
+          },
+          {
+            "outcome": "平局",
+            "referenceOdds": 5,
+            "sporttery": null,
+            "polymarket": null
+          },
+          {
+            "outcome": "加纳胜",
+            "referenceOdds": 7.5,
+            "sporttery": null,
+            "polymarket": null
+          }
+        ],
+        "sporttery": {
+          "matchId": "2040256",
+          "matchNumStr": "周二046",
+          "sourceUrl": "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "had": {
+            "home": null,
+            "draw": null,
+            "away": null,
+            "goalLine": "",
+            "lastUpdated": ""
+          },
+          "hhad": {
+            "home": 2.17,
+            "draw": 3.72,
+            "away": 2.5,
+            "goalLine": "-2",
+            "lastUpdated": "2026-06-23 17:37:21"
+          },
+          "correctScore": {
+            "0-0": 20.0,
+            "0-1": 45.0,
+            "0-2": 150.0,
+            "0-3": 500.0,
+            "0-4": 1000.0,
+            "0-5": 1000.0,
+            "1-0": 6.7,
+            "1-1": 13.5,
+            "1-2": 60.0,
+            "1-3": 250.0,
+            "1-4": 700.0,
+            "1-5": 1000.0,
+            "2-0": 5.7,
+            "2-1": 8.0,
+            "2-2": 32.0,
+            "2-3": 225.0,
+            "2-4": 600.0,
+            "2-5": 1000.0,
+            "3-0": 5.5,
+            "3-1": 8.5,
+            "3-2": 30.0,
+            "3-3": 90.0,
+            "4-0": 9.5,
+            "4-1": 13.0,
+            "4-2": 42.0,
+            "5-0": 18.0,
+            "5-1": 24.0,
+            "5-2": 70.0
+          }
+        },
+        "sources": [
+          "https://wc-2026.com/world-cup-odds/",
+          "https://wc-2026.com/2026/03/21/england-vs-ghana/",
+          "https://gamma-api.polymarket.com/events?slug=world-cup-winner",
+          "https://m.hupu.com/soccer/schedule",
+          "https://www.sporttery.cn/jc/jsq/zqspf/",
+          "https://worldcup.panewslab.com/"
+        ]
       }
     },
     {
@@ -11699,7 +11790,7 @@ window.WORLD_CUP_MATCHES = {
       ],
       "hupu": {
         "matchId": "3514809",
-        "status": "未开始",
+        "status": "进行中",
         "sourceUrl": "https://m.hupu.com/soccer/schedule"
       },
       "sporttery": {
@@ -12898,7 +12989,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ecu-ger-2026-06-25",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ecu-ger-2026-06-25",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.2537,
           "draw": 0.2239,
@@ -14950,7 +15041,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-alg-aut-2026-06-27",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-alg-aut-2026-06-27",
-        "lastUpdated": "2026-06-23T21:57:31.899Z",
+        "lastUpdated": "2026-06-23T23:11:32.465Z",
         "marketPrices": {
           "home": 0.2438,
           "draw": 0.4229,
@@ -18092,7 +18183,7 @@ window.WORLD_CUP_MATCHES = {
     }
   ],
   "qualificationProjection": {
-    "generatedAt": "2026-06-24 05:57 CST",
+    "generatedAt": "2026-06-24 07:11 CST",
     "method": "小组赛出线蒙特卡洛：已完赛按真实比分计入，未赛按当前 1X2 市场共识 + 表现评分抽样；每组前二与 8 个最佳小组第三晋级。",
     "simulations": 2500,
     "bestThirdCount": 8,
@@ -18117,10 +18208,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.8764,
-            "thirdProbability": 0.1092,
-            "bestThirdProbability": 0.1076,
-            "advanceProbability": 0.984
+            "topTwoProbability": 0.8808,
+            "thirdProbability": 0.106,
+            "bestThirdProbability": 0.1016,
+            "advanceProbability": 0.9824
           },
           {
             "team": "捷克",
@@ -18129,9 +18220,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -1,
             "currentGoalsFor": 2,
             "topTwoProbability": 0.0376,
-            "thirdProbability": 0.7512,
-            "bestThirdProbability": 0.1144,
-            "advanceProbability": 0.152
+            "thirdProbability": 0.7712,
+            "bestThirdProbability": 0.1088,
+            "advanceProbability": 0.1464
           },
           {
             "team": "南非",
@@ -18139,10 +18230,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": -2,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.086,
-            "thirdProbability": 0.1396,
-            "bestThirdProbability": 0.0144,
-            "advanceProbability": 0.1004
+            "topTwoProbability": 0.0816,
+            "thirdProbability": 0.1228,
+            "bestThirdProbability": 0.0136,
+            "advanceProbability": 0.0952
           }
         ]
       },
@@ -18178,9 +18269,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -3,
             "currentGoalsFor": 2,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.9136,
-            "bestThirdProbability": 0.7616,
-            "advanceProbability": 0.7616
+            "thirdProbability": 0.9204,
+            "bestThirdProbability": 0.7764,
+            "advanceProbability": 0.7764
           },
           {
             "team": "卡塔尔",
@@ -18189,9 +18280,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -6,
             "currentGoalsFor": 1,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.0864,
-            "bestThirdProbability": 0.0864,
-            "advanceProbability": 0.0864
+            "thirdProbability": 0.0796,
+            "bestThirdProbability": 0.0796,
+            "advanceProbability": 0.0796
           }
         ]
       },
@@ -18204,9 +18295,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 3,
             "currentGoalsFor": 4,
-            "topTwoProbability": 0.9524,
-            "thirdProbability": 0.0476,
-            "bestThirdProbability": 0.0476,
+            "topTwoProbability": 0.9572,
+            "thirdProbability": 0.0428,
+            "bestThirdProbability": 0.0428,
             "advanceProbability": 1.0
           },
           {
@@ -18215,9 +18306,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 1,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.9992,
-            "thirdProbability": 0.0008,
-            "bestThirdProbability": 0.0008,
+            "topTwoProbability": 0.9988,
+            "thirdProbability": 0.0012,
+            "bestThirdProbability": 0.0012,
             "advanceProbability": 1.0
           },
           {
@@ -18226,10 +18317,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.0484,
-            "thirdProbability": 0.9516,
-            "bestThirdProbability": 0.9144,
-            "advanceProbability": 0.9628
+            "topTwoProbability": 0.044,
+            "thirdProbability": 0.956,
+            "bestThirdProbability": 0.908,
+            "advanceProbability": 0.952
           },
           {
             "team": "海地",
@@ -18264,10 +18355,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.5776,
-            "thirdProbability": 0.4224,
-            "bestThirdProbability": 0.4212,
-            "advanceProbability": 0.9988
+            "topTwoProbability": 0.5912,
+            "thirdProbability": 0.4088,
+            "bestThirdProbability": 0.4036,
+            "advanceProbability": 0.9948
           },
           {
             "team": "巴拉圭",
@@ -18275,10 +18366,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": -2,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.4224,
-            "thirdProbability": 0.5188,
-            "bestThirdProbability": 0.478,
-            "advanceProbability": 0.9004
+            "topTwoProbability": 0.4088,
+            "thirdProbability": 0.5248,
+            "bestThirdProbability": 0.4884,
+            "advanceProbability": 0.8972
           },
           {
             "team": "土耳其",
@@ -18287,9 +18378,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -3,
             "currentGoalsFor": 0,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.0588,
-            "bestThirdProbability": 0.0472,
-            "advanceProbability": 0.0472
+            "thirdProbability": 0.0664,
+            "bestThirdProbability": 0.0532,
+            "advanceProbability": 0.0532
           }
         ]
       },
@@ -18313,10 +18404,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.9712,
-            "thirdProbability": 0.0232,
-            "bestThirdProbability": 0.0224,
-            "advanceProbability": 0.9936
+            "topTwoProbability": 0.9772,
+            "thirdProbability": 0.0184,
+            "bestThirdProbability": 0.018,
+            "advanceProbability": 0.9952
           },
           {
             "team": "厄瓜多尔",
@@ -18324,10 +18415,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": -1,
             "currentGoalsFor": 0,
-            "topTwoProbability": 0.0056,
-            "thirdProbability": 0.9268,
-            "bestThirdProbability": 0.1148,
-            "advanceProbability": 0.1204
+            "topTwoProbability": 0.0044,
+            "thirdProbability": 0.9316,
+            "bestThirdProbability": 0.1176,
+            "advanceProbability": 0.122
           },
           {
             "team": "库拉索",
@@ -18335,10 +18426,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": -6,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.0232,
+            "topTwoProbability": 0.0184,
             "thirdProbability": 0.05,
-            "bestThirdProbability": 0.0056,
-            "advanceProbability": 0.0288
+            "bestThirdProbability": 0.0044,
+            "advanceProbability": 0.0228
           }
         ]
       },
@@ -18362,9 +18453,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 4,
             "currentGoalsFor": 6,
-            "topTwoProbability": 0.802,
-            "thirdProbability": 0.198,
-            "bestThirdProbability": 0.198,
+            "topTwoProbability": 0.7872,
+            "thirdProbability": 0.2128,
+            "bestThirdProbability": 0.2128,
             "advanceProbability": 1.0
           },
           {
@@ -18373,10 +18464,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 6,
-            "topTwoProbability": 0.198,
-            "thirdProbability": 0.802,
-            "bestThirdProbability": 0.802,
-            "advanceProbability": 1.0
+            "topTwoProbability": 0.2128,
+            "thirdProbability": 0.7872,
+            "bestThirdProbability": 0.7864,
+            "advanceProbability": 0.9992
           },
           {
             "team": "突尼斯",
@@ -18400,9 +18491,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 2,
             "currentGoalsFor": 4,
-            "topTwoProbability": 0.832,
-            "thirdProbability": 0.168,
-            "bestThirdProbability": 0.168,
+            "topTwoProbability": 0.8448,
+            "thirdProbability": 0.1552,
+            "bestThirdProbability": 0.1552,
             "advanceProbability": 1.0
           },
           {
@@ -18411,10 +18502,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 2,
             "currentGoalDifference": 0,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.2068,
-            "thirdProbability": 0.7932,
-            "bestThirdProbability": 0.2636,
-            "advanceProbability": 0.4704
+            "topTwoProbability": 0.1936,
+            "thirdProbability": 0.8064,
+            "bestThirdProbability": 0.2764,
+            "advanceProbability": 0.47
           },
           {
             "team": "比利时",
@@ -18422,10 +18513,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 2,
             "currentGoalDifference": 0,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.9416,
-            "thirdProbability": 0.0352,
-            "bestThirdProbability": 0.0352,
-            "advanceProbability": 0.9768
+            "topTwoProbability": 0.9428,
+            "thirdProbability": 0.032,
+            "bestThirdProbability": 0.032,
+            "advanceProbability": 0.9748
           },
           {
             "team": "新西兰",
@@ -18433,10 +18524,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": -2,
             "currentGoalsFor": 3,
-            "topTwoProbability": 0.0196,
-            "thirdProbability": 0.0036,
-            "bestThirdProbability": 0.0036,
-            "advanceProbability": 0.0232
+            "topTwoProbability": 0.0188,
+            "thirdProbability": 0.0064,
+            "bestThirdProbability": 0.0064,
+            "advanceProbability": 0.0252
           }
         ]
       },
@@ -18449,9 +18540,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 4,
             "currentGoalsFor": 4,
-            "topTwoProbability": 0.9824,
-            "thirdProbability": 0.0176,
-            "bestThirdProbability": 0.0176,
+            "topTwoProbability": 0.976,
+            "thirdProbability": 0.024,
+            "bestThirdProbability": 0.024,
             "advanceProbability": 1.0
           },
           {
@@ -18460,10 +18551,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 2,
             "currentGoalDifference": 0,
             "currentGoalsFor": 3,
-            "topTwoProbability": 0.0932,
-            "thirdProbability": 0.9068,
-            "bestThirdProbability": 0.244,
-            "advanceProbability": 0.3372
+            "topTwoProbability": 0.102,
+            "thirdProbability": 0.898,
+            "bestThirdProbability": 0.2672,
+            "advanceProbability": 0.3692
           },
           {
             "team": "佛得角",
@@ -18471,10 +18562,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 2,
             "currentGoalDifference": 0,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.5636,
+            "topTwoProbability": 0.5508,
             "thirdProbability": 0.0536,
-            "bestThirdProbability": 0.0532,
-            "advanceProbability": 0.6168
+            "bestThirdProbability": 0.0536,
+            "advanceProbability": 0.6044
           },
           {
             "team": "沙特阿拉伯",
@@ -18482,10 +18573,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": -4,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.3608,
-            "thirdProbability": 0.022,
-            "bestThirdProbability": 0.022,
-            "advanceProbability": 0.3828
+            "topTwoProbability": 0.3712,
+            "thirdProbability": 0.0244,
+            "bestThirdProbability": 0.0244,
+            "advanceProbability": 0.3956
           }
         ]
       },
@@ -18521,9 +18612,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -3,
             "currentGoalsFor": 3,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.9536,
-            "bestThirdProbability": 0.6496,
-            "advanceProbability": 0.6496
+            "thirdProbability": 0.9548,
+            "bestThirdProbability": 0.6492,
+            "advanceProbability": 0.6492
           },
           {
             "team": "伊拉克",
@@ -18532,9 +18623,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -6,
             "currentGoalsFor": 1,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.0464,
-            "bestThirdProbability": 0.0248,
-            "advanceProbability": 0.0248
+            "thirdProbability": 0.0452,
+            "bestThirdProbability": 0.024,
+            "advanceProbability": 0.024
           }
         ]
       },
@@ -18558,10 +18649,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 0,
             "currentGoalsFor": 3,
-            "topTwoProbability": 0.7824,
-            "thirdProbability": 0.2176,
-            "bestThirdProbability": 0.2172,
-            "advanceProbability": 0.9996
+            "topTwoProbability": 0.7748,
+            "thirdProbability": 0.2252,
+            "bestThirdProbability": 0.2228,
+            "advanceProbability": 0.9976
           },
           {
             "team": "阿尔及利亚",
@@ -18569,10 +18660,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": -2,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.2176,
-            "thirdProbability": 0.7744,
-            "bestThirdProbability": 0.5752,
-            "advanceProbability": 0.7928
+            "topTwoProbability": 0.2252,
+            "thirdProbability": 0.768,
+            "bestThirdProbability": 0.5688,
+            "advanceProbability": 0.794
           },
           {
             "team": "约旦",
@@ -18581,9 +18672,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -3,
             "currentGoalsFor": 2,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.008,
-            "bestThirdProbability": 0.0044,
-            "advanceProbability": 0.0044
+            "thirdProbability": 0.0068,
+            "bestThirdProbability": 0.0048,
+            "advanceProbability": 0.0048
           }
         ]
       },
@@ -18596,9 +18687,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 4,
             "currentGoalDifference": 5,
             "currentGoalsFor": 6,
-            "topTwoProbability": 0.9788,
-            "thirdProbability": 0.0212,
-            "bestThirdProbability": 0.0212,
+            "topTwoProbability": 0.9856,
+            "thirdProbability": 0.0144,
+            "bestThirdProbability": 0.0144,
             "advanceProbability": 1.0
           },
           {
@@ -18607,9 +18698,9 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 3,
             "currentGoalDifference": 2,
             "currentGoalsFor": 3,
-            "topTwoProbability": 0.9308,
-            "thirdProbability": 0.0692,
-            "bestThirdProbability": 0.0688,
+            "topTwoProbability": 0.9232,
+            "thirdProbability": 0.0768,
+            "bestThirdProbability": 0.0764,
             "advanceProbability": 0.9996
           },
           {
@@ -18618,10 +18709,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 1,
             "currentGoalDifference": 0,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.0904,
-            "thirdProbability": 0.658,
-            "bestThirdProbability": 0.4328,
-            "advanceProbability": 0.5232
+            "topTwoProbability": 0.0912,
+            "thirdProbability": 0.6648,
+            "bestThirdProbability": 0.4332,
+            "advanceProbability": 0.5244
           },
           {
             "team": "乌兹别克斯坦",
@@ -18630,9 +18721,9 @@ window.WORLD_CUP_MATCHES = {
             "currentGoalDifference": -7,
             "currentGoalsFor": 1,
             "topTwoProbability": 0.0,
-            "thirdProbability": 0.2516,
-            "bestThirdProbability": 0.1152,
-            "advanceProbability": 0.1152
+            "thirdProbability": 0.244,
+            "bestThirdProbability": 0.1036,
+            "advanceProbability": 0.1036
           }
         ]
       },
@@ -18642,24 +18733,24 @@ window.WORLD_CUP_MATCHES = {
           {
             "team": "英格兰",
             "currentRank": 1,
-            "currentPoints": 3,
+            "currentPoints": 4,
             "currentGoalDifference": 2,
             "currentGoalsFor": 4,
-            "topTwoProbability": 0.9984,
-            "thirdProbability": 0.0016,
-            "bestThirdProbability": 0.0016,
+            "topTwoProbability": 0.9996,
+            "thirdProbability": 0.0004,
+            "bestThirdProbability": 0.0004,
             "advanceProbability": 1.0
           },
           {
             "team": "加纳",
             "currentRank": 2,
-            "currentPoints": 3,
+            "currentPoints": 4,
             "currentGoalDifference": 1,
             "currentGoalsFor": 1,
-            "topTwoProbability": 0.3216,
-            "thirdProbability": 0.6772,
-            "bestThirdProbability": 0.668,
-            "advanceProbability": 0.9896
+            "topTwoProbability": 0.3872,
+            "thirdProbability": 0.6128,
+            "bestThirdProbability": 0.6128,
+            "advanceProbability": 1.0
           },
           {
             "team": "巴拿马",
@@ -18667,10 +18758,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 0,
             "currentGoalDifference": -1,
             "currentGoalsFor": 0,
-            "topTwoProbability": 0.004,
-            "thirdProbability": 0.08,
-            "bestThirdProbability": 0.0632,
-            "advanceProbability": 0.0672
+            "topTwoProbability": 0.0056,
+            "thirdProbability": 0.074,
+            "bestThirdProbability": 0.0596,
+            "advanceProbability": 0.0652
           },
           {
             "team": "克罗地亚",
@@ -18678,10 +18769,10 @@ window.WORLD_CUP_MATCHES = {
             "currentPoints": 0,
             "currentGoalDifference": -2,
             "currentGoalsFor": 2,
-            "topTwoProbability": 0.676,
-            "thirdProbability": 0.2412,
-            "bestThirdProbability": 0.2144,
-            "advanceProbability": 0.8904
+            "topTwoProbability": 0.6076,
+            "thirdProbability": 0.3128,
+            "bestThirdProbability": 0.2744,
+            "advanceProbability": 0.882
           }
         ]
       }
@@ -18787,36 +18878,25 @@ window.WORLD_CUP_MATCHES = {
         "advanceProbability": 1.0
       },
       {
+        "team": "英格兰",
+        "currentRank": 1,
+        "currentPoints": 4,
+        "currentGoalDifference": 2,
+        "currentGoalsFor": 4,
+        "topTwoProbability": 0.9996,
+        "thirdProbability": 0.0004,
+        "bestThirdProbability": 0.0004,
+        "advanceProbability": 1.0
+      },
+      {
         "team": "摩洛哥",
         "currentRank": 2,
         "currentPoints": 4,
         "currentGoalDifference": 1,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.9992,
-        "thirdProbability": 0.0008,
-        "bestThirdProbability": 0.0008,
-        "advanceProbability": 1.0
-      },
-      {
-        "team": "英格兰",
-        "currentRank": 1,
-        "currentPoints": 3,
-        "currentGoalDifference": 2,
-        "currentGoalsFor": 4,
-        "topTwoProbability": 0.9984,
-        "thirdProbability": 0.0016,
-        "bestThirdProbability": 0.0016,
-        "advanceProbability": 1.0
-      },
-      {
-        "team": "西班牙",
-        "currentRank": 1,
-        "currentPoints": 4,
-        "currentGoalDifference": 4,
-        "currentGoalsFor": 4,
-        "topTwoProbability": 0.9824,
-        "thirdProbability": 0.0176,
-        "bestThirdProbability": 0.0176,
+        "topTwoProbability": 0.9988,
+        "thirdProbability": 0.0012,
+        "bestThirdProbability": 0.0012,
         "advanceProbability": 1.0
       },
       {
@@ -18825,9 +18905,20 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 4,
         "currentGoalDifference": 5,
         "currentGoalsFor": 6,
-        "topTwoProbability": 0.9788,
-        "thirdProbability": 0.0212,
-        "bestThirdProbability": 0.0212,
+        "topTwoProbability": 0.9856,
+        "thirdProbability": 0.0144,
+        "bestThirdProbability": 0.0144,
+        "advanceProbability": 1.0
+      },
+      {
+        "team": "西班牙",
+        "currentRank": 1,
+        "currentPoints": 4,
+        "currentGoalDifference": 4,
+        "currentGoalsFor": 4,
+        "topTwoProbability": 0.976,
+        "thirdProbability": 0.024,
+        "bestThirdProbability": 0.024,
         "advanceProbability": 1.0
       },
       {
@@ -18836,9 +18927,9 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 4,
         "currentGoalDifference": 3,
         "currentGoalsFor": 4,
-        "topTwoProbability": 0.9524,
-        "thirdProbability": 0.0476,
-        "bestThirdProbability": 0.0476,
+        "topTwoProbability": 0.9572,
+        "thirdProbability": 0.0428,
+        "bestThirdProbability": 0.0428,
         "advanceProbability": 1.0
       },
       {
@@ -18847,9 +18938,9 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 4,
         "currentGoalDifference": 2,
         "currentGoalsFor": 4,
-        "topTwoProbability": 0.832,
-        "thirdProbability": 0.168,
-        "bestThirdProbability": 0.168,
+        "topTwoProbability": 0.8448,
+        "thirdProbability": 0.1552,
+        "bestThirdProbability": 0.1552,
         "advanceProbability": 1.0
       },
       {
@@ -18858,20 +18949,20 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 4,
         "currentGoalDifference": 4,
         "currentGoalsFor": 6,
-        "topTwoProbability": 0.802,
-        "thirdProbability": 0.198,
-        "bestThirdProbability": 0.198,
+        "topTwoProbability": 0.7872,
+        "thirdProbability": 0.2128,
+        "bestThirdProbability": 0.2128,
         "advanceProbability": 1.0
       },
       {
-        "team": "瑞典",
-        "currentRank": 3,
-        "currentPoints": 3,
-        "currentGoalDifference": 0,
-        "currentGoalsFor": 6,
-        "topTwoProbability": 0.198,
-        "thirdProbability": 0.802,
-        "bestThirdProbability": 0.802,
+        "team": "加纳",
+        "currentRank": 2,
+        "currentPoints": 4,
+        "currentGoalDifference": 1,
+        "currentGoalsFor": 1,
+        "topTwoProbability": 0.3872,
+        "thirdProbability": 0.6128,
+        "bestThirdProbability": 0.6128,
         "advanceProbability": 1.0
       },
       {
@@ -18880,10 +18971,21 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": 2,
         "currentGoalsFor": 3,
-        "topTwoProbability": 0.9308,
-        "thirdProbability": 0.0692,
-        "bestThirdProbability": 0.0688,
+        "topTwoProbability": 0.9232,
+        "thirdProbability": 0.0768,
+        "bestThirdProbability": 0.0764,
         "advanceProbability": 0.9996
+      },
+      {
+        "team": "瑞典",
+        "currentRank": 3,
+        "currentPoints": 3,
+        "currentGoalDifference": 0,
+        "currentGoalsFor": 6,
+        "topTwoProbability": 0.2128,
+        "thirdProbability": 0.7872,
+        "bestThirdProbability": 0.7864,
+        "advanceProbability": 0.9992
       },
       {
         "team": "奥地利",
@@ -18891,21 +18993,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": 0,
         "currentGoalsFor": 3,
-        "topTwoProbability": 0.7824,
-        "thirdProbability": 0.2176,
-        "bestThirdProbability": 0.2172,
-        "advanceProbability": 0.9996
-      },
-      {
-        "team": "澳大利亚",
-        "currentRank": 2,
-        "currentPoints": 3,
-        "currentGoalDifference": 0,
-        "currentGoalsFor": 2,
-        "topTwoProbability": 0.5776,
-        "thirdProbability": 0.4224,
-        "bestThirdProbability": 0.4212,
-        "advanceProbability": 0.9988
+        "topTwoProbability": 0.7748,
+        "thirdProbability": 0.2252,
+        "bestThirdProbability": 0.2228,
+        "advanceProbability": 0.9976
       },
       {
         "team": "科特迪瓦",
@@ -18913,21 +19004,21 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": 0,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.9712,
-        "thirdProbability": 0.0232,
-        "bestThirdProbability": 0.0224,
-        "advanceProbability": 0.9936
+        "topTwoProbability": 0.9772,
+        "thirdProbability": 0.0184,
+        "bestThirdProbability": 0.018,
+        "advanceProbability": 0.9952
       },
       {
-        "team": "加纳",
+        "team": "澳大利亚",
         "currentRank": 2,
         "currentPoints": 3,
-        "currentGoalDifference": 1,
-        "currentGoalsFor": 1,
-        "topTwoProbability": 0.3216,
-        "thirdProbability": 0.6772,
-        "bestThirdProbability": 0.668,
-        "advanceProbability": 0.9896
+        "currentGoalDifference": 0,
+        "currentGoalsFor": 2,
+        "topTwoProbability": 0.5912,
+        "thirdProbability": 0.4088,
+        "bestThirdProbability": 0.4036,
+        "advanceProbability": 0.9948
       },
       {
         "team": "韩国",
@@ -18935,10 +19026,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": 0,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.8764,
-        "thirdProbability": 0.1092,
-        "bestThirdProbability": 0.1076,
-        "advanceProbability": 0.984
+        "topTwoProbability": 0.8808,
+        "thirdProbability": 0.106,
+        "bestThirdProbability": 0.1016,
+        "advanceProbability": 0.9824
       },
       {
         "team": "比利时",
@@ -18946,10 +19037,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 2,
         "currentGoalDifference": 0,
         "currentGoalsFor": 1,
-        "topTwoProbability": 0.9416,
-        "thirdProbability": 0.0352,
-        "bestThirdProbability": 0.0352,
-        "advanceProbability": 0.9768
+        "topTwoProbability": 0.9428,
+        "thirdProbability": 0.032,
+        "bestThirdProbability": 0.032,
+        "advanceProbability": 0.9748
       },
       {
         "team": "苏格兰",
@@ -18957,10 +19048,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": 0,
         "currentGoalsFor": 1,
-        "topTwoProbability": 0.0484,
-        "thirdProbability": 0.9516,
-        "bestThirdProbability": 0.9144,
-        "advanceProbability": 0.9628
+        "topTwoProbability": 0.044,
+        "thirdProbability": 0.956,
+        "bestThirdProbability": 0.908,
+        "advanceProbability": 0.952
       },
       {
         "team": "巴拉圭",
@@ -18968,10 +19059,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": -2,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.4224,
-        "thirdProbability": 0.5188,
-        "bestThirdProbability": 0.478,
-        "advanceProbability": 0.9004
+        "topTwoProbability": 0.4088,
+        "thirdProbability": 0.5248,
+        "bestThirdProbability": 0.4884,
+        "advanceProbability": 0.8972
       },
       {
         "team": "克罗地亚",
@@ -18979,10 +19070,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 0,
         "currentGoalDifference": -2,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.676,
-        "thirdProbability": 0.2412,
-        "bestThirdProbability": 0.2144,
-        "advanceProbability": 0.8904
+        "topTwoProbability": 0.6076,
+        "thirdProbability": 0.3128,
+        "bestThirdProbability": 0.2744,
+        "advanceProbability": 0.882
       },
       {
         "team": "阿尔及利亚",
@@ -18990,10 +19081,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 3,
         "currentGoalDifference": -2,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.2176,
-        "thirdProbability": 0.7744,
-        "bestThirdProbability": 0.5752,
-        "advanceProbability": 0.7928
+        "topTwoProbability": 0.2252,
+        "thirdProbability": 0.768,
+        "bestThirdProbability": 0.5688,
+        "advanceProbability": 0.794
       },
       {
         "team": "波黑",
@@ -19002,9 +19093,9 @@ window.WORLD_CUP_MATCHES = {
         "currentGoalDifference": -3,
         "currentGoalsFor": 2,
         "topTwoProbability": 0.0,
-        "thirdProbability": 0.9136,
-        "bestThirdProbability": 0.7616,
-        "advanceProbability": 0.7616
+        "thirdProbability": 0.9204,
+        "bestThirdProbability": 0.7764,
+        "advanceProbability": 0.7764
       },
       {
         "team": "塞内加尔",
@@ -19013,9 +19104,9 @@ window.WORLD_CUP_MATCHES = {
         "currentGoalDifference": -3,
         "currentGoalsFor": 3,
         "topTwoProbability": 0.0,
-        "thirdProbability": 0.9536,
-        "bestThirdProbability": 0.6496,
-        "advanceProbability": 0.6496
+        "thirdProbability": 0.9548,
+        "bestThirdProbability": 0.6492,
+        "advanceProbability": 0.6492
       },
       {
         "team": "佛得角",
@@ -19023,10 +19114,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 2,
         "currentGoalDifference": 0,
         "currentGoalsFor": 2,
-        "topTwoProbability": 0.5636,
+        "topTwoProbability": 0.5508,
         "thirdProbability": 0.0536,
-        "bestThirdProbability": 0.0532,
-        "advanceProbability": 0.6168
+        "bestThirdProbability": 0.0536,
+        "advanceProbability": 0.6044
       },
       {
         "team": "刚果民主共和国",
@@ -19034,10 +19125,10 @@ window.WORLD_CUP_MATCHES = {
         "currentPoints": 1,
         "currentGoalDifference": 0,
         "currentGoalsFor": 1,
-        "topTwoProbability": 0.0904,
-        "thirdProbability": 0.658,
-        "bestThirdProbability": 0.4328,
-        "advanceProbability": 0.5232
+        "topTwoProbability": 0.0912,
+        "thirdProbability": 0.6648,
+        "bestThirdProbability": 0.4332,
+        "advanceProbability": 0.5244
       }
     ]
   }
