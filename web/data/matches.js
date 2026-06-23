@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验；PANews AI Arena",
-  "lastUpdated": "2026-06-23 13:50 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-23 17:37 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -233,7 +233,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-can-bih-2026-06-12",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-bih-2026-06-12",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -412,7 +412,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-usa-par-2026-06-12",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-par-2026-06-12",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -610,7 +610,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-qat-che-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-qat-che-2026-06-13",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -808,7 +808,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bra-mar-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bra-mar-2026-06-13",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -1006,7 +1006,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-hai-sco-2026-06-13",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-hai-sco-2026-06-13",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -1279,7 +1279,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ger-kor-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ger-kor-2026-06-14",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1552,7 +1552,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-civ-ecu-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-civ-ecu-2026-06-14",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1750,7 +1750,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-swe-tun-2026-06-14",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-swe-tun-2026-06-14",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -1948,7 +1948,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-esp-cvi-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-esp-cvi-2026-06-15",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2146,7 +2146,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bel-egy-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bel-egy-2026-06-15",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2344,7 +2344,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ksa-ury-2026-06-15",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ksa-ury-2026-06-15",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -2797,7 +2797,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-fra-sen-2026-06-16",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-fra-sen-2026-06-16",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -3407,7 +3407,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-arg-alg-2026-06-16",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-arg-alg-2026-06-16",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -3747,7 +3747,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-aut-jor-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-aut-jor-2026-06-17",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -4601,7 +4601,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-gha-pan-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-gha-pan-2026-06-17",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -4938,7 +4938,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-uzb-col-2026-06-17",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-uzb-col-2026-06-17",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -5276,7 +5276,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-cze-rsa-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-cze-rsa-2026-06-18",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -5614,7 +5614,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-che-bih-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-che-bih-2026-06-18",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -5933,7 +5933,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-can-qat-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-can-qat-2026-06-18",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6252,7 +6252,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-mex-kr-2026-06-18",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-mex-kr-2026-06-18",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6501,7 +6501,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-usa-aus-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-usa-aus-2026-06-19",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -6833,7 +6833,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-sco-mar-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -7165,7 +7165,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-bra-hai-2026-06-19",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-bra-hai-2026-06-19",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -7743,7 +7743,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-nld-swe-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-nld-swe-2026-06-20",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -8113,7 +8113,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ger-civ-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ger-civ-2026-06-20",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -8483,7 +8483,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ecu-kor-2026-06-20",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ecu-kor-2026-06-20",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -9080,7 +9080,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-esp-ksa-2026-06-21",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-esp-ksa-2026-06-21",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -9600,8 +9600,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513917",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 114000,
-        "ratingText": "11.4万评分"
+        "ratingCount": 115000,
+        "ratingText": "11.5万评分"
       },
       "sporttery": {
         "matchId": "2040249",
@@ -9658,7 +9658,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ury-cvi-2026-06-21",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ury-cvi-2026-06-21",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 1.0,
@@ -10176,15 +10176,15 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513918",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 211000,
-        "ratingText": "21.1万评分"
+        "ratingCount": 253000,
+        "ratingText": "25.3万评分"
       },
       "panewsAi": {
         "sourceName": "PANews AI Arena",
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-arg-aut-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-arg-aut-2026-06-22",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -10404,8 +10404,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513919",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 82000,
-        "ratingText": "8.2万评分"
+        "ratingCount": 121000,
+        "ratingText": "12.1万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-23 09:30 CST",
@@ -10550,15 +10550,15 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513921",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 53000,
-        "ratingText": "5.3万评分"
+        "ratingCount": 88000,
+        "ratingText": "8.8万评分"
       },
       "panewsAi": {
         "sourceName": "PANews AI Arena",
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-nor-sen-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-nor-sen-2026-06-22",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 1.0,
           "draw": 0.0,
@@ -10780,8 +10780,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514786",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 6723,
-        "ratingText": "6723评分"
+        "ratingCount": 29000,
+        "ratingText": "2.9万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-23 13:50 CST",
@@ -10820,7 +10820,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-jor-alg-2026-06-22",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-jor-alg-2026-06-22",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.0,
           "draw": 0.0,
@@ -12042,11 +12042,11 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-ecu-ger-2026-06-25",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-ecu-ger-2026-06-25",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
-          "home": 0.2438,
-          "draw": 0.2338,
-          "away": 0.5224
+          "home": 0.2462,
+          "draw": 0.2362,
+          "away": 0.5176
         },
         "consensus": {
           "modelCount": 3,
@@ -13784,7 +13784,7 @@ window.WORLD_CUP_MATCHES = {
         "sourceUrl": "https://worldcup.panewslab.com/",
         "arenaMatchId": "fifwc-alg-aut-2026-06-27",
         "matchUrl": "https://polymarket.com/sports/world-cup/fifwc-alg-aut-2026-06-27",
-        "lastUpdated": "2026-06-23T05:50:01.314Z",
+        "lastUpdated": "2026-06-23T09:37:54.267Z",
         "marketPrices": {
           "home": 0.2438,
           "draw": 0.403,
