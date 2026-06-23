@@ -1,11 +1,13 @@
-const STORAGE_KEY = "worldcup-score-ui-matches-20260616-live";
+const STORAGE_KEY = "worldcup-score-ui-matches-20260621-qualification";
 const SINGLE_STAKE = 100;
 const PARLAY_STAKE = 10;
 const TARGET_EDGE = 1.1;
 const SPORTTERY_SCORE_WEIGHT = 0.45;
+const CALIBRATED_TOTAL_GOALS_BASELINE = 2.9;
 
 const state = {
   matches: [],
+  qualificationProjection: null,
   selectedId: null,
   filter: "upcoming",
   upcomingListOpen: false,
@@ -61,9 +63,10 @@ function bootstrap() {
       applyPayload(window.WORLD_CUP_MATCHES, "web/data/matches.js");
     } else {
       state.matches = [];
-      state.selectedId = null;
       state.sourceName = "未载入真实数据";
       state.lastUpdated = "-";
+      state.qualificationProjection = null;
+      state.selectedId = null;
     }
     render();
   });
@@ -79,6 +82,7 @@ function loadInitialData() {
       if (savedPayload.userImported) {
         const normalized = normalizePayload(savedPayload, "浏览器本地导入");
         state.matches = normalized.matches;
+        state.qualificationProjection = normalized.qualificationProjection;
         state.sourceName = normalized.sourceName;
         state.lastUpdated = normalized.lastUpdated;
         state.selectedId = state.matches[0]?.id ?? null;
@@ -99,6 +103,7 @@ function loadInitialData() {
 function applyPayload(payload, fallbackSourceName) {
   const normalized = normalizePayload(payload, fallbackSourceName);
   state.matches = normalized.matches;
+  state.qualificationProjection = normalized.qualificationProjection;
   state.sourceName = normalized.sourceName;
   state.lastUpdated = normalized.lastUpdated;
   state.selectedId = pickDefaultMatchId(state.matches);
@@ -111,6 +116,7 @@ function toPayload() {
     sourceName: state.sourceName,
     lastUpdated: state.lastUpdated,
     matches: state.matches,
+    qualificationProjection: state.qualificationProjection,
   };
 }
 
@@ -120,6 +126,7 @@ function normalizePayload(payload, fallbackSourceName) {
       sourceName: fallbackSourceName,
       lastUpdated: new Date().toISOString(),
       matches: payload.map(normalizeMatch).filter(Boolean),
+      qualificationProjection: null,
     };
   }
 
@@ -128,6 +135,7 @@ function normalizePayload(payload, fallbackSourceName) {
       sourceName: String(payload.sourceName || fallbackSourceName),
       lastUpdated: String(payload.lastUpdated || "-"),
       matches: payload.matches.map(normalizeMatch).filter(Boolean),
+      qualificationProjection: normalizeQualificationProjection(payload.qualificationProjection),
     };
   }
 
@@ -136,6 +144,7 @@ function normalizePayload(payload, fallbackSourceName) {
       sourceName: String(payload.sourceName || fallbackSourceName),
       lastUpdated: String(payload.lastUpdated || "-"),
       matches: payload.events.map(eventToMatch).filter(Boolean),
+      qualificationProjection: normalizeQualificationProjection(payload.qualificationProjection),
     };
   }
 
@@ -315,6 +324,46 @@ function normalizePanewsConsensus(raw) {
   };
 }
 
+function normalizeQualificationProjection(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const groups = Array.isArray(raw.groups) ? raw.groups.map(normalizeQualificationGroup).filter(Boolean) : [];
+  const advancingTeams = Array.isArray(raw.advancingTeams)
+    ? raw.advancingTeams.map(normalizeQualificationTeam).filter(Boolean)
+    : [];
+  if (!groups.length || !advancingTeams.length) return null;
+  return {
+    generatedAt: raw.generatedAt ? String(raw.generatedAt) : "",
+    method: raw.method ? String(raw.method) : "",
+    simulations: toNumber(raw.simulations, 0),
+    bestThirdCount: toNumber(raw.bestThirdCount, 8),
+    groups,
+    advancingTeams,
+  };
+}
+
+function normalizeQualificationGroup(raw) {
+  if (!raw?.group || !Array.isArray(raw.teams)) return null;
+  return {
+    group: String(raw.group),
+    teams: raw.teams.map(normalizeQualificationTeam).filter(Boolean),
+  };
+}
+
+function normalizeQualificationTeam(raw) {
+  if (!raw?.team) return null;
+  return {
+    team: String(raw.team),
+    currentRank: toNumber(raw.currentRank),
+    currentPoints: toNumber(raw.currentPoints, 0),
+    currentGoalDifference: toNumber(raw.currentGoalDifference, 0),
+    currentGoalsFor: toNumber(raw.currentGoalsFor, 0),
+    topTwoProbability: toNumber(raw.topTwoProbability),
+    thirdProbability: toNumber(raw.thirdProbability),
+    bestThirdProbability: toNumber(raw.bestThirdProbability),
+    advanceProbability: toNumber(raw.advanceProbability),
+  };
+}
+
 function normalizeProbabilityObject(raw) {
   return {
     home: toNumber(raw?.home),
@@ -387,6 +436,7 @@ function toNumber(value, fallback = null) {
 function render() {
   renderSource();
   renderSummary();
+  renderQualificationProjection();
   renderMatchList();
   renderDetail();
 }
@@ -425,6 +475,87 @@ function summaryItem(label, value, tone = "", suffix = "") {
     <div class="summary-item ${tone ? `summary-${tone}` : ""}">
       <span>${escapeHtml(label)}</span>
       <strong>${escapeHtml(value)}${suffix && value !== "-" ? `<small>${escapeHtml(suffix)}</small>` : ""}</strong>
+    </div>
+  `;
+}
+
+function renderQualificationProjection() {
+  const panel = document.querySelector("#qualificationPanel");
+  if (!panel) return;
+  const projection = state.qualificationProjection;
+  if (!projection) {
+    panel.innerHTML = `
+      <div class="section-title compact">
+        <h2>小组出线预测</h2>
+        <span class="tag">等待模型</span>
+      </div>
+      ${emptyBlock("暂无出线预测快照，下一次数据刷新后会自动生成。")}
+    `;
+    return;
+  }
+
+  const lockedCount = projection.advancingTeams.filter((team) => team.advanceProbability >= 0.995).length;
+  panel.innerHTML = `
+    <div class="section-title compact">
+      <h2>小组出线预测</h2>
+      <span class="tag">模型预测 · ${escapeHtml(projection.generatedAt || "未标注时间")}</span>
+    </div>
+    <div class="qualification-summary">
+      ${metric("预测晋级", `${projection.advancingTeams.length}队`)}
+      ${metric("高概率", `${lockedCount}队`)}
+      ${metric("模拟次数", formatCompactCount(projection.simulations))}
+      ${metric("最佳第三", `${projection.bestThirdCount}队`)}
+    </div>
+    <div class="qualification-note">
+      ${escapeHtml(projection.method || "已完赛按真实比分计入，未赛按当前概率模型抽样。")}
+    </div>
+    <div class="qualified-chip-grid">
+      ${projection.advancingTeams.map(qualifiedChip).join("")}
+    </div>
+    <details class="qualification-groups">
+      <summary>
+        <span>按小组查看概率</span>
+        <strong>${projection.groups.length} 组</strong>
+      </summary>
+      <div class="qualification-group-grid">
+        ${projection.groups.map(qualificationGroupCard).join("")}
+      </div>
+    </details>
+  `;
+}
+
+function qualifiedChip(team, index) {
+  const tone = team.advanceProbability >= 0.995 ? "locked" : team.advanceProbability >= 0.85 ? "strong" : "bubble";
+  return `
+    <div class="qualified-chip ${tone}">
+      <span>${index + 1}</span>
+      <strong>${escapeHtml(team.team)}</strong>
+      <em>${formatPercent(team.advanceProbability)}</em>
+    </div>
+  `;
+}
+
+function qualificationGroupCard(group) {
+  return `
+    <article class="qualification-group-card">
+      <h3>${escapeHtml(group.group)}</h3>
+      <div class="qualification-team-list">
+        ${group.teams.map(qualificationTeamRow).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function qualificationTeamRow(team) {
+  return `
+    <div class="qualification-team-row">
+      <span>${escapeHtml(team.currentRank || "-")}</span>
+      <strong>${escapeHtml(team.team)}</strong>
+      <em>${escapeHtml(team.currentPoints)}分 / ${formatSignedNumber(team.currentGoalDifference)}</em>
+      <div class="qualification-prob">
+        <span style="width: ${Math.round((team.advanceProbability || 0) * 100)}%"></span>
+      </div>
+      <b>${formatPercent(team.advanceProbability)}</b>
     </div>
   `;
 }
@@ -1286,10 +1417,10 @@ function calculateScorePrediction(match) {
     primaryLabel: primary.label,
     primaryProbability: primary.probability,
     primarySourceLabel: hasSportteryScores ? "融合推荐比分" : "模型推荐比分",
-    blendLabel: hasSportteryScores ? "融合口径：模型 55% / 体彩比分盘 45%" : "模型口径：未发现体彩比分盘",
+    blendLabel: hasSportteryScores ? "回测校准融合：模型 55% / 体彩比分盘 45%" : "回测校准模型：未发现体彩比分盘",
     blendNote: hasSportteryScores
-      ? "体彩 CRS 已去水转换为比分市场概率，再与泊松模型概率融合；价值差仍用模型概率减体彩隐含概率观察。"
-      : "当前场次没有体彩 CRS，比分概率仅来自胜平负市场、球队表现和泊松分布。",
+      ? "总进球基线按 36 场已完赛收缩校准为 2.90；体彩 CRS 已去水转换为比分市场概率，再与归一化泊松比分概率融合。"
+      : "当前场次没有体彩 CRS；比分概率来自胜平负市场、球队表现和按 36 场已完赛收缩校准的泊松分布。",
     outcomes: [
       { label: `${match.home}胜`, probability: homeProbability },
       { label: "平局", probability: drawProbability },
@@ -1319,7 +1450,7 @@ function estimateTotalGoals(match, drawProbability) {
     return clampNumber(totalLine + 0.06, 1.25, 4.25);
   }
   const favoriteGap = favoriteProbabilityGap(match);
-  return clampNumber(2.78 - drawProbability * 1.35 + favoriteGap * 0.5, 1.65, 4.15);
+  return clampNumber(CALIBRATED_TOTAL_GOALS_BASELINE - drawProbability * 1.35 + favoriteGap * 0.5, 1.65, 4.15);
 }
 
 function totalGoalsLine(match) {
@@ -1345,7 +1476,9 @@ function scoreMatrix(homeGoals, awayGoals, maxGoals) {
       matrix.push({ home: h, away: a, probability: home[h] * away[a] });
     }
   }
-  return matrix;
+  const total = matrix.reduce((sum, item) => sum + item.probability, 0);
+  if (!total) return matrix;
+  return matrix.map((item) => ({ ...item, probability: item.probability / total }));
 }
 
 function poissonVector(lambda, maxGoals) {
@@ -1697,6 +1830,11 @@ function sportteryProbability(odd) {
 function formatPointGap(value) {
   if (!Number.isFinite(value)) return "-";
   return `${value > 0 ? "+" : ""}${(value * 100).toFixed(1)}pp`;
+}
+
+function formatSignedNumber(value) {
+  if (!Number.isFinite(value)) return "-";
+  return `${value > 0 ? "+" : ""}${value}`;
 }
 
 function formatBook(odd) {

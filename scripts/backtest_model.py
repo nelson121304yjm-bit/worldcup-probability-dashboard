@@ -64,6 +64,7 @@ def build_report(payload: dict[str, Any]) -> dict[str, Any]:
         {"score": score, "count": count, "rate": rounded(safe_rate(count, total))}
         for score, count in score_counter.most_common(8)
     ]
+    recent = recent_finished_report(finished)
 
     return {
         "generatedAt": datetime.now(SHANGHAI).strftime("%Y-%m-%d %H:%M CST"),
@@ -93,6 +94,7 @@ def build_report(payload: dict[str, Any]) -> dict[str, Any]:
             "bothTeamsScoredRate": rounded(safe_rate(sum(1 for home, away in scores if home > 0 and away > 0), total)),
             "commonScores": common_scores,
         },
+        "recent": recent,
         "readiness": {
             "scoreDistribution": readiness(
                 total >= MIN_FINISHED_FOR_SCORE_CALIBRATION,
@@ -135,6 +137,36 @@ def build_report(payload: dict[str, Any]) -> dict[str, Any]:
         },
         "recommendations": recommendations(total, finished_with_1x2, finished_with_crs),
     }
+
+
+def recent_finished_report(finished: list[dict[str, Any]], window: int = 12) -> dict[str, Any]:
+    recent = sorted(finished, key=kickoff_sort_key)[-window:]
+    scored = [(match, score) for match in recent if (score := score_tuple(match)) is not None]
+    scores = [score for _, score in scored]
+    total = len(scores)
+    total_goals = [home + away for home, away in scores]
+    draws = sum(1 for home, away in scores if home == away)
+    return {
+        "window": total,
+        "avgTotalGoals": rounded(average(total_goals)),
+        "drawRate": rounded(safe_rate(draws, total)),
+        "over25Rate": rounded(safe_rate(sum(1 for goals in total_goals if goals > 2.5), total)),
+        "bothTeamsScoredRate": rounded(safe_rate(sum(1 for home, away in scores if home > 0 and away > 0), total)),
+        "matches": [
+            {
+                "kickoff": match.get("kickoff"),
+                "stage": match.get("stage"),
+                "home": match.get("home"),
+                "away": match.get("away"),
+                "score": f"{score[0]}-{score[1]}",
+            }
+            for match, score in scored
+        ],
+    }
+
+
+def kickoff_sort_key(match: dict[str, Any]) -> str:
+    return str(match.get("kickoff") or "")
 
 
 def score_tuple(match: dict[str, Any]) -> tuple[int, int] | None:

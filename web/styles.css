@@ -107,6 +107,7 @@ h1 {
 }
 
 .summary-item,
+.qualification-panel,
 .match-list,
 .detail-card,
 .odds-panel,
@@ -128,6 +129,7 @@ h1 {
 }
 
 .summary-item::-webkit-resizer,
+.qualification-panel::-webkit-resizer,
 .match-list::-webkit-resizer,
 .odds-panel::-webkit-resizer,
 .timeline-panel::-webkit-resizer,
@@ -238,6 +240,204 @@ h1 {
   font-size: 12px;
   font-weight: 700;
   line-height: 1.45;
+}
+
+.qualification-panel {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 252, 254, 0.94)),
+    var(--panel-solid);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+  overflow: auto;
+  resize: vertical;
+  max-height: min(760px, 72vh);
+  container-type: inline-size;
+}
+
+.qualification-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.qualification-note {
+  padding: 10px 11px;
+  border: 1px solid #d8e4f1;
+  border-radius: 8px;
+  background: #f4f8fc;
+  color: #516170;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.qualified-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
+  gap: 8px;
+}
+
+.qualified-chip {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 7px;
+  align-items: center;
+  min-height: 42px;
+  padding: 8px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  font-size: 12px;
+}
+
+.qualified-chip.locked {
+  border-color: #b9d1f4;
+  background: #f1f6ff;
+}
+
+.qualified-chip.strong {
+  border-color: #c4ded4;
+  background: #f0faf5;
+}
+
+.qualified-chip.bubble {
+  border-color: #ead8b7;
+  background: #fff8ea;
+}
+
+.qualified-chip span {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  color: var(--blue);
+  background: #e8f0ff;
+  font-weight: 900;
+}
+
+.qualified-chip strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qualified-chip em {
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.qualification-groups {
+  border-top: 1px solid var(--line);
+  padding-top: 2px;
+}
+
+.qualification-groups summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 2px;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  list-style: none;
+}
+
+.qualification-groups summary::-webkit-details-marker {
+  display: none;
+}
+
+.qualification-groups summary strong {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.qualification-group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.qualification-group-card {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.qualification-group-card h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.qualification-team-list {
+  display: grid;
+  gap: 7px;
+}
+
+.qualification-team-row {
+  display: grid;
+  grid-template-columns: 22px minmax(76px, 1fr) minmax(70px, auto) minmax(72px, 0.8fr) 48px;
+  gap: 7px;
+  align-items: center;
+  min-height: 30px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.qualification-team-row > span {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  color: var(--blue);
+  background: #e8f0ff;
+  font-weight: 900;
+}
+
+.qualification-team-row strong {
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qualification-team-row em {
+  font-style: normal;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.qualification-team-row b {
+  color: var(--green);
+  text-align: right;
+}
+
+.qualification-prob {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7edf2;
+}
+
+.qualification-prob span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--blue));
 }
 
 .file-button,
@@ -1836,6 +2036,15 @@ select {
     grid-template-columns: minmax(74px, 0.7fr) minmax(96px, 1fr) 48px;
   }
 
+  .qualification-team-row {
+    grid-template-columns: 22px minmax(74px, 1fr) 50px;
+  }
+
+  .qualification-team-row em,
+  .qualification-prob {
+    display: none;
+  }
+
   .detail-head {
     grid-template-columns: 1fr;
   }
@@ -1883,6 +2092,7 @@ select {
   }
 
   .summary-item,
+  .qualification-panel,
   .match-list,
   .detail-card,
   .odds-panel,

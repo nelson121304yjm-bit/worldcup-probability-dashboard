@@ -45,3 +45,23 @@ def test_backtest_report_counts_closing_market_snapshots() -> None:
 
     assert report["sample"]["finishedWith1x2Snapshot"] == 1
     assert report["sample"]["finishedWithCorrectScoreSnapshot"] == 1
+
+
+def test_backtest_report_includes_recent_finished_form() -> None:
+    payload = {
+        "matches": [
+            {"status": "finished", "kickoff": "2026-06-12 03:00 CST", "score": [1, 0], "odds": []},
+            {"status": "finished", "kickoff": "2026-06-13 03:00 CST", "score": [1, 1], "odds": []},
+            {"status": "finished", "kickoff": "2026-06-14 03:00 CST", "score": [2, 2], "odds": []},
+            {"status": "finished", "kickoff": "2026-06-15 03:00 CST", "score": [4, 1], "odds": []},
+            {"status": "finished", "kickoff": "2026-06-16 03:00 CST", "score": [3, 0], "odds": []},
+        ],
+    }
+
+    report = build_report(payload)
+
+    assert report["recent"]["window"] == 5
+    assert report["recent"]["avgTotalGoals"] == 3.0
+    assert report["recent"]["drawRate"] == 0.4
+    assert report["recent"]["over25Rate"] == 0.6
+    assert report["recent"]["matches"][-1]["score"] == "3-0"

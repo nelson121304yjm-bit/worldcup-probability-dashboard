@@ -33,6 +33,11 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+try:
+    from scripts.project_qualification import build_projection
+except ModuleNotFoundError:  # pragma: no cover - used when running this file directly
+    from project_qualification import build_projection
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "web" / "data" / "matches.js"
@@ -497,6 +502,7 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
             changes.append(f"{match.get('id')} {match.get('home')} vs {match.get('away')}")
 
     if changes:
+        payload["qualificationProjection"] = build_projection(payload)
         now = datetime.now(SHANGHAI).strftime("%Y-%m-%d %H:%M CST")
         payload["lastUpdated"] = f"{now}（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）"
         source = str(payload.get("sourceName") or "").replace("虎扑赛程校验", "虎扑赛程/热度校验")
