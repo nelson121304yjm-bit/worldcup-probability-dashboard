@@ -2,8 +2,9 @@ const STORAGE_KEY = "worldcup-score-ui-matches-20260621-qualification";
 const SINGLE_STAKE = 100;
 const PARLAY_STAKE = 10;
 const TARGET_EDGE = 1.1;
-const SPORTTERY_SCORE_WEIGHT = 0.45;
-const CALIBRATED_TOTAL_GOALS_BASELINE = 2.9;
+const SPORTTERY_SCORE_WEIGHT = 0.50;
+const CALIBRATED_TOTAL_GOALS_BASELINE = 2.85;
+const DRAW_FLOOR_MARKET_RATIO = 0.92;
 
 const state = {
   matches: [],
@@ -1382,16 +1383,22 @@ function calculateScorePrediction(match) {
   const homeRow = rows.find((row, index) => outcomeKind(match, row, index) === "home");
   const drawRow = rows.find((row, index) => outcomeKind(match, row, index) === "draw");
   const awayRow = rows.find((row, index) => outcomeKind(match, row, index) === "away");
-  const homeProbability = homeRow?.modelProbability ?? 0.33;
-  const drawProbability = drawRow?.modelProbability ?? 0.28;
-  const awayProbability = awayRow?.modelProbability ?? 0.33;
-  const totalGoals = estimateTotalGoals(match, drawProbability);
-  const goalShare = clampNumber(0.5 + (homeProbability - awayProbability) * 0.58, 0.18, 0.82);
+  const rawHome = homeRow?.modelProbability ?? 0.33;
+  const rawDraw = drawRow?.modelProbability ?? 0.28;
+  const marketDraw = drawRow?.marketConsensus ?? 0.21;
+  const drawFloor = Math.max(rawDraw, marketDraw * DRAW_FLOOR_MARKET_RATIO);
+  const rawAway = awayRow?.modelProbability ?? 0.33;
+  const scale = (1 - drawFloor) / Math.max(rawHome + rawAway, 0.001);
+  const homeProbability = rawHome * scale;
+  const drawProbability = drawFloor;
+  const awayProbability = rawAway * scale;  const totalGoals = estimateTotalGoals(match, drawProbability);
+  const goalShare = clampNumber(0.5 + (homeProbability - awayProbability) * 0.52, 0.20, 0.80);
   const homeGoals = clampNumber(totalGoals * goalShare, 0.18, 4.75);
   const awayGoals = clampNumber(totalGoals - homeGoals, 0.12, 4.25);
   const sportteryScoreProbabilities = normalizeScoreProbabilityMap(match.sporttery.correctScore);
   const hasSportteryScores = Object.keys(sportteryScoreProbabilities).length > 0;
   const matrix = scoreMatrix(homeGoals, awayGoals, 5);
+  const useDrawBiased = drawProbability >= 0.20;
   const topScores = matrix
     .map((item) => ({
       ...item,
@@ -1399,10 +1406,11 @@ function calculateScorePrediction(match) {
       label: scoreResultLabel(match, item.home, item.away),
       modelProbability: item.probability,
       sportteryProbability: sportteryScoreProbabilities[`${item.home}-${item.away}`] ?? null,
+      drawBoost: useDrawBiased && item.home === item.away ? drawProbability * 0.25 : 0,
     }))
     .map((item) => ({
       ...item,
-      probability: blendScoreProbability(item.modelProbability, item.sportteryProbability),
+      probability: blendScoreProbability(item.modelProbability + item.drawBoost, item.sportteryProbability),
       valueEdge: Number.isFinite(item.sportteryProbability) ? item.modelProbability - item.sportteryProbability : null,
     }))
     .sort((a, b) => b.probability - a.probability)
@@ -1447,10 +1455,10 @@ function blendScoreProbability(modelProbability, sportteryProbability) {
 function estimateTotalGoals(match, drawProbability) {
   const totalLine = totalGoalsLine(match);
   if (Number.isFinite(totalLine)) {
-    return clampNumber(totalLine + 0.06, 1.25, 4.25);
+    return clampNumber(totalLine, 1.0, 3.8);
   }
   const favoriteGap = favoriteProbabilityGap(match);
-  return clampNumber(CALIBRATED_TOTAL_GOALS_BASELINE - drawProbability * 1.35 + favoriteGap * 0.5, 1.65, 4.15);
+  return clampNumber(CALIBRATED_TOTAL_GOALS_BASELINE - drawProbability * 1.2 + favoriteGap * 0.3, 1.3, 3.8);
 }
 
 function totalGoalsLine(match) {
