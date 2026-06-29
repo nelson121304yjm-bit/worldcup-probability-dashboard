@@ -1,6 +1,6 @@
 window.WORLD_CUP_MATCHES = {
   "sourceName": "sporttery.cn 官方足球胜平负计算器 HAD/HHAD/CRS + wc-2026.com 比赛赔率表 + Polymarket World Cup Winner 长期市场；Sporttery 自动更新；虎扑赛程/热度校验；PANews AI Arena",
-  "lastUpdated": "2026-06-30 02:30 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
+  "lastUpdated": "2026-06-30 04:28 CST（自动刷新 Sporttery 公开赛果/赔率 + 虎扑近期赛程/热度；未匹配数据保持原状）",
   "matches": [
     {
       "id": "wc2026-6-12-0300-mexico-south-africa",
@@ -16738,8 +16738,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513924",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 305000,
-        "ratingText": "30.5万评分"
+        "ratingCount": 308000,
+        "ratingText": "30.8万评分"
       },
       "panewsAi": {
         "sourceName": "PANews AI Arena",
@@ -16985,8 +16985,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514808",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 129000,
-        "ratingText": "12.9万评分"
+        "ratingCount": 130000,
+        "ratingText": "13.0万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-27 12:35 CST",
@@ -17417,8 +17417,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513923",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 150000,
-        "ratingText": "15.0万评分"
+        "ratingCount": 151000,
+        "ratingText": "15.1万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-27 15:49 CST",
@@ -17563,8 +17563,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513902",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 232000,
-        "ratingText": "23.2万评分"
+        "ratingCount": 234000,
+        "ratingText": "23.4万评分"
       },
       "panewsAi": {
         "sourceName": "PANews AI Arena",
@@ -18071,8 +18071,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3514803",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 262000,
-        "ratingText": "26.2万评分"
+        "ratingCount": 263000,
+        "ratingText": "26.3万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-28 13:02 CST",
@@ -18528,8 +18528,8 @@ window.WORLD_CUP_MATCHES = {
         "matchId": "3513901",
         "status": "已结束",
         "sourceUrl": "https://m.hupu.com/soccer/schedule",
-        "ratingCount": 246000,
-        "ratingText": "24.6万评分"
+        "ratingCount": 247000,
+        "ratingText": "24.7万评分"
       },
       "closingSnapshot": {
         "capturedAt": "2026-06-28 13:02 CST",
@@ -21542,7 +21542,7 @@ window.WORLD_CUP_MATCHES = {
     }
   ],
   "qualificationProjection": {
-    "generatedAt": "2026-06-30 02:30 CST",
+    "generatedAt": "2026-06-30 04:28 CST",
     "method": "小组赛出线蒙特卡洛：已完赛按真实比分计入，未赛按当前 1X2 市场共识 + 表现评分抽样；每组前二与 8 个最佳小组第三晋级。",
     "simulations": 2500,
     "bestThirdCount": 8,
