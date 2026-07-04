@@ -34,9 +34,23 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 try:
-    from scripts.project_qualification import build_projection
+    from scripts.project_qualification import (
+        build_current_standings,
+        build_projection,
+        is_group_match,
+        rank_standings,
+        rank_third_candidates,
+        score_tuple,
+    )
 except ModuleNotFoundError:  # pragma: no cover - used when running this file directly
-    from project_qualification import build_projection
+    from project_qualification import (
+        build_current_standings,
+        build_projection,
+        is_group_match,
+        rank_standings,
+        rank_third_candidates,
+        score_tuple,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +65,10 @@ HUPU_MOBILE_SCHEDULE_URL = "https://m.hupu.com/soccer/schedule"
 PANEWS_ARENA_URL = "https://worldcup.panewslab.com/"
 PANEWS_ARENA_STATE_URL = "https://worldcup.panewslab.com/api/arena-state"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
+ROUND_OF_32_STAGE = "1/16决赛"
+GROUP_PLACEHOLDER_RE = re.compile(r"^([A-L])组(首名|次名)$")
+THIRD_PLACEHOLDER_RE = re.compile(r"^第三名([A-L](?:/[A-L])*)$")
+MATCH_RESULT_PLACEHOLDER_RE = re.compile(r"^第(\d+)场(胜者|负者)$")
 PANEWS_MODELS = {
     "minimax": {"name": "MiniMax Match Desk", "short": "MiniMax", "color": "#0c8f64"},
     "deepseek": {"name": "DeepSeek Match Desk", "short": "DeepSeek", "color": "#b68417"},
@@ -470,9 +488,189 @@ def build_indexes(
     return calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key
 
 
-def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any]], result_items: list[dict[str, Any]]) -> list[str]:
-    calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key = build_indexes(calculator_items, result_items)
+def resolve_knockout_placeholders(payload: dict[str, Any], result_items: list[dict[str, Any]]) -> list[str]:
+    matches = payload.get("matches") or []
+    group_matches = [match for match in matches if is_group_match(match)]
+    groups = sorted({
+        str(match.get("stage") or "")
+        for match in group_matches
+        if is_completed_group(group_matches, str(match.get("stage") or ""))
+    })
+    if not groups:
+        return []
+
+    ranked_groups = {
+        group: rank_standings(build_current_standings(group_matches, group).values())
+        for group in groups
+    }
+    third_candidates = [
+        (group, ranked[2])
+        for group, ranked in ranked_groups.items()
+        if len(ranked) >= 3
+    ]
+    best_thirds = rank_third_candidates(third_candidates)[:8]
+    third_assignments = assign_best_thirds_to_r32_slots(best_thirds, matches, ranked_groups, result_items)
+
     changes: list[str] = []
+    for match in matches:
+        if match.get("stage") != ROUND_OF_32_STAGE:
+            continue
+        before_home = str(match.get("home") or "")
+        before_away = str(match.get("away") or "")
+        home = resolve_knockout_team(before_home, ranked_groups, third_assignments)
+        away = resolve_knockout_team(before_away, ranked_groups, third_assignments)
+        if home and away and (home != before_home or away != before_away):
+            match["home"] = home
+            match["away"] = away
+            changes.append(f"{match.get('id')} {home} vs {away}")
+    return changes
+
+
+def is_completed_group(group_matches: list[dict[str, Any]], group: str) -> bool:
+    matches = [match for match in group_matches if match.get("stage") == group]
+    return len(matches) >= 6 and all(score_tuple(match) is not None for match in matches)
+
+
+def resolve_knockout_team(
+    value: str,
+    ranked_groups: dict[str, list[Any]],
+    third_assignments: dict[str, str],
+) -> str | None:
+    group_match = GROUP_PLACEHOLDER_RE.match(value)
+    if group_match:
+        group = f"{group_match.group(1)}组"
+        rank = 0 if group_match.group(2) == "首名" else 1
+        ranked = ranked_groups.get(group) or []
+        return ranked[rank].team if len(ranked) > rank else None
+
+    third_match = THIRD_PLACEHOLDER_RE.match(value)
+    if third_match:
+        return third_assignments.get(value)
+
+    return value
+
+
+def assign_best_thirds_to_r32_slots(
+    best_thirds: list[tuple[str, Any]],
+    matches: list[dict[str, Any]],
+    ranked_groups: dict[str, list[Any]],
+    result_items: list[dict[str, Any]],
+) -> dict[str, str]:
+    slots = []
+    for match in matches:
+        if match.get("stage") != ROUND_OF_32_STAGE:
+            continue
+        for side in ("home", "away"):
+            value = str(match.get(side) or "")
+            if THIRD_PLACEHOLDER_RE.match(value) and value not in slots:
+                slots.append(value)
+
+    slot_groups = {
+        slot: {f"{letter}组" for letter in slot.replace("第三名", "").split("/")}
+        for slot in slots
+    }
+    standing_by_team = {standing.team: (group, standing) for group, standing in best_thirds}
+    assigned_slots = assign_thirds_from_result_items(slots, slot_groups, standing_by_team, matches, ranked_groups, result_items)
+    used_teams = set(assigned_slots.values())
+    remaining_slots = [slot for slot in slots if slot not in assigned_slots]
+
+    def backtrack(index: int) -> bool:
+        if index >= len(remaining_slots):
+            return True
+        slot = remaining_slots[index]
+        for group, standing in best_thirds:
+            if standing.team in used_teams or group not in slot_groups[slot]:
+                continue
+            assigned_slots[slot] = standing.team
+            used_teams.add(standing.team)
+            if backtrack(index + 1):
+                return True
+            used_teams.remove(standing.team)
+            assigned_slots.pop(slot, None)
+        return False
+
+    if not backtrack(0):
+        return {}
+    return assigned_slots
+
+
+def assign_thirds_from_result_items(
+    slots: list[str],
+    slot_groups: dict[str, set[str]],
+    standing_by_team: dict[str, tuple[str, Any]],
+    matches: list[dict[str, Any]],
+    ranked_groups: dict[str, list[Any]],
+    result_items: list[dict[str, Any]],
+) -> dict[str, str]:
+    assignments: dict[str, str] = {}
+    used_teams: set[str] = set()
+    results_by_date: dict[str, list[dict[str, Any]]] = {}
+    for item in result_items:
+        results_by_date.setdefault(match_date(item), []).append(item)
+
+    for match in matches:
+        if match.get("stage") != ROUND_OF_32_STAGE:
+            continue
+        home = str(match.get("home") or "")
+        away = str(match.get("away") or "")
+        third_side = home if THIRD_PLACEHOLDER_RE.match(home) else away if THIRD_PLACEHOLDER_RE.match(away) else ""
+        if third_side not in slots or third_side in assignments:
+            continue
+
+        fixed_side = away if third_side == home else home
+        fixed_team = resolve_knockout_team(fixed_side, ranked_groups, {})
+        if not fixed_team:
+            continue
+
+        for item in results_by_date.get(str(match.get("kickoff") or "")[:10], []):
+            result_home, result_away = team_names(item)
+            if fixed_team not in (result_home, result_away):
+                continue
+            candidate = result_away if result_home == fixed_team else result_home
+            standing = standing_by_team.get(candidate)
+            if not standing:
+                continue
+            group, _ = standing
+            if group in slot_groups[third_side] and candidate not in used_teams:
+                assignments[third_side] = candidate
+                used_teams.add(candidate)
+                break
+    return assignments
+
+
+def resolve_match_result_placeholders(payload: dict[str, Any]) -> list[str]:
+    matches = payload.get("matches") or []
+    by_number = {str(index + 1): match for index, match in enumerate(matches)}
+    changes: list[str] = []
+
+    for match in matches:
+        before_home = str(match.get("home") or "")
+        before_away = str(match.get("away") or "")
+        home = resolve_match_result_team(before_home, by_number)
+        away = resolve_match_result_team(before_away, by_number)
+        if (home and home != before_home) or (away and away != before_away):
+            match["home"] = home or before_home
+            match["away"] = away or before_away
+            changes.append(f"{match.get('id')} {match.get('home')} vs {match.get('away')}")
+    return changes
+
+
+def resolve_match_result_team(value: str, by_number: dict[str, dict[str, Any]]) -> str | None:
+    placeholder = MATCH_RESULT_PLACEHOLDER_RE.match(value)
+    if not placeholder:
+        return value
+    source = by_number.get(placeholder.group(1))
+    if not source:
+        return None
+    key = "winner" if placeholder.group(2) == "胜者" else "loser"
+    team = source.get(key)
+    return str(team) if team else None
+
+
+def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any]], result_items: list[dict[str, Any]]) -> list[str]:
+    placeholder_changes = resolve_knockout_placeholders(payload, result_items)
+    calculator_by_id, result_by_id, calculator_by_key, result_by_key, hupu_by_key = build_indexes(calculator_items, result_items)
+    changes: list[str] = list(placeholder_changes)
     panews_state = payload.pop("_panewsArenaState", None)
 
     for match in payload.get("matches") or []:
@@ -499,7 +697,13 @@ def update_matches(payload: dict[str, Any], calculator_items: list[dict[str, Any
 
         after = json.dumps(match, ensure_ascii=False, sort_keys=True)
         if after != before:
-            changes.append(f"{match.get('id')} {match.get('home')} vs {match.get('away')}")
+            change = f"{match.get('id')} {match.get('home')} vs {match.get('away')}"
+            if change not in changes:
+                changes.append(change)
+
+    for change in resolve_match_result_placeholders(payload):
+        if change not in changes:
+            changes.append(change)
 
     if changes:
         payload["qualificationProjection"] = build_projection(payload)
@@ -562,6 +766,8 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         match["status"] = "finished"
         match["minute"] = "FT"
         match["score"] = list(score)
+        if is_knockout_match(match):
+            apply_match_outcome(match, score, str(item.get("sectionsNo999") or ""))
         if old_status != "finished" or old_score != score:
             source_name = result_source_name(item)
             source_url = str(item.get("_sourceUrl") or SPORTTERY_SOURCE_URL)
@@ -587,6 +793,37 @@ def apply_result_item(match: dict[str, Any], item: dict[str, Any]) -> None:
         if item.get("matchNumStr"):
             sporttery["matchNumStr"] = str(item.get("matchNumStr"))
         sporttery["sourceUrl"] = sporttery.get("sourceUrl") or SPORTTERY_SOURCE_URL
+
+
+def apply_match_outcome(match: dict[str, Any], score: tuple[int, int], raw_score: str) -> None:
+    home = str(match.get("home") or "")
+    away = str(match.get("away") or "")
+    if not home or not away:
+        return
+    home_goals, away_goals = score
+    if home_goals > away_goals:
+        match["winner"] = home
+        match["loser"] = away
+        return
+    if away_goals > home_goals:
+        match["winner"] = away
+        match["loser"] = home
+        return
+
+    penalty = parse_penalty_score(raw_score)
+    if not penalty:
+        return
+    home_penalties, away_penalties = penalty
+    if home_penalties > away_penalties:
+        match["winner"] = home
+        match["loser"] = away
+    elif away_penalties > home_penalties:
+        match["winner"] = away
+        match["loser"] = home
+
+
+def is_knockout_match(match: dict[str, Any]) -> bool:
+    return "决赛" in str(match.get("stage") or "")
 
 
 def result_odds_pool(item: dict[str, Any]) -> dict[str, Any] | None:
@@ -983,7 +1220,14 @@ def combine_update_time(raw: dict[str, Any]) -> str:
 
 
 def parse_score(value: str) -> tuple[int, int] | None:
-    match = re.fullmatch(r"\s*(\d+)\s*[:：-]\s*(\d+)\s*", value)
+    match = re.fullmatch(r"\s*(\d+)(?:\s*\(\d+\))?\s*[:：-]\s*(\d+)(?:\s*\(\d+\))?\s*", value)
+    if not match:
+        return None
+    return int(match.group(1)), int(match.group(2))
+
+
+def parse_penalty_score(value: str) -> tuple[int, int] | None:
+    match = re.fullmatch(r"\s*\d+\s*\((\d+)\)\s*[:：-]\s*\d+\s*\((\d+)\)\s*", value)
     if not match:
         return None
     return int(match.group(1)), int(match.group(2))

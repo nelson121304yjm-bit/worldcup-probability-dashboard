@@ -19,6 +19,7 @@ from scripts.fetch_sporttery import (
 def test_parse_score_handles_colon() -> None:
     assert parse_score("2:1") == (2, 1)
     assert parse_score(" 0-0 ") == (0, 0)
+    assert parse_score("1 (3):1 (4)") == (1, 1)
     assert parse_score("") is None
 
 
@@ -319,6 +320,257 @@ def test_update_matches_does_not_touch_unmatched_games() -> None:
     assert payload == original
 
 
+def test_update_matches_resolves_knockout_placeholders_before_matching_results() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            {
+                "id": "a1-a2",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-12 03:00 CST",
+                "home": "墨西哥",
+                "away": "南非",
+                "score": [2, 0],
+            },
+            {
+                "id": "a3-a4",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-12 10:00 CST",
+                "home": "韩国",
+                "away": "捷克",
+                "score": [2, 1],
+            },
+            {
+                "id": "a4-a2",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-19 00:00 CST",
+                "home": "捷克",
+                "away": "南非",
+                "score": [1, 1],
+            },
+            {
+                "id": "a1-a3",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-19 09:00 CST",
+                "home": "墨西哥",
+                "away": "韩国",
+                "score": [1, 0],
+            },
+            {
+                "id": "a2-a3",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-25 09:00 CST",
+                "home": "南非",
+                "away": "韩国",
+                "score": [1, 0],
+            },
+            {
+                "id": "a4-a1",
+                "status": "finished",
+                "stage": "A组",
+                "kickoff": "2026-06-25 09:00 CST",
+                "home": "捷克",
+                "away": "墨西哥",
+                "score": [0, 3],
+            },
+            {
+                "id": "b1-b2",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-13 03:00 CST",
+                "home": "加拿大",
+                "away": "波黑",
+                "score": [1, 1],
+            },
+            {
+                "id": "b3-b4",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-14 03:00 CST",
+                "home": "卡塔尔",
+                "away": "瑞士",
+                "score": [1, 1],
+            },
+            {
+                "id": "b4-b2",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-19 03:00 CST",
+                "home": "瑞士",
+                "away": "波黑",
+                "score": [4, 1],
+            },
+            {
+                "id": "b1-b3",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-19 06:00 CST",
+                "home": "加拿大",
+                "away": "卡塔尔",
+                "score": [6, 0],
+            },
+            {
+                "id": "b2-b3",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-25 03:00 CST",
+                "home": "波黑",
+                "away": "卡塔尔",
+                "score": [3, 1],
+            },
+            {
+                "id": "b4-b1",
+                "status": "finished",
+                "stage": "B组",
+                "kickoff": "2026-06-25 03:00 CST",
+                "home": "瑞士",
+                "away": "加拿大",
+                "score": [2, 1],
+            },
+            {
+                "id": "r32-a-b",
+                "status": "upcoming",
+                "stage": "1/16决赛",
+                "kickoff": "2026-06-29 03:00 CST",
+                "minute": "03:00",
+                "home": "A组次名",
+                "away": "B组次名",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+                "timeline": [],
+                "sources": [],
+                "marketNotes": [],
+            },
+        ],
+    }
+    result_items = [
+        {
+            "matchDate": "2026-06-29",
+            "homeTeam": "南非",
+            "awayTeam": "加拿大",
+            "leagueNameAbbr": "世界杯",
+            "sectionsNo999": "1:2",
+        }
+    ]
+
+    changes = update_matches(payload, [], result_items)
+    match = payload["matches"][-1]
+
+    assert "r32-a-b 南非 vs 加拿大" in changes
+    assert match["home"] == "南非"
+    assert match["away"] == "加拿大"
+    assert match["status"] == "finished"
+    assert match["score"] == [1, 2]
+    assert match["minute"] == "FT"
+
+
+def test_update_matches_uses_result_fixture_to_resolve_best_third_slot() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            *completed_group_matches("D组", ["美国", "澳大利亚", "巴拉圭", "土耳其"]),
+            *completed_group_matches("E组", ["德国", "科特迪瓦", "厄瓜多尔", "库拉索"]),
+            *completed_group_matches("F组", ["荷兰", "日本", "瑞典", "突尼斯"]),
+            {
+                "id": "r32-e-third",
+                "status": "upcoming",
+                "stage": "1/16决赛",
+                "kickoff": "2026-06-30 04:30 CST",
+                "minute": "04:30",
+                "home": "E组首名",
+                "away": "第三名A/B/C/D/F",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+                "timeline": [],
+                "sources": [],
+                "marketNotes": [],
+            },
+        ],
+    }
+    result_items = [
+        {
+            "matchDate": "2026-06-30",
+            "homeTeam": "德国",
+            "awayTeam": "巴拉圭",
+            "leagueNameAbbr": "世界杯",
+            "sectionsNo999": "1:1",
+        }
+    ]
+
+    changes = update_matches(payload, [], result_items)
+    match = payload["matches"][-1]
+
+    assert "r32-e-third 德国 vs 巴拉圭" in changes
+    assert match["home"] == "德国"
+    assert match["away"] == "巴拉圭"
+    assert match["status"] == "finished"
+
+
+def test_update_matches_resolves_next_round_winner_from_penalties() -> None:
+    payload = {
+        "sourceName": "snapshot",
+        "lastUpdated": "-",
+        "matches": [
+            {
+                "id": "r32-germany-paraguay",
+                "status": "upcoming",
+                "stage": "1/16决赛",
+                "kickoff": "2026-06-30 04:30 CST",
+                "minute": "04:30",
+                "home": "德国",
+                "away": "巴拉圭",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+                "timeline": [],
+                "sources": [],
+                "marketNotes": [],
+            },
+            {
+                "id": "r16-first",
+                "status": "upcoming",
+                "stage": "1/8决赛",
+                "kickoff": "2026-07-05 01:00 CST",
+                "minute": "01:00",
+                "home": "第1场胜者",
+                "away": "第2场胜者",
+                "score": ["-", "-"],
+                "odds": [],
+                "sporttery": {},
+            },
+        ],
+    }
+    result_items = [
+        {
+            "matchDate": "2026-06-30",
+            "homeTeam": "德国",
+            "awayTeam": "巴拉圭",
+            "leagueNameAbbr": "世界杯",
+            "sectionsNo999": "1 (3):1 (4)",
+        }
+    ]
+
+    changes = update_matches(payload, [], result_items)
+    r32 = payload["matches"][0]
+    r16 = payload["matches"][1]
+
+    assert "r32-germany-paraguay 德国 vs 巴拉圭" in changes
+    assert "r16-first 巴拉圭 vs 第2场胜者" in changes
+    assert r32["score"] == [1, 1]
+    assert r32["winner"] == "巴拉圭"
+    assert r32["loser"] == "德国"
+    assert r16["home"] == "巴拉圭"
+
+
 def test_future_results_are_not_applied_even_if_source_marks_finished() -> None:
     payload = {
         "sourceName": "snapshot",
@@ -513,3 +765,26 @@ def json_dumps(value: dict) -> str:
     import json
 
     return json.dumps(value, ensure_ascii=False)
+
+
+def completed_group_matches(stage: str, teams: list[str]) -> list[dict]:
+    pairings = [
+        (0, 1),
+        (0, 2),
+        (0, 3),
+        (1, 2),
+        (1, 3),
+        (2, 3),
+    ]
+    return [
+        {
+            "id": f"{stage}-{home_index}-{away_index}",
+            "status": "finished",
+            "stage": stage,
+            "kickoff": "2026-06-12 03:00 CST",
+            "home": teams[home_index],
+            "away": teams[away_index],
+            "score": [1, 0],
+        }
+        for home_index, away_index in pairings
+    ]
